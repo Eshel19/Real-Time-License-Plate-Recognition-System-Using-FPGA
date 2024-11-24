@@ -52,7 +52,7 @@ To create the custom Linux distribution for the DE10 Standard FPGA board used in
 
 ### Overview Architecture
 
-![Overview Architecture](docs/images/overview_architecture.png)
+![Overview Architecture](docs/images/overview_architecture.jpg)
 
 *Figure 1: Overview architecture of the Real-Time License Plate Recognition System.*
 
@@ -65,7 +65,7 @@ To create the custom Linux distribution for the DE10 Standard FPGA board used in
 ### License Plate preprocessing workflow 
 
 
-![License Plate preprocessing workflow](docs/images/preprocessing_workflow.png)
+![License Plate preprocessing workflow](docs/images/preprocessing_workflow.jpg)
 
 *Figure 3: Overview architecture of the preprocessing workflow.*
 
