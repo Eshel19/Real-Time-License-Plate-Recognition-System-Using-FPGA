@@ -1,0 +1,138 @@
+class_names:
+- '0'
+- License-Plates
+data:
+  train:
+    ann_path: dataset_coco/combined_dataset/train/train_annotations.coco.json
+    img_path: dataset_coco/combined_dataset/train
+    input_size:
+    - 128
+    - 128
+    keep_ratio: true
+    name: CocoDataset
+    pipeline:
+      brightness: 0.2
+      contrast:
+      - 0.6
+      - 1.4
+      flip: 0.5
+      normalize:
+      - - 103.53
+        - 116.28
+        - 123.675
+      - - 57.375
+        - 57.12
+        - 58.395
+      perspective: 0.0
+      rotation: 0
+      saturation:
+      - 0.5
+      - 1.2
+      scale:
+      - 0.5
+      - 1.5
+      shear: 0
+      stretch:
+      - - 1
+        - 1
+      - - 1
+        - 1
+      translate: 0.2
+  val:
+    ann_path: dataset_coco/combined_dataset/valid/valid_annotations.coco.json
+    img_path: dataset_coco/combined_dataset/valid
+    input_size:
+    - 128
+    - 128
+    keep_ratio: true
+    name: CocoDataset
+    pipeline:
+      normalize:
+      - - 103.53
+        - 116.28
+        - 123.675
+      - - 57.375
+        - 57.12
+        - 58.395
+device:
+  batchsize_per_gpu: 256
+  gpu_ids:
+  - 0
+  precision: 32
+  workers_per_gpu: 8
+evaluator:
+  name: CocoDetectionEvaluator
+  save_key: mAP
+log:
+  interval: 50
+model:
+  arch:
+    backbone:
+      activation: LeakyReLU
+      model_size: 0.5x
+      name: ShuffleNetV2
+      out_stages:
+      - 2
+      - 3
+      - 4
+    fpn:
+      in_channels:
+      - 48
+      - 96
+      - 192
+      name: PAN
+      num_outs: 3
+      out_channels: 96
+      start_level: 0
+    head:
+      feat_channels: 96
+      input_channel: 96
+      loss:
+        loss_bbox:
+          loss_weight: 2.0
+          name: GIoULoss
+        loss_dfl:
+          loss_weight: 0.25
+          name: DistributionFocalLoss
+        loss_qfl:
+          beta: 2.0
+          loss_weight: 1.0
+          name: QualityFocalLoss
+          use_sigmoid: true
+      name: NanoDetHead
+      norm_cfg:
+        type: BN
+      num_classes: 2
+      octave_base_scale: 5
+      reg_max: 7
+      scales_per_octave: 1
+      share_cls_reg: true
+      stacked_convs: 2
+      strides:
+      - 8
+      - 16
+      - 32
+    name: OneStageDetector
+save_dir: workspace_new/nanodet_m_0.5x
+schedule:
+  lr_schedule:
+    gamma: 0.1
+    milestones:
+    - 130
+    - 160
+    - 175
+    name: MultiStepLR
+  optimizer:
+    lr: 0.035
+    momentum: 0.9
+    name: SGD
+    weight_decay: 0.0001
+  resume:
+    load_model: workspace_new\nanodet_m_0.5x\model_best\model_best.ckpt
+  total_epochs: 180
+  val_intervals: 10
+  warmup:
+    name: linear
+    ratio: 1.0e-05
+    steps: 1000
+test: {}
