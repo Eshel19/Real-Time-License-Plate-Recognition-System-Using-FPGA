@@ -62,11 +62,13 @@ To create the custom Linux distribution for the DE10 Standard FPGA board used in
 
 *Figure 2: Result of the license plate detection algorithm on a sample image.*
 
-### FPGA OCR Module Diagram
+### License Plate preprocessing workflow 
 
-![FPGA OCR Module](docs/images/fpga_ocr_diagram.png)
 
-*Figure 3: Block diagram of the FPGA-based OCR acceleration module.*
+![License Plate preprocessing workflow](docs/images/preprocessing_workflow.png)
+
+*Figure 3: Overview architecture of the preprocessing workflow.*
+
 
 ## Project Status
 

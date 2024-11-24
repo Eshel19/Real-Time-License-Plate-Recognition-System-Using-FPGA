@@ -1,0 +1,150 @@
+7767517
+148 173
+Input                    in0                      0 1 in0
+Convolution              convrelu_0               1 1 in0 1 0=24 1=3 -23310=1,1.000000e-01 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=648 9=2
+Pooling                  maxpool2d_116            1 1 1 2 0=0 1=3 11=3 12=2 13=1 2=2 3=1 5=1
+Split                    splitncnn_0              1 2 2 3 4
+ConvolutionDepthWise     convdw_124               1 1 4 5 0=24 1=3 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=216 7=24
+Convolution              convrelu_1               1 1 5 6 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+Convolution              convrelu_2               1 1 3 7 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+ConvolutionDepthWise     convdw_125               1 1 7 8 0=24 1=3 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=216 7=24
+Convolution              convrelu_3               1 1 8 9 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+Concat                   cat_0                    2 1 6 9 10 0=0
+ShuffleChannel           channelshuffle_0         1 1 10 11 0=2 1=0
+Slice                    tensor_split_0           1 2 11 12 13 -23300=2,24,-233 1=0
+Convolution              convrelu_4               1 1 13 14 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+ConvolutionDepthWise     convdw_126               1 1 14 15 0=24 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=216 7=24
+Convolution              convrelu_5               1 1 15 16 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+Concat                   cat_1                    2 1 12 16 17 0=0
+ShuffleChannel           channelshuffle_1         1 1 17 18 0=2 1=0
+Slice                    tensor_split_1           1 2 18 19 20 -23300=2,24,-233 1=0
+Convolution              convrelu_6               1 1 20 21 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+ConvolutionDepthWise     convdw_127               1 1 21 22 0=24 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=216 7=24
+Convolution              convrelu_7               1 1 22 23 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+Concat                   cat_2                    2 1 19 23 24 0=0
+ShuffleChannel           channelshuffle_2         1 1 24 25 0=2 1=0
+Slice                    tensor_split_2           1 2 25 26 27 -23300=2,24,-233 1=0
+Convolution              convrelu_8               1 1 27 28 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+ConvolutionDepthWise     convdw_128               1 1 28 29 0=24 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=216 7=24
+Convolution              convrelu_9               1 1 29 30 0=24 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=576 9=2
+Concat                   cat_3                    2 1 26 30 31 0=0
+ShuffleChannel           channelshuffle_3         1 1 31 32 0=2 1=0
+Split                    splitncnn_1              1 3 32 33 34 35
+ConvolutionDepthWise     convdw_129               1 1 35 36 0=48 1=3 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=432 7=48
+Convolution              convrelu_10              1 1 36 37 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Convolution              convrelu_11              1 1 34 38 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_130               1 1 38 39 0=48 1=3 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=432 7=48
+Convolution              convrelu_12              1 1 39 40 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_4                    2 1 37 40 41 0=0
+ShuffleChannel           channelshuffle_4         1 1 41 42 0=2 1=0
+Slice                    tensor_split_3           1 2 42 43 44 -23300=2,48,-233 1=0
+Convolution              convrelu_13              1 1 44 45 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_131               1 1 45 46 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_14              1 1 46 47 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_5                    2 1 43 47 48 0=0
+ShuffleChannel           channelshuffle_5         1 1 48 49 0=2 1=0
+Slice                    tensor_split_4           1 2 49 50 51 -23300=2,48,-233 1=0
+Convolution              convrelu_15              1 1 51 52 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_132               1 1 52 53 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_16              1 1 53 54 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_6                    2 1 50 54 55 0=0
+ShuffleChannel           channelshuffle_6         1 1 55 56 0=2 1=0
+Slice                    tensor_split_5           1 2 56 57 58 -23300=2,48,-233 1=0
+Convolution              convrelu_17              1 1 58 59 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_133               1 1 59 60 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_18              1 1 60 61 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_7                    2 1 57 61 62 0=0
+ShuffleChannel           channelshuffle_7         1 1 62 63 0=2 1=0
+Slice                    tensor_split_6           1 2 63 64 65 -23300=2,48,-233 1=0
+Convolution              convrelu_19              1 1 65 66 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_134               1 1 66 67 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_20              1 1 67 68 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_8                    2 1 64 68 69 0=0
+ShuffleChannel           channelshuffle_8         1 1 69 70 0=2 1=0
+Slice                    tensor_split_7           1 2 70 71 72 -23300=2,48,-233 1=0
+Convolution              convrelu_21              1 1 72 73 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_135               1 1 73 74 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_22              1 1 74 75 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_9                    2 1 71 75 76 0=0
+ShuffleChannel           channelshuffle_9         1 1 76 77 0=2 1=0
+Slice                    tensor_split_8           1 2 77 78 79 -23300=2,48,-233 1=0
+Convolution              convrelu_23              1 1 79 80 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_136               1 1 80 81 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_24              1 1 81 82 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_10                   2 1 78 82 83 0=0
+ShuffleChannel           channelshuffle_10        1 1 83 84 0=2 1=0
+Slice                    tensor_split_9           1 2 84 85 86 -23300=2,48,-233 1=0
+Convolution              convrelu_25              1 1 86 87 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+ConvolutionDepthWise     convdw_137               1 1 87 88 0=48 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=432 7=48
+Convolution              convrelu_26              1 1 88 89 0=48 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=2304 9=2
+Concat                   cat_11                   2 1 85 89 90 0=0
+ShuffleChannel           channelshuffle_11        1 1 90 91 0=2 1=0
+Split                    splitncnn_2              1 3 91 92 93 94
+ConvolutionDepthWise     convdw_138               1 1 94 95 0=96 1=3 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=864 7=96
+Convolution              convrelu_27              1 1 95 96 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Convolution              convrelu_28              1 1 93 97 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdw_139               1 1 97 98 0=96 1=3 11=3 12=1 13=2 14=1 2=1 3=2 4=1 5=1 6=864 7=96
+Convolution              convrelu_29              1 1 98 99 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Concat                   cat_12                   2 1 96 99 100 0=0
+ShuffleChannel           channelshuffle_12        1 1 100 101 0=2 1=0
+Slice                    tensor_split_10          1 2 101 102 103 -23300=2,96,-233 1=0
+Convolution              convrelu_30              1 1 103 104 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdw_140               1 1 104 105 0=96 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96
+Convolution              convrelu_31              1 1 105 106 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Concat                   cat_13                   2 1 102 106 107 0=0
+ShuffleChannel           channelshuffle_13        1 1 107 108 0=2 1=0
+Slice                    tensor_split_11          1 2 108 109 110 -23300=2,96,-233 1=0
+Convolution              convrelu_32              1 1 110 111 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdw_141               1 1 111 112 0=96 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96
+Convolution              convrelu_33              1 1 112 113 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Concat                   cat_14                   2 1 109 113 114 0=0
+ShuffleChannel           channelshuffle_14        1 1 114 115 0=2 1=0
+Slice                    tensor_split_12          1 2 115 116 117 -23300=2,96,-233 1=0
+Convolution              convrelu_34              1 1 117 118 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdw_142               1 1 118 119 0=96 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96
+Convolution              convrelu_35              1 1 119 120 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Concat                   cat_15                   2 1 116 120 121 0=0
+ShuffleChannel           channelshuffle_15        1 1 121 122 0=2 1=0
+Convolution              conv_52                  1 1 33 123 0=96 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=4608
+Convolution              conv_53                  1 1 92 124 0=96 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216
+Convolution              conv_54                  1 1 122 125 0=96 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=18432
+Split                    splitncnn_3              1 2 125 126 127
+Interp                   interpolate_64           1 1 127 128 0=2 1=2.000000e+00 2=2.000000e+00 6=0
+BinaryOp                 add_0                    2 1 124 128 129 0=0
+Split                    splitncnn_4              1 2 129 130 131
+Interp                   interpolate_65           1 1 131 132 0=2 1=2.000000e+00 2=2.000000e+00 6=0
+BinaryOp                 add_1                    2 1 123 132 133 0=0
+Split                    splitncnn_5              1 2 133 134 135
+Interp                   interpolate_66           1 1 134 136 0=2 1=5.000000e-01 2=5.000000e-01 6=0
+BinaryOp                 add_2                    2 1 130 136 137 0=0
+Split                    splitncnn_6              1 2 137 138 139
+Interp                   interpolate_67           1 1 138 140 0=2 1=5.000000e-01 2=5.000000e-01 6=0
+BinaryOp                 add_3                    2 1 126 140 141 0=0
+ConvolutionDepthWise     convdwrelu_0             1 1 135 142 0=96 1=3 -23310=1,1.000000e-01 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96 9=2
+Convolution              convrelu_36              1 1 142 143 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdwrelu_1             1 1 143 144 0=96 1=3 -23310=1,1.000000e-01 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96 9=2
+Convolution              convrelu_37              1 1 144 145 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Convolution              conv_57                  1 1 145 146 0=34 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=3264
+Slice                    split_0                  1 2 146 147 148 -23300=2,2,32 1=0
+Sigmoid                  sigmoid_117              1 1 147 149
+Concat                   cat_16                   2 1 149 148 150 0=0
+Reshape                  reshape_121              1 1 150 151 0=256 1=34
+ConvolutionDepthWise     convdwrelu_2             1 1 139 152 0=96 1=3 -23310=1,1.000000e-01 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96 9=2
+Convolution              convrelu_38              1 1 152 153 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdwrelu_3             1 1 153 154 0=96 1=3 -23310=1,1.000000e-01 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96 9=2
+Convolution              convrelu_39              1 1 154 155 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Convolution              conv_60                  1 1 155 156 0=34 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=3264
+Slice                    split_1                  1 2 156 157 158 -23300=2,2,32 1=0
+Sigmoid                  sigmoid_118              1 1 157 159
+Concat                   cat_17                   2 1 159 158 160 0=0
+Reshape                  reshape_122              1 1 160 161 0=64 1=34
+ConvolutionDepthWise     convdwrelu_4             1 1 141 162 0=96 1=3 -23310=1,1.000000e-01 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96 9=2
+Convolution              convrelu_40              1 1 162 163 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+ConvolutionDepthWise     convdwrelu_5             1 1 163 164 0=96 1=3 -23310=1,1.000000e-01 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=864 7=96 9=2
+Convolution              convrelu_41              1 1 164 165 0=96 1=1 -23310=1,1.000000e-01 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=9216 9=2
+Convolution              conv_63                  1 1 165 166 0=34 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=3264
+Slice                    split_2                  1 2 166 167 168 -23300=2,2,32 1=0
+Sigmoid                  sigmoid_119              1 1 167 169
+Concat                   cat_18                   2 1 169 168 170 0=0
+Reshape                  reshape_123              1 1 170 171 0=16 1=34
+Concat                   cat_19                   3 1 151 161 171 out0 0=1
