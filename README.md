@@ -2,91 +2,146 @@
 
 ## Introduction
 
-This repository contains the code for my final-year project: **Real-Time License Plate Recognition System Using FPGA**. The aim of this project is to develop a high-performance LPR system that leverages FPGA technology to enhance processing speed and accuracy compared to traditional CPU-based systems.
+This repository contains the complete code and documentation for my final-year project: **Real-Time License Plate Recognition System Using FPGA**. The aim of this project is to develop a high-performance, real-time license plate recognition (LPR) system, leveraging advanced CPU image processing and custom hardware acceleration on an FPGA platform. The result is a robust, modular pipeline that achieves fast, accurate LPR beyond what is possible with CPU-only systems.
+
+---
 
 ## Features
 
-- **Real-Time Processing**: Achieves an average preprocessing time of **34ms**.
-- **High Accuracy**: License plate recognition accuracy of **86%** in the preprocessing stage.
-- **FPGA Acceleration**: Utilizes VHDL code on a DE10 Standard FPGA board to accelerate optical character recognition (OCR).
-- **Advanced Image Preprocessing**: Implemented in C++ using the NanoDet object detection model and custom segmentation techniques.
-- **Custom Linux Distribution**: Built for seamless integration with the FPGA hardware.
+- **Real-Time Processing:** Achieves an average preprocessing time of **34ms** per image.
+- **High Accuracy:** License plate recognition accuracy of **86%** in real-world test conditions.
+- **FPGA Acceleration:** Utilizes VHDL/SystemVerilog on a DE10 Standard FPGA board for CNN-based OCR.
+- **Advanced Image Preprocessing:** Implemented in C++ with the NanoDet object detection model and custom segmentation techniques.
+- **Flexible CPU-FPGA Bridge/API:** C++ communication library for high-speed, robust CPU-to-FPGA data/control transfer.
+- **Custom Linux Platform:** Kernel, U-Boot, and device tree tailored for the FPGA system, with full build scripts and documentation.
+- **End-to-End Documentation:** Clear, step-by-step build guides, system diagrams, workflow charts, and performance results.
+
+---
 
 ## Project Structure
+```
+├── CPU_preprocessing/ # C++ and Python code for image preprocessing, detection, segmentation
+├── CPU_FPGA_access_API/ # C++ library and code for CPU-FPGA bridge (data/control)
+├── FPGA_AHIM/ # HDL source for Accelerator Host Interface Manager (FPGA bridge / CU)
+├── FPGA_OCR_CNN/ # HDL + scripts for CNN OCR engine (see https://github.com/Eshel19/CNN_FPGA_OCR)
+├── LINUX_config_files/ # Kernel, U-Boot, device tree, and boot scripts for DE10 Standard
+└── docs/ # Documentation, diagrams, reports, and custom build notes
+```
 
-- `/preprocessing`: C++ code for image preprocessing, license plate detection, and segmentation.
-  - `nanodet_ncnn.cpp`: Implements the NanoDet model using ncnn for license plate detection.
-  - `ImageSegmenter.cpp`: Implements custom segmentation techniques.
-  - `benchmark.cpp`: Code to test and benchmark the detection and segmentation modules.
-  - `/models`: NCNN model used in this project.
-- `/notebooks`: Python notebooks used for initial experimentation and figuring out segmentation techniques.
-  - `perproccess.ipynb`: Jupyter notebook with experiments and visualizations for segmentation.
-  - `nanodot.ipynb`: Jupyter notebook with the code for preparing and combining the dataset into one.
-- `/fpga`: VHDL code for FPGA implementation of the OCR process.
-- `/docs`: Documentation, diagrams, and resources explaining the project components.
+
+### Folder Descriptions
+
+- **CPU_preprocessing/**  
+  C++ and Python code for real-time license plate detection and segmentation. Includes object detection (NanoDet), segmentation routines, benchmark/test scripts, and Jupyter notebooks for experiments.
+
+- **CPU_FPGA_access_API/**  
+  C++ API/library for sending image data and control commands from the CPU (HPS) to the FPGA and receiving recognition results. Implements the full CPU-to-FPGA protocol, error handling, and demo scripts.
+
+- **FPGA_AHIM/**  
+  HDL (SystemVerilog/VHDL) for the Accelerator Host Interface Manager (“CU”/bridge). Handles all CPU-FPGA communication and command parsing at the hardware level.
+
+- **FPGA_OCR_CNN/**  
+  FPGA implementation of a quantized CNN for optical character recognition, including memory initialization files, quantization scripts, and HDL for CNN logic.  
+  *(This is a copy or submodule of [CNN_FPGA_OCR](https://github.com/Eshel19/CNN_FPGA_OCR))*
+
+- **LINUX_config_files/**  
+  Kernel and U-Boot configs, device tree sources, and all scripts/files for building and configuring the custom Linux environment needed for the DE10 Standard board.
+
+- **docs/**  
+  Full documentation, system diagrams, workflow charts, build notes, and additional resources.
+
+---
 
 ## How to Use
 
-The code in this repository is provided for educational and demonstration purposes. To explore the project:
+The code in this repository is provided for educational and demonstration purposes. To explore or reproduce the project:
 
-- **Review the C++ Code**: Navigate to the `/preprocessing` directory to examine the image preprocessing algorithms, including license plate detection and segmentation techniques.
-- **Examine the VHDL Code**: In the `/fpga` directory, you can view the VHDL modules designed to accelerate the OCR process on the FPGA.
-- **Explore the Python Notebooks**: Check the `/notebooks` directory for Jupyter notebooks that detail the segmentation experiments and visualizations.
-- **Read the Documentation**: The `/docs` directory contains detailed explanations, diagrams, and reports that provide deeper insights into the project's development and architecture.
+1. **Image Preprocessing & Detection:**  
+   - See `/CPU_preprocessing/` for C++/Python code and notebooks.  
+   - Run detection and segmentation to extract plates and prepare images for FPGA OCR.
 
-**Note**: Reproducing the complete system requires specific hardware (DE10 Standard FPGA board) and software setups, which may not be accessible to everyone.
+2. **CPU-FPGA Communication API:**  
+   - `/CPU_FPGA_access_API/` contains the C++ interface and command-line tools to send images to the FPGA and receive OCR results back.  
+   - Example usage and integration steps are documented in the subfolder README.
+
+3. **FPGA Hardware Design:**  
+   - HDL for the communication/control logic (`/FPGA_AHIM/`) and the CNN OCR accelerator (`/FPGA_OCR_CNN/`).  
+   - Each subfolder includes instructions for synthesis (Quartus), simulation (ModelSim), and deployment.
+
+4. **Linux Platform Setup:**  
+   - `/LINUX_config_files/` contains all necessary files and build scripts for a custom Linux/U-Boot/device tree environment, fully compatible with the DE10 Standard FPGA board.
+
+5. **Documentation:**  
+   - `/docs/` contains detailed explanations, block diagrams, architecture charts, and reports that provide a deep dive into the system’s development and integration.
+
+> **Note:**  
+> Reproducing the complete system requires the Terasic DE10 Standard FPGA board and a compatible embedded Linux setup.  
+> For hardware/software requirements, customizations, and known issues, see `/docs/CUSTOM_BUILD_NOTES.md`.
+
+---
 
 ## Building the Custom Linux Distribution
 
-To create the custom Linux distribution for the DE10 Standard FPGA board used in this project, I followed the comprehensive guide provided by [Zangman De10-nano](https://github.com/zangman/de10-nano) and used Altera's source code. These resources cover:
+To create the custom Linux distribution for the DE10 Standard FPGA board, I followed the guide by [Zangman De10-nano](https://github.com/zangman/de10-nano) and Altera’s open-source code:
 
 - Setting up the cross-compilation environment
-- Building U-Boot bootloader
-- Compiling the Linux kernel with necessary configurations
+- Building the U-Boot bootloader
+- Compiling the Linux kernel with required configuration
 - Creating the root filesystem
-- Integrating necessary libraries like OpenCV
+- Integrating necessary libraries (OpenCV, etc.)
 
-**Note**: While I followed these guides closely, I made several customizations to suit the specific requirements of this project. These modifications are documented in the [`/docs/CUSTOM_BUILD_NOTES.md`](docs/CUSTOM_BUILD_NOTES.md) file.
+---
 
 ## Demonstrations
 
 ### Overview Architecture
 
-![Overview Architecture](docs/images/overview_architecture.jpg)
-
+![Overview Architecture](docs/images/project%20Diagram.drawio.png)  
 *Figure 1: Overview architecture of the Real-Time License Plate Recognition System.*
 
 ### License Plate Detection Example
 
-![License Plate Detection](docs/images/detection_example.png)
-
+![License Plate Detection](docs/images/detection_example.png)  
 *Figure 2: Result of the license plate detection algorithm on a sample image.*
 
-### License Plate preprocessing workflow 
+### License Plate Preprocessing Workflow
 
+![License Plate preprocessing workflow](docs/images/preprocessing_workflow.jpg)  
+*Figure 3: Overview of the preprocessing workflow.*
 
-![License Plate preprocessing workflow](docs/images/preprocessing_workflow.jpg)
-
-*Figure 3: Overview architecture of the preprocessing workflow.*
-
+---
 
 ## Project Status
 
-- **Completed**:
-  - Image preprocessing algorithms implemented and tested.
-  - Achieved 86% accuracy with a 34ms preprocessing time on ARM Cortex-A9 MPCore CPU.
+- **Completed:**
   - Developed a custom Linux distribution for the DE10 Standard FPGA board.
-- **Ongoing**:
-  - Designing and coding of hardware modules in VHDL for FPGA-based OCR acceleration.
-  - Integration of the FPGA OCR module with the preprocessing pipeline.
-  - Further testing and optimization.
+  - Image preprocessing and detection pipeline implemented and tested (CPU-side):
+    - **Step 1: License plate detection** using the NanoDet object detection model (NCNN, C++).
+    - **Step 2: Plate segmentation and straightening**—extracts and geometrically corrects the detected license plate to a straight line for optimal OCR.
+  - Achieved 86% accuracy with 34ms average runtime per image on ARM Cortex-A9 MPCore CPU (**for detection and segmentation only; hardware OCR not included in this metric**).
+  - **Accelerator Host Interface Manager (AHIM):**
+    - Designed as a fully modular, robust CPU–FPGA communication bridge.
+    - Extensive simulation and error-handling tests completed for protocol, watchdog, and protection against edge cases.
+    - **RX unit** (FPGA to CPU): fully implemented and tested in both hardware and software.
+    - **TX unit** (CPU to FPGA): design complete, initial simulations done; final hardware/software integration **work in progress**.
+  - **AI OCR Accelerator IP Core:**
+    - Parameterizable and modular CNN IP for OCR, with loadable weights, changeable filter sizes, and adjustable thresholds.
+    - Designed for easy upgrades, dataset changes, and application tuning.
+  - **FPGA AI OCR accelerator processes a full license plate in just 870μs** (end-to-end hardware inference).
+
+- **Ongoing:**
+  - Final integration and system-level testing.
+  - Additional optimization and documentation.
+  - Extended evaluation and robustness testing.
+
+---
 
 ## References
 
 1. Terasic DE10-Standard: [Terasic DE10-Standard](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=1081)
 2. Nanodet: [Nanodet](https://github.com/RangiLyu/nanodet)
 3. Ncnn: [Ncnn](https://github.com/Tencent/ncnn)
-4. Zangman De10-nano GitHub: [Zangman De10-nano](https://github.com/zangman/de10-nano)
+4. Zangman De10-nano: [Zangman De10-nano](https://github.com/zangman/de10-nano)
 5. Altera-opensource u-boot: [Altera-opensource u-boot](https://github.com/altera-opensource/u-boot-socfpga)
 6. Altera-opensource linux-Kernel: [Altera-opensource linux-Kernel](https://github.com/altera-opensource/linux-socfpga)
 7. Arch linux pre-built rootfs: [Arch linux pre-built rootfs](https://fl.us.mirror.archlinuxarm.org/os/)
@@ -95,8 +150,17 @@ To create the custom Linux distribution for the DE10 Standard FPGA board used in
 10. Israel License Plates Dataset by Gael Cohen: [license_plate_israel](https://www.kaggle.com/gaelcohen/license-plate-israel)
 11. License Plates Dataset by SCH: [plate Dataset](https://www.kaggle.com/sch/plate-dataset)
 
+---
+
 ## Acknowledgments
 
-- **Supervisor**: Binyamin Abramov for guidance and support.
-- **Afeka College**: For providing resources and facilities.
-- **Open-Source Community**: Developers of NanoDet, OpenCV, and other tools used in this project.
+- **Supervisor:** Dr. Binyamin Abramov, for his invaluable guidance and support throughout this project.
+- **Afeka College:** For providing resources and facilities.
+- **Open-Source Community:** Developers of NanoDet, OpenCV, and other tools used in this project.
+
+---
+
+For full build instructions, see the README files within each subfolder and the docs directory.  
+For questions, contact [Eshel Epstein](eshel19@gmail.com) or open an issue.
+
+---
