@@ -1,0 +1,333 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use WORK.data_pack.ALL;
+use WORK.mem_pack.ALL;
+
+
+entity Memory_CU is
+	GENERIC (
+		MAX_IMAGE_W : integer := 400;
+		T_winner : integer :=1;
+		total_filters : integer :=64;
+		N : integer:=11
+
+	);
+	port(
+		clk_in,rst_n,S_rst,Start_data_load,done,is_idle : in std_logic;
+		ADDR_PIXEL_START : in unsigned(15 downto 0);
+		ADDR_PIXEL_END : in unsigned(15 downto 0);
+		ADDR_WFC : out std_logic_vector(WFC_info.ADDR_WIDTH-1 downto 0);
+		ADDR_PIXEL : out std_logic_vector(log2of(MAX_IMAGE_W)-1 downto 0);
+		ADDR_BFC : out std_logic_vector(BFC_info.ADDR_WIDTH-1 downto 0);
+		ADDR_Conv : out std_logic_vector(CONV_W_info.ADDR_WIDTH-1 downto 0);
+		At_final_line : out std_logic;
+		Relu_RD_en : out std_logic
+
+	);
+	
+end Memory_CU;
+
+ARCHITECTURE arch_Memory_CU of Memory_CU is
+	constant K_count_start: integer := 1;
+	constant class_count_start: integer := 1;
+	constant k:integer:=total_filters/2;
+	constant K_count_end: integer := k;
+	constant class_count_end: integer := n;
+	
+	constant winner_count_start:integer:=0;
+	constant winner_count_end:integer:=T_winner+2;
+	
+	type mem_state is(offline,RFL,Pre_NL,CONV_load,FC_FL,FC_P1,FC_P2,FC_P3,FC_NC,Wait_winner,Wait_winner_LL,Wait_winner_run,sync_rst,error);
+	signal corrent_state,next_state :mem_state;
+	signal at_last_line_t :std_logic;
+	signal winner_count,winner_count_t : integer range 0 to T_winner+4;
+	signal ADDR_WFC_num,ADDR_WFC_num_t : integer range 0 to WFC_info.DATA_DEPTH+2;
+	signal ADDR_PIXEL_num,ADDR_PIXEL_num_t,ADDR_PIXEL_num_2 : integer range 0 to MAX_IMAGE_W+2;
+	signal ADDR_BFC_num,ADDR_BFC_num_t :integer range 0 to BFC_info.DATA_DEPTH+2;
+	signal ADDR_Conv_num,ADDR_Conv_num_t : integer range 0 to CONV_W_info.DATA_DEPTH+2;
+	signal ADDR_Conv_add,ADDR_PIXEL_add,ADDR_WFC_add,ADDR_BFC_add,ADDR_PIXEL_sub,K_count_set,class_count_set,
+				K_count_done,class_count_done,winner_count_set,winner_count_done,ADDR_Conv_clr,ADDR_PIXEL_clr,ADDR_WFC_clr,ADDR_BFC_clr,K_count_add,class_count_add : std_logic;
+	signal K_count,K_count_t : integer range 0 to k+1;
+	signal class_count,class_count_t: integer range 0 to N+1;
+	signal Relu_RD_en_t,Send_ADDR_WFC,Send_ADDR_BFC,Send_ADDR_Conv : std_logic;
+begin
+	ADDR_WFC<=std_logic_vector(to_unsigned(ADDR_WFC_num,ADDR_WFC'length)) ;		
+	ADDR_PIXEL<=std_logic_vector(to_unsigned(ADDR_PIXEL_num,ADDR_PIXEL'length));
+	ADDR_BFC<=std_logic_vector(to_unsigned(ADDR_BFC_num,ADDR_BFC'length));	
+	ADDR_Conv<=std_logic_vector(to_unsigned(ADDR_Conv_num,ADDR_Conv'length));
+		
+	at_last_line_t<='1' when (ADDR_PIXEL_num=ADDR_PIXEL_END) else '0';
+	At_final_line<=at_last_line_t;
+	
+	ADDR_Conv_num_t<=ADDR_Conv_num+1;
+	ADDR_BFC_num_t<=ADDR_BFC_num+1;
+	ADDR_PIXEL_num_t<=ADDR_PIXEL_num+1;
+	ADDR_WFC_num_t<=ADDR_WFC_num+1;
+	ADDR_PIXEL_num_2<=ADDR_PIXEL_num-2 when ADDR_PIXEL_num>1 else ADDR_PIXEL_num;
+	class_count_t<=class_count+1;
+	K_count_t<=K_count+1;
+	
+	process(clk_in,rst_n)
+	begin
+		if(rst_n='0') then
+			ADDR_WFC_num<=ADDR_WFC_start;
+			ADDR_PIXEL_num<=0;
+			ADDR_BFC_num<=ADDR_BFC_start;
+			ADDR_Conv_num<=ADDR_CONV_start;
+			winner_count<=0;
+			class_count<=0;
+			K_count<=K_count_start;
+			class_count_done<='0';
+			k_count_done<='0';
+			winner_count_done<='0';
+			corrent_state<=offline;
+		elsif(rising_edge(clk_in)) then
+		if(is_idle='1') then
+			ADDR_WFC_num<=ADDR_WFC_start;
+			ADDR_PIXEL_num<=to_integer(ADDR_PIXEL_START);
+			ADDR_BFC_num<=ADDR_BFC_start;
+			ADDR_Conv_num<=ADDR_CONV_start;
+			winner_count<=0;
+			class_count<=0;
+			K_count<=K_count_start;
+			class_count_done<='0';
+			k_count_done<='0';
+			winner_count_done<='0';
+			corrent_state<=offline;
+		else 
+				if(s_rst='1') then
+						K_count<=K_count_start;
+						class_count<=0;
+						class_count_done<='0';
+						k_count_done<='0';
+						winner_count_done<='0';
+						if(next_state/=offline and next_state/=error) then
+							corrent_state<=sync_rst;
+						end if;
+					else
+						corrent_state<=next_state;
+
+				end if;
+				if(done='1') then
+					corrent_state<=offline;
+				end if;
+				if(ADDR_PIXEL_clr='1') then
+						ADDR_PIXEL_num<=to_integer(ADDR_PIXEL_START);
+					else
+						if(ADDR_PIXEL_sub='1') then
+							ADDR_PIXEL_num<=ADDR_PIXEL_num_2;
+						else
+							if(ADDR_PIXEL_add='1') then
+								ADDR_PIXEL_num<=ADDR_PIXEL_num_t;
+							end if;
+						end if;
+				end if;
+				
+				if(ADDR_WFC_clr='1') then
+						ADDR_WFC_num<=ADDR_WFC_start;
+					else
+						if(ADDR_WFC_add='1') then
+							ADDR_WFC_num<=ADDR_WFC_num_t;
+						end if;
+				end if;
+				
+				
+				if(ADDR_BFC_clr='1') then
+						ADDR_BFC_num<=ADDR_BFC_start;
+					else
+						if(ADDR_BFC_add='1') then
+							ADDR_BFC_num<=ADDR_BFC_num_t;
+						end if;
+				end if;
+				
+				
+				if(ADDR_Conv_clr='1') then
+						ADDR_Conv_num<=ADDR_Conv_start;
+					else
+						if(ADDR_Conv_add='1') then
+							ADDR_Conv_num<=ADDR_Conv_num_t;
+						end if;
+				end if;
+				
+				--counter for K_count
+				if(K_count_set='1') then
+					K_count_done<='0';
+					K_count<=K_count_start;
+				end if;
+				if(k_count_add='1') then
+					if(K_count_t=K_count_end) then
+						K_count_done<='1';
+						K_count<=K_count_start;
+					else
+						K_count<=K_count_t;
+					end if;
+				end if;
+				
+				
+				--counter for class_count
+				if(class_count_set='1') then
+					class_count_done<='0';
+				end if;
+				if(class_count_set='1' or class_count/=0) then
+
+					if(class_count=class_count_end) then
+						class_count_done<='1';
+						class_count<=0;
+					else
+						if(class_count_add='1') then
+							class_count<=class_count_t;
+						end if;
+					end if;
+				end if;
+				
+				--counter for winner_count
+				if(winner_count_set='1' or winner_count/=0) then
+					if(winner_count=winner_count_end) then
+						winner_count_done<='1';
+						winner_count<=0;
+					else
+						winner_count_done<='0';
+						winner_count<=winner_count+1;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process;
+	
+	process(winner_count_done,K_count_done,Class_count_done,corrent_state,Start_data_load,at_last_line_t)
+	begin
+	Relu_RD_en<='0';
+	next_state<=offline;
+	
+	winner_count_set<='0';
+	class_count_set<='0';
+	K_count_set<='0';
+	Relu_RD_en<='0';
+	
+	ADDR_Conv_add<='0';
+	ADDR_WFC_add<='0';
+	ADDR_pixel_add<='0';
+	ADDR_BFC_add<='0';
+	
+	ADDR_PIXEL_sub<='0';
+	
+	ADDR_PIXEL_clr<='0';
+	ADDR_BFC_clr<='0';
+	ADDR_WFC_clr<='0';
+	ADDR_Conv_clr<='0';
+	
+	k_count_add<='0';
+	class_count_add<='0';
+	
+	next_state<=corrent_state;
+	case corrent_state is
+
+		when offline =>
+			ADDR_PIXEL_clr<='1';
+			ADDR_BFC_clr<='1';
+			ADDR_WFC_clr<='1';
+			ADDR_Conv_clr<='1';
+			if(Start_data_load='1') then
+				next_state<=RFL;
+			end if;
+
+		when RFL =>
+			ADDR_PIXEL_clr<='1';
+			ADDR_WFC_clr<='1';
+			next_state<=Pre_NL;
+
+		when Pre_NL =>
+			ADDR_WFC_clr<='1';
+			ADDR_Conv_add<='1';
+			K_count_set<='1';
+			k_count_add<='1';
+			next_state<=CONV_load;
+			
+		when CONV_load =>
+			Relu_RD_en<='1';
+			ADDR_Conv_add<='1';
+			k_count_add<='1';
+			if(K_count_done='1')then
+				next_state<=FC_FL;
+				ADDR_Conv_add<='0';
+			end if;
+		when FC_FL =>
+			Relu_RD_en<='1';
+			ADDR_BFC_clr<='1';
+			ADDR_WFC_clr<='1';
+			K_count_set<='1';
+			--k_count_add<='1';
+			class_count_set<='1';
+			class_count_add<='1';
+			next_state<=FC_P2;
+		when FC_P1 =>
+			Relu_RD_en<='1';
+			ADDR_WFC_add<='1';
+			next_state<=FC_P2;
+		when FC_P2 =>
+			
+			ADDR_WFC_add<='1';
+			next_state<=FC_P3;
+
+		when sync_rst=>
+			K_count_set<='1';
+			ADDR_PIXEL_sub<='1';
+			ADDR_Conv_clr<='1';
+			next_state<=Pre_NL;
+		
+		when FC_P3 =>
+			k_count_add<='1';
+			ADDR_WFC_add<='1';
+			next_state<=FC_P1;
+			if(K_count_done='1') then
+				if(Class_count_done='1') then
+					if(at_last_line_t='1') then
+						next_state<=Wait_winner_LL;
+					else
+						next_state<=Wait_winner;
+					end if;
+				else
+					next_state<=FC_NC;
+				end if;
+			else
+				next_state<=FC_P1;
+			end if;
+
+		when FC_NC =>
+			K_count_set<='1';
+			--K_count_add<='1';
+			next_state<=FC_P2;
+			Relu_RD_en<='1';
+			ADDR_WFC_add<='1';
+			ADDR_BFC_add<='1';
+			Class_count_add<='1';
+			
+
+		when Wait_winner =>
+			K_count_set<='1';
+			winner_count_set<='1';
+			ADDR_Conv_clr<='1';
+			Relu_RD_EN<='1';
+			next_state<=Wait_winner_run;
+			ADDR_PIXEL_add<='1';
+			
+		when Wait_winner_LL =>
+			Relu_RD_EN<='1';
+			ADDR_Conv_clr<='1';
+			winner_count_set<='1';
+			next_state<=Wait_winner_run;
+
+		when Wait_winner_run =>
+			if(Winner_count_done='1') then
+				next_state<=Pre_NL;
+			end if;
+		when others =>
+			next_state<=error;
+	end case;
+
+
+	end process;
+	
+	
+end ARCHITECTURE arch_Memory_CU;

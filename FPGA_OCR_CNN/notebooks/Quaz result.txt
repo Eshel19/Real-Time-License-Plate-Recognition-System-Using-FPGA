@@ -1,0 +1,15 @@
+📏 Adjusted Accuracy (excluding true blanks): 75.93%
+🔢 Digit-Only Accuracy: 76.69%
+
+📊 Precision / Recall / F1 per class:
+  Class 0: P=0.94, R=0.76, F1=0.84, Support=134
+  Class 1: P=0.96, R=0.80, F1=0.87, Support=176
+  Class 2: P=0.96, R=0.88, F1=0.92, Support=113
+  Class 3: P=0.94, R=0.69, F1=0.80, Support=95
+  Class 4: P=0.96, R=0.73, F1=0.83, Support=102
+  Class 5: P=0.99, R=0.84, F1=0.90, Support=176
+  Class 6: P=0.99, R=0.70, F1=0.82, Support=128
+  Class 7: P=0.96, R=0.70, F1=0.81, Support=79
+  Class 8: P=0.98, R=0.73, F1=0.84, Support=112
+  Class 9: P=0.92, R=0.77, F1=0.84, Support=86
+  Blank:    P=0.95, R=1.00, F1=0.97, Support=4491
