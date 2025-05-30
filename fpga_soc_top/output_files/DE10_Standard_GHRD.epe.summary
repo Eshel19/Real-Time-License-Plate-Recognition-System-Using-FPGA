@@ -1,0 +1,7 @@
+Early Power Estimator File Generator Status : Successful - Fri May 30 10:55:28 2025
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+Revision Name : DE10_Standard_GHRD
+Top-level Entity Name : DE10_Standard_GHRD
+Family : Cyclone V
+Device : 5CSXFC6D6F31C6
+Power Estimation Confidence : Low: user provided insufficient toggle rate data

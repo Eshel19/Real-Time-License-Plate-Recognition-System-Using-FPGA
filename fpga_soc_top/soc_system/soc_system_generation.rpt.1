@@ -1,0 +1,30 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate D:\FInal_project_FPGA\SystemBuilder\DE10_Standard_GHRD\soc_system.qsys --block-symbol-file --output-directory=D:\FInal_project_FPGA\SystemBuilder\DE10_Standard_GHRD\soc_system --family="Cyclone V" --part=5CSXFC6D6F31C6
+Progress: Loading DE10_Standard_GHRD/soc_system.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 23.1]
+Progress: Parameterizing module clk_0
+Progress: Adding hps_0 [altera_hps 23.1]
+Progress: Parameterizing module hps_0
+Progress: Adding mm_bridge_0 [altera_avalon_mm_bridge 23.1]
+Progress: Parameterizing module mm_bridge_0
+Progress: Adding pio128_in_0 [pio128_in 1.0]
+Progress: Parameterizing module pio128_in_0
+Progress: Adding pio128_out_0 [pio128_out 1.0]
+Progress: Parameterizing module pio128_out_0
+Progress: Adding pio_commade [altera_avalon_pio 23.1]
+Progress: Parameterizing module pio_commade
+Progress: Adding pio_status [altera_avalon_pio 23.1]
+Progress: Parameterizing module pio_status
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: soc_system.hps_0: HPS Main PLL counter settings: n = 0  m = 73
+Info: soc_system.hps_0: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: soc_system.hps_0: "Configuration/HPS-to-FPGA user 0 clock frequency" (desired_cfg_clk_mhz) requested 100.0 MHz, but only achieved 97.368421 MHz
+Warning: soc_system.hps_0: "QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz
+Warning: soc_system.hps_0: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+Info: soc_system.pio_status: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: qsys-generate succeeded.
+Info: Stopping: Create block symbol file (.bsf)

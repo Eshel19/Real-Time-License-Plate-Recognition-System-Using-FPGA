@@ -1,0 +1,30 @@
+# system info soc_system on 2025.04.28.18:48:38
+system_info:
+name,value
+DEVICE,5CSXFC6D6F31C6
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1745855305
+#
+#
+# Files generated for soc_system on 2025.04.28.18:48:38
+files:
+filepath,kind,attributes,module,is_top
+simulation/soc_system.v,VERILOG,,soc_system,true
+simulation/submodules/soc_system_hps_0.v,VERILOG,,soc_system_hps_0,false
+simulation/submodules/altera_avalon_mm_bridge.v,VERILOG,,altera_avalon_mm_bridge,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+soc_system.hps_0,soc_system_hps_0
+soc_system.hps_0.fpga_interfaces,soc_system_hps_0_fpga_interfaces
+soc_system.hps_0.hps_io,soc_system_hps_0_hps_io
+soc_system.mm_bridge_0,altera_avalon_mm_bridge
+soc_system.pio128_in_0,soc_system_pio128_in_0
+soc_system.pio128_out_0,soc_system_pio128_out_0
+soc_system.mm_interconnect_0,soc_system_mm_interconnect_0
+soc_system.mm_interconnect_1,soc_system_mm_interconnect_1
+soc_system.irq_mapper,soc_system_irq_mapper
+soc_system.irq_mapper_001,soc_system_irq_mapper
+soc_system.rst_controller,altera_reset_controller
+soc_system.rst_controller_001,altera_reset_controller

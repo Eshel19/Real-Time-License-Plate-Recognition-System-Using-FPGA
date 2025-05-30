@@ -1,0 +1,102 @@
+import ahim_config_pkg::*;
+import ocr_rx_pkg::*;
+
+module OCR_RX_UNIT (
+	input logic[MAX_OUT_L*CHAR_WIDTH-1:0] char_output,
+	input logic		final_image,
+	input logic		clk_in,
+	input logic		rst_n,
+	input logic		Clear_buff ,
+	input logic		valid_output,
+	output logic[PIO_DATA_WIDTH-1:0]	data_to_FILO,
+	output logic unsigned [UINT8_WIDTH-1:0] Result_LC,
+	output logic OCR_RX_done,
+	output logic push_filo
+);
+//typedefs
+ 
+ 
+ 
+// signal declares
+	char_t char_out_pad [MAX_OUT_L:0], Output_reg [MAX_OUT_L:0], Output_reg_in [MAX_OUT_L:0];
+	char_t sipo_reg [(PIO_DATA_WIDTH/CHAR_WIDTH)-1:0];
+	logic unsigned [$clog2(PIO_DATA_WIDTH/CHAR_WIDTH)-1:0] sipo_reg_count,sipo_reg_in;
+	logic  comper_last_2,comper_SIPO,sipo_en,final_im,sipo_count_en,comper_last_1,comper_SIPO_1;
+	logic unsigned [UINT8_WIDTH-1:0] LC_reg;
+	
+//logic 
+
+	//in/out assigns
+	assign data_to_FILO = pack_char_vector(sipo_reg);
+	assign push_filo = comper_SIPO;
+	assign OCR_RX_done = final_im & comper_SIPO;
+	assign Result_LC = LC_reg;
+	
+	assign comper_last_1 = Output_reg[0]==NULL_CHAR;
+	assign comper_last_2 = (comper_last_1&Output_reg[1]==NULL_CHAR);
+	assign comper_SIPO = (sipo_reg_count==$clog2(PIO_DATA_WIDTH/CHAR_WIDTH)'(PIO_DATA_WIDTH/CHAR_WIDTH-1));
+	assign final_im = comper_last_2 & final_image; 
+	//assign sipo_en = (comper_SIPO|comper_SIPO_1) ? 1'b0 : final_im | ~comper_last_2;
+	assign sipo_en =final_im | ~comper_last_2;
+	assign sipo_count_en = (~comper_SIPO & final_im) | ~comper_last_2 | comper_SIPO;
+	
+	
+	always_comb begin
+		unpack_ocr_output_vector(char_output, char_out_pad);
+		if(valid_output)
+			Output_reg_in=char_out_pad;
+		else begin
+			for(int i=0;i<MAX_OUT_L;i++) begin
+				Output_reg_in[i]=Output_reg[i+1];
+			end;
+			Output_reg_in[MAX_OUT_L]=NULL_CHAR;
+		end;
+		if(comper_SIPO | (comper_last_1 &sipo_reg_count==0))
+			sipo_reg_in = 0;
+		else 
+			sipo_reg_in=sipo_reg_count+1'b1;
+		
+	end
+	
+	always_ff @(posedge clk_in or negedge rst_n) begin
+		if(!rst_n) begin
+			comper_SIPO_1<=1'b0;
+			sipo_reg_count<='0;
+			for (int i = $left(Output_reg); i >= $right(Output_reg); i--) begin
+				Output_reg[i] <= '0;
+			end;
+			for (int i = $left(sipo_reg); i >= $right(sipo_reg); i--) begin
+				sipo_reg[i] <= '0;
+			end;
+			LC_reg <= '0;	
+		end
+		else begin 
+			if(Clear_buff) begin
+				comper_SIPO_1<=1'b0;
+				sipo_reg_count<='0;
+			for (int i = $left(Output_reg); i >= $right(Output_reg); i--) begin
+				Output_reg[i] <= '0;
+			end;
+			for (int i = $left(sipo_reg); i >= $right(sipo_reg); i--) begin
+				sipo_reg[i] <= '0;
+			end;
+			LC_reg <= '0;	
+			end else begin
+				comper_SIPO_1<=comper_SIPO;
+				if(sipo_en) begin
+					for (int i = 0 ; i<(PIO_DATA_WIDTH/CHAR_WIDTH)-1 ; i++) begin
+						sipo_reg[i]<=sipo_reg[i+1];
+					end;
+					sipo_reg[(PIO_DATA_WIDTH/CHAR_WIDTH)-1]<=Output_reg[0];
+				end
+				if(sipo_en | valid_output) Output_reg<=Output_reg_in;
+				if(sipo_count_en) sipo_reg_count<=sipo_reg_in;
+				if(comper_SIPO) LC_reg<=LC_reg+1'b1;
+				
+			end
+		end
+	
+	end
+	
+
+endmodule

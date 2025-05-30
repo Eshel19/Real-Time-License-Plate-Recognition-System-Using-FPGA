@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at ahim_core_controller.sv(224): always construct contains both blocking and non-blocking assignments File: D:/FInal_project_FPGA/Bridge/AHIM/ahim_core_controller.sv Line: 224
+Warning (10268): Verilog HDL information at RX_UNIT.sv(47): always construct contains both blocking and non-blocking assignments File: D:/FInal_project_FPGA/Bridge/AHIM/RX_UNIT.sv Line: 47

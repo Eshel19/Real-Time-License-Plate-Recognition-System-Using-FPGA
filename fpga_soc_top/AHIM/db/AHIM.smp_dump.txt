@@ -1,0 +1,19 @@
+
+State Machine - |AHIM|ahim_core_controller:ahim_cc|state
+Name state.ERROR_OVERFLOW state.ERROR_OCR state.ERROR_COM state.ERROR_TX state.ERROR_RX state.WAIT_ACK state.WAIT_TX state.WAIT_RAM_STORED state.WAIT_POST_RX state.NEXT_IMAGE_VALID state.NEXT_IMAGE state.PROCESS_IMAGE state.ACK_STRIP state.ACK_BP state.IDLE state.OFFLINE 
+state.OFFLINE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.ACK_BP 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.ACK_STRIP 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.PROCESS_IMAGE 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.NEXT_IMAGE 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.NEXT_IMAGE_VALID 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.WAIT_POST_RX 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.WAIT_RAM_STORED 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.WAIT_TX 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.WAIT_ACK 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_RX 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_TX 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_COM 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_OCR 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_OVERFLOW 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

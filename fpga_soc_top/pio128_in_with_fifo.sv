@@ -1,0 +1,26 @@
+module pio128_in_with_fifo (
+	input logic clk,
+	input logic reset,
+
+	input logic avs_s0_read,
+	output logic [127:0] avs_s0_readdata,
+	output logic avs_s0_waitrequest,   // Added for flow control
+	output logic block_read,
+	input logic fifo_empty,            // FIFO empty flag
+	input logic [127:0] fifo_out,       // FIFO front output
+	output logic fifo_pop              // Tell FIFO to pop when HPS reads
+);
+
+always_comb begin
+  if (fifo_empty) begin
+    avs_s0_readdata = '0; // or whatever you prefer when FIFO empty
+    avs_s0_waitrequest = 1; // Stall read until data is ready
+    fifo_pop = 0;
+  end else begin
+    avs_s0_readdata = fifo_out; // present current front
+    avs_s0_waitrequest = 0;
+    fifo_pop = avs_s0_read; // pop only when Avalon issues read
+  end
+end
+ assign block_read=avs_s0_waitrequest;
+endmodule

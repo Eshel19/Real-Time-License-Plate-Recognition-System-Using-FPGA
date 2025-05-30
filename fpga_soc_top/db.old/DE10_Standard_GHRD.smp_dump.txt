@@ -1,0 +1,84 @@
+
+State Machine - |DE10_Standard_GHRD|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:mm_bridge_0_s0_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE10_Standard_GHRD|soc_system:u0|soc_system_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:pio_commade_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE10_Standard_GHRD|altera_edge_detector:pulse_debug_reset|state
+Name state.IDLE state.CAPT state.ARM 
+state.IDLE 0 0 0 
+state.ARM 1 0 1 
+state.CAPT 1 1 0 
+
+State Machine - |DE10_Standard_GHRD|altera_edge_detector:pulse_warm_reset|state
+Name state.IDLE state.CAPT state.ARM 
+state.IDLE 0 0 0 
+state.ARM 1 0 1 
+state.CAPT 1 1 0 
+
+State Machine - |DE10_Standard_GHRD|OCR_Accelerator:OCR_Accelerator|Memory_CU:MemCU|corrent_state
+Name corrent_state.error corrent_state.sync_rst corrent_state.Wait_winner_run corrent_state.Wait_winner_LL corrent_state.Wait_winner corrent_state.FC_NC corrent_state.FC_P3 corrent_state.FC_P2 corrent_state.FC_P1 corrent_state.FC_FL corrent_state.CONV_load corrent_state.Pre_NL corrent_state.RFL corrent_state.offline 
+corrent_state.offline 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+corrent_state.RFL 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+corrent_state.Pre_NL 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+corrent_state.CONV_load 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+corrent_state.FC_FL 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+corrent_state.FC_P1 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+corrent_state.FC_P2 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+corrent_state.FC_P3 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+corrent_state.FC_NC 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+corrent_state.Wait_winner 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+corrent_state.Wait_winner_LL 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+corrent_state.Wait_winner_run 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.sync_rst 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.error 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |DE10_Standard_GHRD|OCR_Accelerator:OCR_Accelerator|System_SM:SysCU|corrent_state
+Name corrent_state.error corrent_state.Task_complate corrent_state.wait_winner corrent_state.Check_winner_state corrent_state.Next_Class corrent_state.FC_P3_LK corrent_state.FC_P3 corrent_state.FC_P2 corrent_state.FC_P1 corrent_state.First_FC corrent_state.RUN_CONV2D corrent_state.COV2D_prep_LL corrent_state.COV2D_prep_LL_FLAG corrent_state.COV2D_prep corrent_state.LNL corrent_state.Loaded_line corrent_state.LL_wait corrent_state.Load_data corrent_state.idle 
+corrent_state.idle 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+corrent_state.Load_data 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+corrent_state.LL_wait 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+corrent_state.Loaded_line 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+corrent_state.LNL 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+corrent_state.COV2D_prep 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+corrent_state.COV2D_prep_LL_FLAG 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+corrent_state.COV2D_prep_LL 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+corrent_state.RUN_CONV2D 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+corrent_state.First_FC 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+corrent_state.FC_P1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+corrent_state.FC_P2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.FC_P3 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.FC_P3_LK 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.Next_Class 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.Check_winner_state 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.wait_winner 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.Task_complate 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+corrent_state.error 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |DE10_Standard_GHRD|AHIM:ahim|ahim_core_controller:ahim_cc|state
+Name state.ERROR_OVERFLOW state.ERROR_OCR state.ERROR_COM state.ERROR_TX state.ERROR_RX state.WAIT_ACK state.WAIT_TX state.WAIT_RAM_STORED state.WAIT_POST_RX state.NEXT_IMAGE_VALID state.NEXT_IMAGE state.PROCESS_IMAGE state.ACK_STRIP state.ACK_BP state.IDLE state.OFFLINE 
+state.OFFLINE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.ACK_BP 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.ACK_STRIP 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.PROCESS_IMAGE 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.NEXT_IMAGE 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.NEXT_IMAGE_VALID 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.WAIT_POST_RX 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.WAIT_RAM_STORED 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.WAIT_TX 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.WAIT_ACK 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_RX 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_TX 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_COM 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_OCR 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ERROR_OVERFLOW 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

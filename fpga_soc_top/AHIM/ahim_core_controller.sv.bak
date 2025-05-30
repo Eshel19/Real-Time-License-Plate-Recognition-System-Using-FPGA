@@ -1,0 +1,541 @@
+import ahim_config_pkg::*;
+
+
+module ahim_core_controller (
+
+	
+	input logic clk_in,
+	input logic rst_n,
+	output logic Clear_buff,
+	
+	//TX_IO
+	input logic watchdog_tx_trigger,
+	input logic tx_done,
+	output logic unsigned [TX_WD_DEPTH-1:0] watchdog_tx_conf,
+	output logic unsigned [RESULT_COUNT_WIDTH-1:0] headcount,
+	output logic tx_en,
+	
+	//RX_IO
+	input logic watchdog_rx_trigger,
+	input logic rx_done,
+	output logic unsigned [RX_WD_DEPTH-1:0] watchdog_rx_conf,
+	output logic unsigned [UINT16_WIDTH-1:0] expected_packages,
+	output logic select_mode,
+	output logic rx_en,
+	
+	//OCR_RX_IO
+	output logic final_image,
+	output logic valid_output,
+	input logic unsigned[UINT8_WIDTH-1:0] Result_LC,
+	input ocr_rx_done,
+	
+	
+	//OCR_IO
+	output logic unsigned[UINT16_WIDTH-1:0] ADDR_PIXEL_START,
+	output logic unsigned[UINT16_WIDTH-1:0] ADDR_PIXEL_END,
+	output logic CU_rst,
+	output logic image_loaded,
+	input logic ocr_done,
+	input  logic unsigned[UINT8_WIDTH-1:0] output_dig_detect,
+	input logic unsigned[UINT16_WIDTH-1:0] Pixel_addr,
+	
+	//Break_point_ram IO
+	input logic BP_error,
+	input logic unsigned[UINT16_WIDTH-1:0] breakpoint,
+	output logic unsigned[BREAKPOINT_RAM_OUTPUT_WIDTH-1:0] breakpoint_addr_read,
+	
+	
+	//HPS_IO
+	input logic[CMD_WIDTH-1:0] PIO_CMD,
+	output logic busy,
+	output logic result_ready,
+	output logic error_flag,
+	output logic[3:0] fsm_state,
+	output logic[UINT8_WIDTH-1:0] image_processed,
+	output logic[UINT8_WIDTH-1:0] images_with_digits
+);
+
+
+//signals
+	logic watchdog_ocr_trigger,invalid_cmd,empty_cmd,init_cmd,new_cmd,upload_cmd,ack_cmd,reset_cmd,fsm_clear_buff,fsm_CU_RST;
+	logic cmd_open,image_processed_add,images_with_digits_add,read_next_bp;
+	logic update_img_addr; //when high we will update the image end/start addr and request the next addr from memory
+	logic ocr_busy,at_breakpoint_count,stip_has_LPs,at_ram_count,set_ram_count;
+	logic unsigned[$clog2(T_RAM_STORE)-1:0] ram_count;
+	logic unsigned[$clog2(T_RAM_STORE)-1:0] ram_count_plus_1;
+	
+	cu_cmd_e valid_cmd;
+	cu_cmd_e valid_cmd_1;
+	logic [CMD_PAYLOAD_WIDTH-1:0] payload;
+	logic [MAX_DIGITS_MSB-MAX_DIGITS_LSB:0]  max_digits;//   = get_max_digits(payload);
+	logic [MIN_DIGITS_MSB-MIN_DIGITS_LSB:0]  min_digits;//   = get_min_digits(payload);
+	logic [WATCHDOG_PIO_MSB-WATCHDOG_PIO_LSB:0]  watchdog_pio;// = get_watchdog_pio(payload);
+	logic [WATCHDOG_OCR_MSB-WATCHDOG_OCR_LSB:0]  watchdog_ocr;// = get_watchdog_ocr(payload);
+	logic        ocr_break;//    = get_ocr_break(payload);
+	logic			 ignore_invalid_cmd; // =get_ignore_invalid(payload);
+	logic [STRIP_WIDTH_MSB-STRIP_WIDTH_LSB:0] strip_width;//      = get_strip_width(payload);
+	logic [BREAKPOINT_CNT_MSB-BREAKPOINT_CNT_LSB:0]  breakpoint_count;// = get_breakpoint_count(payload);
+	//logic [3:0]  upload_reserved;//  = get_upload_reserved(payload);
+	logic [UINT16_WIDTH-1:0] expected_bp_packages;
+	logic [WATCHDOG_PIO_MSB-WATCHDOG_PIO_LSB:0]  watchdog_pio_t;
+	logic [WATCHDOG_OCR_MSB-WATCHDOG_OCR_LSB:0]  watchdog_ocr_t;
+	logic [MAX_DIGITS_MSB-MAX_DIGITS_LSB:0] max_digits_t;
+	logic [MIN_DIGITS_MSB-MIN_DIGITS_LSB:0] min_digits_t;
+	
+	
+	logic [5:0] cmd;
+	logic [3:0] cmd_prev,cmd_raw;
+	logic at_ocr_watchdog,overflow_flag;
+	logic unsigned[UINT16_WIDTH-1:0] new_end,start_addr,end_addr;
+	logic [BREAKPOINT_RAM_OUTPUT_WIDTH-1:0] bp_addr;
+	logic [BREAKPOINT_RAM_OUTPUT_WIDTH-1:0] bp_addr_plus_1;
+	logic unsigned[UINT8_WIDTH-1:0] image_processed_plus_1,images_with_digits_plus_1;
+	logic unsigned[OCR_WD_DEPTH-1:0] ocr_watchdog_counter;
+	logic unsigned[OCR_WD_DEPTH-1:0] watchdog_ocr_conf;
+	logic unsigned[OCR_WD_DEPTH-1:0] ocr_watchdog_counter_plus_1;
+	cu_fsm_state_e state, next_state;
+	
+//logic
+	assign expected_bp_packages = (UINT16_WIDTH)'((breakpoint_count + 7) >> 3);
+	assign expected_packages = (select_mode) ? expected_bp_packages: strip_width;
+	
+	assign overflow_flag=(strip_width>(UINT16_WIDTH)'(IMAGE_RAM_DEPTH))||(Pixel_addr>=(UINT16_WIDTH)'(IMAGE_RAM_DEPTH)||BP_error);
+	assign at_ram_count=(ram_count_plus_1==$clog2(T_RAM_STORE)'(T_RAM_STORE));
+	assign stip_has_LPs = !(images_with_digits=='0);
+	assign at_breakpoint_count= (breakpoint_count==image_processed);
+	
+	assign valid_output = (ocr_done&&((output_dig_detect >= min_digits) && (output_dig_detect <= max_digits)));
+	assign result_ready= tx_en;
+	assign fsm_state = state;
+	assign busy = ocr_busy;
+	
+	assign ocr_watchdog_counter_plus_1= ocr_watchdog_counter+1'b1;
+	assign ram_count_plus_1 = ram_count +1'b1;
+	assign bp_addr_plus_1= bp_addr +1'b1;
+	
+	assign breakpoint_addr_read= bp_addr;
+	assign new_end = breakpoint;
+	assign ADDR_PIXEL_END = (read_next_bp) ? new_end : end_addr;
+	assign ADDR_PIXEL_START = start_addr;
+	
+	assign watchdog_ocr_conf = {watchdog_ocr,{OCR_WD_SHIFT{1'b0}}};
+	assign watchdog_rx_conf = {watchdog_pio,{RX_WD_SHIFT{1'b0}}};
+	assign watchdog_tx_conf = {watchdog_pio,{TX_WD_SHIFT{1'b0}}};
+	
+	
+	
+	
+	always_ff@(posedge clk_in or negedge rst_n) begin
+		if(!rst_n) begin
+			ocr_watchdog_counter<='0;
+			watchdog_ocr_trigger<='0;
+			ram_count<='0;
+			image_processed<='0;
+			images_with_digits<='0;
+			bp_addr<='0;
+			end_addr<='0;
+			start_addr<='0;
+			headcount<='0;
+			
+		end else begin
+			if(Clear_buff) begin
+				ram_count<='0;
+				image_processed<='0;
+				images_with_digits<='0;
+				bp_addr<='0;
+				end_addr<='0;
+				start_addr<='0;
+				headcount<='0;
+				
+
+			end else begin
+			
+				
+				//headcount latch
+				if(ocr_rx_done) headcount<=Result_LC;
+				
+				//incress image processed count
+				if(image_processed_add) image_processed<=image_processed+1'b1;
+				
+				//incress image with digite count
+				if(images_with_digits_add) images_with_digits<=images_with_digits+1'b1; 
+				
+				//update_img_addr begin
+				if(update_img_addr||read_next_bp) begin
+					end_addr<=new_end;
+					bp_addr<=bp_addr_plus_1;
+				end
+				if(update_img_addr) start_addr<=end_addr+1'b1;
+				//update_img_addr end 
+				
+				if(set_ram_count) begin 
+					if(!at_ram_count) ram_count<=ram_count+1'b1;
+				end
+				else ram_count<='0;
+				
+				
+			end
+		
+		
+			//ocr_watchdog begin
+			if(CU_rst||(ocr_done&&~watchdog_ocr_trigger)) begin
+				ocr_watchdog_counter<='0;
+				watchdog_ocr_trigger<='0;
+			end else begin
+				if(image_loaded || ocr_watchdog_counter>0) begin
+					if(ocr_watchdog_counter==watchdog_ocr_conf) begin
+						watchdog_ocr_trigger<='1;
+						ocr_watchdog_counter<='0;
+					end else begin 
+						ocr_watchdog_counter<=ocr_watchdog_counter_plus_1;
+						watchdog_ocr_trigger<='0;
+					end
+				end
+			end
+			//ocr_watchdog end
+		end
+	end
+	
+	
+	//CMD FF + LOGIC
+	//cmd payload split
+	
+
+	
+   assign min_digits_t = get_min_digits(payload);
+	
+	 assign max_digits_t= get_max_digits(payload);
+	assign watchdog_pio_t = get_watchdog_pio(payload);
+	assign watchdog_ocr_t = get_watchdog_ocr(payload);
+	//CMD oneshot protected decode
+	//assign cmd_raw = (new_cmd) ? PIO_CMD[31:28] : 4'b0;
+	assign new_cmd = !(PIO_CMD[31:28]==cmd_prev);
+	//assign payload = PIO_CMD[27:0];
+	assign cmd=decode_cmd(cmd_raw,valid_cmd_1);
+	
+	assign invalid_cmd= cmd[5];
+	assign empty_cmd= cmd[4];
+	assign reset_cmd= cmd[3];
+	assign ack_cmd= cmd[2];
+	assign upload_cmd= cmd[1];
+	assign init_cmd= cmd[0];
+	
+	always_ff@(posedge clk_in or negedge rst_n) begin
+		if(!rst_n) begin
+			cmd_prev<='0;
+			max_digits<='0;
+			min_digits<='0;
+			watchdog_pio<='0;
+			watchdog_ocr<='0;
+			ocr_break<='0;
+			strip_width<='0;  
+			breakpoint_count<='0;
+			ignore_invalid_cmd<='0;
+			valid_cmd_1<=CMD_INIT;
+			payload<='0;
+			cmd_raw<='0;
+		end else begin
+			valid_cmd_1<=valid_cmd;
+			cmd_prev<=PIO_CMD[31:28];
+			payload <= PIO_CMD[27:0];
+			cmd_raw <= (new_cmd) ? PIO_CMD[31:28] : 4'b0;
+			if(reset_cmd) begin 
+				max_digits<='0;
+				min_digits<='0;
+				watchdog_pio<='0;
+				watchdog_ocr<='0;
+				ocr_break<='0;
+				strip_width<='0;  
+				breakpoint_count<='0;
+				ignore_invalid_cmd<='0;
+			end else begin 
+				if(init_cmd) begin
+					//added protection make sure the user provide valid watchdog/min/max values
+					max_digits   =(max_digits_t>{{MAX_DIGITS_MSB-MAX_DIGITS_LSB-1{1'b0}},1'b1}) ? 
+						max_digits_t : (MAX_DIGITS_MSB-MAX_DIGITS_LSB)'(DEF_MAX_DIG_VALUE);
+					min_digits   = (min_digits_t>{MIN_DIGITS_MSB-MIN_DIGITS_LSB{1'b0}}||max_digits_t>min_digits_t)? 
+						min_digits_t: (MIN_DIGITS_MSB-MIN_DIGITS_LSB)'(DEF_MIN_DIG_VALUE);
+					watchdog_pio =(watchdog_pio_t>{WATCHDOG_PIO_MSB-WATCHDOG_PIO_LSB{1'b0}}) ? 
+						watchdog_pio_t : (WATCHDOG_PIO_MSB-WATCHDOG_PIO_LSB)'(DEF_WD_VALUE);
+					watchdog_ocr = (watchdog_ocr_t>{WATCHDOG_OCR_MSB-WATCHDOG_OCR_LSB{1'b0}})? 
+						watchdog_ocr_t : (WATCHDOG_OCR_MSB-WATCHDOG_OCR_LSB)'(DEF_WD_VALUE);
+					ocr_break   = get_ocr_break(payload);
+					ignore_invalid_cmd<=get_ignore_invalid(payload);
+				end 
+				if(upload_cmd) begin
+					strip_width= get_strip_width(payload);
+					breakpoint_count= get_breakpoint_count(payload);
+				end
+			end
+		end
+	end
+	
+//FSM
+	//FSM REG
+	logic rx_en_t,
+		tx_en_t,
+		select_mode_t,
+		image_loaded_t,
+		error_flag_t,
+		CU_rst_t,
+		Clear_buff_t,
+		ocr_busy_t,
+		final_image_t;
+	always_ff@(posedge clk_in or negedge rst_n) begin
+		if(!rst_n) begin
+			state<=OFFLINE;
+			rx_en<='0;
+			CU_rst<='0;
+			Clear_buff<='0;
+			tx_en<='0;
+			select_mode<='0;
+			image_loaded<='0;
+			final_image<='0;
+			error_flag<='0;
+			ocr_busy<='0;
+		end else begin
+				ocr_busy<=ocr_busy_t;
+				rx_en<=rx_en_t;
+				tx_en<=tx_en_t;
+				select_mode<=select_mode_t;
+				image_loaded<=image_loaded_t;
+				CU_rst<=CU_rst_t;
+				Clear_buff<=Clear_buff_t;
+				final_image<=final_image_t;
+				error_flag<=error_flag_t;
+				state<=next_state;
+			//end
+		end
+	end
+	
+	//FSM logic
+	always_comb begin
+		valid_cmd=CMD_NO_CMD;
+		ocr_busy_t='0;
+		rx_en_t='0;
+		tx_en_t='0;
+		select_mode_t='0;
+		image_loaded_t='0;
+		CU_rst_t='0;
+		Clear_buff_t='0;
+		final_image_t='0;
+		error_flag_t='0;
+		
+		update_img_addr='0;
+		read_next_bp='0;
+		image_processed_add='0;
+		images_with_digits_add='0;
+		
+		set_ram_count='0;
+
+		case(state)
+			OFFLINE: begin
+				
+				if(init_cmd)
+					next_state=IDLE;
+				else begin
+					next_state=OFFLINE;
+					valid_cmd =CMD_INIT;
+				end
+			end
+				
+			IDLE: begin
+					if(upload_cmd) begin
+							next_state=ACK_BP;
+							rx_en_t='1; 
+					end else begin
+						next_state=IDLE;
+						valid_cmd=CMD_UPLOAD;
+					end
+			end 
+			
+			ACK_BP: begin
+			//extra protection make sure the use send valid data and wont break the hardware 
+				if(breakpoint_count=={(STRIP_WIDTH_MSB-STRIP_WIDTH_LSB){1'b0}}||strip_width < (STRIP_WIDTH_MSB-STRIP_WIDTH_LSB)'(MIN_STRIP_SIZE)) 
+				begin
+					next_state = ERROR_COM;
+					error_flag_t = 1'b1;
+				end else begin
+					if(rx_done) 
+						next_state=ACK_STRIP;
+					else begin
+						next_state=ACK_BP;
+						rx_en_t='1;
+					end
+				end
+			end
+			
+			ACK_STRIP: begin
+				if(rx_done) begin
+					next_state=PROCESS_IMAGE;
+					image_loaded_t='1;
+					read_next_bp='1;
+				end else begin 
+					next_state=ACK_STRIP;
+					rx_en_t='1;
+					select_mode_t='1;
+				end
+			end 
+					 
+			PROCESS_IMAGE: begin
+			
+				if(valid_output) begin
+					next_state=NEXT_IMAGE_VALID;
+					update_img_addr='1;
+					images_with_digits_add='1;
+					image_processed_add='1;
+				end 
+				else begin 
+					if(watchdog_ocr_trigger&&(~ocr_break)) begin
+						next_state=NEXT_IMAGE;
+						image_processed_add='1;
+						update_img_addr='1;
+						CU_rst_t='1;
+					end 
+						else 
+							if(ocr_done) begin
+								next_state=NEXT_IMAGE;
+								image_processed_add='1;
+								update_img_addr='1;
+						end 
+							else begin
+								next_state=PROCESS_IMAGE;
+								ocr_busy_t='1;
+							end
+				end
+			end 
+				
+			NEXT_IMAGE: begin
+				if(at_breakpoint_count) begin
+					if(stip_has_LPs) begin
+						final_image_t='1;
+						next_state=WAIT_POST_RX;
+					end
+						else begin
+							next_state=WAIT_ACK;
+						end
+				end 
+				else begin
+					next_state=PROCESS_IMAGE;
+					image_loaded_t='1;
+				end
+			end 
+					
+			NEXT_IMAGE_VALID: begin
+				if(at_breakpoint_count) begin
+					next_state=WAIT_POST_RX;
+					final_image_t='1;
+				end else begin
+					next_state=PROCESS_IMAGE;
+					image_loaded_t='1;
+				end
+			end 
+			
+			WAIT_POST_RX: begin
+				if(ocr_rx_done) begin
+					next_state=WAIT_RAM_STORED;
+					set_ram_count='1;
+				end else begin
+					next_state=WAIT_POST_RX;
+					final_image_t='1;
+				end
+			end
+				 
+			WAIT_RAM_STORED: begin
+				if(at_ram_count) begin
+					next_state=WAIT_TX;
+					tx_en_t='1;
+				end
+				else begin
+					next_state=WAIT_RAM_STORED;
+					set_ram_count='1;
+				end 
+			end 
+			WAIT_TX: begin
+				if(tx_done) next_state=WAIT_ACK;
+				else begin
+					next_state = WAIT_TX;
+					tx_en_t='1;
+				end
+			end	
+						
+			WAIT_ACK: begin
+				if(ack_cmd) begin
+					next_state=IDLE;
+					CU_rst_t='1;
+					Clear_buff_t='1;
+				end else begin
+					next_state=WAIT_ACK;
+					valid_cmd=CMD_ACK;
+				end
+			end 
+					  
+
+			ERROR_RX: begin
+				next_state=ERROR_RX;
+				valid_cmd=CMD_RESET;
+				error_flag_t='1;
+			end 
+					  
+			ERROR_TX: begin
+				next_state=ERROR_TX;
+				valid_cmd=CMD_RESET;
+				error_flag_t='1;
+			end 
+					  
+			ERROR_COM: begin
+				next_state=ERROR_COM;
+				valid_cmd=CMD_RESET;
+				error_flag_t='1;
+			end 
+					 
+			ERROR_OCR: begin
+				next_state=ERROR_OCR;
+				valid_cmd=CMD_RESET;
+				error_flag_t='1;
+			end 
+			ERROR_OVERFLOW: begin
+				next_state=ERROR_OVERFLOW;
+				valid_cmd=CMD_RESET;
+				error_flag_t='1;
+			end 		 
+
+		endcase
+		
+		// Priority error handling
+		if (invalid_cmd&&(~ignore_invalid_cmd)) begin
+			next_state = ERROR_COM;
+			CU_rst_t='1;
+			error_flag_t = '1;
+		end else if (reset_cmd) begin
+			valid_cmd=CMD_INIT;
+			next_state = OFFLINE;
+			CU_rst_t='1;
+			Clear_buff_t='1;
+		end else if (watchdog_rx_trigger) begin
+			valid_cmd=CMD_RESET;
+			next_state = ERROR_RX;
+			error_flag_t = '1;
+			CU_rst_t='1;
+		end else if (watchdog_tx_trigger) begin
+			valid_cmd=CMD_RESET;
+			next_state = ERROR_TX;
+			error_flag_t = '1;
+			CU_rst_t='1;
+		end else if (watchdog_ocr_trigger && ocr_break) begin
+			valid_cmd=CMD_RESET;
+			next_state = ERROR_OCR;
+			error_flag_t = '1;
+			CU_rst_t='1;
+		end else if (overflow_flag) begin
+			CU_rst_t='1;
+			valid_cmd=CMD_RESET;
+			next_state = ERROR_OVERFLOW;
+			error_flag_t = '1;
+		end
+
+	end
+	
+	
+	
+endmodule

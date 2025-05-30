@@ -1,0 +1,939 @@
+Early Power Estimator File Generator report for DE10_Standard_GHRD
+Fri May 30 10:55:29 2025
+Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Parallel Compilation
+  3. Early Power Estimator File Generator Summary
+  4. Early Power Estimator File Generator Settings
+  5. Indeterminate Toggle Rates
+  6. Early Power Estimator File Generator Generated Files
+  7. Confidence Metric Details
+  8. Signal Activities
+  9. Early Power Estimator File Generator Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.24        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   1.7%      ;
+;     Processor 3            ;   1.7%      ;
+;     Processor 4            ;   1.7%      ;
+;     Processor 5            ;   1.7%      ;
+;     Processor 6            ;   1.6%      ;
+;     Processor 7            ;   1.6%      ;
+;     Processor 8            ;   1.6%      ;
+;     Processor 9            ;   1.6%      ;
+;     Processor 10           ;   1.6%      ;
+;     Processor 11           ;   1.6%      ;
+;     Processor 12           ;   1.6%      ;
+;     Processor 13           ;   1.6%      ;
+;     Processor 14           ;   1.6%      ;
+;     Processor 15           ;   1.6%      ;
+;     Processor 16           ;   1.6%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Early Power Estimator File Generator Summary                                                   ;
++---------------------------------------------+--------------------------------------------------+
+; Early Power Estimator File Generator Status ; Successful - Fri May 30 10:55:28 2025            ;
+; Quartus Prime Version                       ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition   ;
+; Revision Name                               ; DE10_Standard_GHRD                               ;
+; Top-level Entity Name                       ; DE10_Standard_GHRD                               ;
+; Family                                      ; Cyclone V                                        ;
+; Device                                      ; 5CSXFC6D6F31C6                                   ;
+; Power Estimation Confidence                 ; Low: user provided insufficient toggle rate data ;
++---------------------------------------------+--------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Early Power Estimator File Generator Settings                                                                            ;
++------------------------------------------------------------------+---------------------------------------+---------------+
+; Option                                                           ; Setting                               ; Default Value ;
++------------------------------------------------------------------+---------------------------------------+---------------+
+; Use smart compilation                                            ; Off                                   ; Off           ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                                    ; On            ;
+; Enable compact report table                                      ; Off                                   ; Off           ;
+; Preset Cooling Solution                                          ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ;               ;
+; Board thermal model                                              ; None (CONSERVATIVE)                   ;               ;
+; Default Power Toggle Rate                                        ; 12.5%                                 ; 12.5%         ;
+; Default Power Input I/O Toggle Rate                              ; 12.5%                                 ; 12.5%         ;
+; Use vectorless estimation                                        ; On                                    ; On            ;
+; Use Input Files                                                  ; Off                                   ; Off           ;
+; Filter Glitches in VCD File Reader                               ; On                                    ; On            ;
+; Power Analyzer Report Signal Activity                            ; Off                                   ; Off           ;
+; Power Analyzer Report Power Dissipation                          ; Off                                   ; Off           ;
+; Device Power Characteristics                                     ; TYPICAL                               ; TYPICAL       ;
+; Automatically Compute Junction Temperature                       ; On                                    ; On            ;
+; Specified Junction Temperature                                   ; 25                                    ; 25            ;
+; Ambient Temperature                                              ; 25                                    ; 25            ;
+; Use Custom Cooling Solution                                      ; Off                                   ; Off           ;
+; Board Temperature                                                ; 25                                    ; 25            ;
+; Enable HPS                                                       ; Off                                   ; Off           ;
+; Processor Frequency                                              ; 0.0                                   ; 0.0           ;
++------------------------------------------------------------------+---------------------------------------+---------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Indeterminate Toggle Rates                                                                                                               ;
++------------------------------------------------------------------------------------------------------------+-----------------------------+
+; Node                                                                                                       ; Reason                      ;
++------------------------------------------------------------------------------------------------------------+-----------------------------+
+; KEY[0]                                                                                                     ; No valid clock domain found ;
+; KEY[1]                                                                                                     ; No valid clock domain found ;
+; KEY[2]                                                                                                     ; No valid clock domain found ;
+; KEY[3]                                                                                                     ; No valid clock domain found ;
+; SW[0]                                                                                                      ; No valid clock domain found ;
+; SW[1]                                                                                                      ; No valid clock domain found ;
+; SW[2]                                                                                                      ; No valid clock domain found ;
+; SW[3]                                                                                                      ; No valid clock domain found ;
+; SW[4]                                                                                                      ; No valid clock domain found ;
+; SW[5]                                                                                                      ; No valid clock domain found ;
+; SW[6]                                                                                                      ; No valid clock domain found ;
+; SW[7]                                                                                                      ; No valid clock domain found ;
+; SW[8]                                                                                                      ; No valid clock domain found ;
+; SW[9]                                                                                                      ; No valid clock domain found ;
+; TD_HS                                                                                                      ; No valid clock domain found ;
+; TD_VS                                                                                                      ; No valid clock domain found ;
+; TD_DATA[0]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[1]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[2]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[3]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[4]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[5]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[6]                                                                                                 ; No valid clock domain found ;
+; TD_DATA[7]                                                                                                 ; No valid clock domain found ;
+; AUD_ADCDAT                                                                                                 ; No valid clock domain found ;
+; ADC_DOUT                                                                                                   ; No valid clock domain found ;
+; IRDA_RXD                                                                                                   ; No valid clock domain found ;
+; DRAM_DQ[0]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[1]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[2]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[3]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[4]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[5]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[6]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[7]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[8]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[9]                                                                                                 ; No valid clock domain found ;
+; DRAM_DQ[10]                                                                                                ; No valid clock domain found ;
+; DRAM_DQ[11]                                                                                                ; No valid clock domain found ;
+; DRAM_DQ[12]                                                                                                ; No valid clock domain found ;
+; DRAM_DQ[13]                                                                                                ; No valid clock domain found ;
+; DRAM_DQ[14]                                                                                                ; No valid clock domain found ;
+; DRAM_DQ[15]                                                                                                ; No valid clock domain found ;
+; AUD_BCLK                                                                                                   ; No valid clock domain found ;
+; AUD_ADCLRCK                                                                                                ; No valid clock domain found ;
+; AUD_DACLRCK                                                                                                ; No valid clock domain found ;
+; PS2_CLK                                                                                                    ; No valid clock domain found ;
+; PS2_CLK2                                                                                                   ; No valid clock domain found ;
+; PS2_DAT                                                                                                    ; No valid clock domain found ;
+; PS2_DAT2                                                                                                   ; No valid clock domain found ;
+; FPGA_I2C_SDAT                                                                                              ; No valid clock domain found ;
+; GPIO[0]                                                                                                    ; No valid clock domain found ;
+; GPIO[1]                                                                                                    ; No valid clock domain found ;
+; GPIO[2]                                                                                                    ; No valid clock domain found ;
+; GPIO[3]                                                                                                    ; No valid clock domain found ;
+; GPIO[4]                                                                                                    ; No valid clock domain found ;
+; GPIO[5]                                                                                                    ; No valid clock domain found ;
+; GPIO[6]                                                                                                    ; No valid clock domain found ;
+; GPIO[7]                                                                                                    ; No valid clock domain found ;
+; GPIO[8]                                                                                                    ; No valid clock domain found ;
+; GPIO[9]                                                                                                    ; No valid clock domain found ;
+; GPIO[10]                                                                                                   ; No valid clock domain found ;
+; GPIO[11]                                                                                                   ; No valid clock domain found ;
+; GPIO[12]                                                                                                   ; No valid clock domain found ;
+; GPIO[13]                                                                                                   ; No valid clock domain found ;
+; GPIO[14]                                                                                                   ; No valid clock domain found ;
+; GPIO[15]                                                                                                   ; No valid clock domain found ;
+; GPIO[16]                                                                                                   ; No valid clock domain found ;
+; GPIO[17]                                                                                                   ; No valid clock domain found ;
+; GPIO[18]                                                                                                   ; No valid clock domain found ;
+; GPIO[19]                                                                                                   ; No valid clock domain found ;
+; GPIO[20]                                                                                                   ; No valid clock domain found ;
+; GPIO[21]                                                                                                   ; No valid clock domain found ;
+; GPIO[22]                                                                                                   ; No valid clock domain found ;
+; GPIO[23]                                                                                                   ; No valid clock domain found ;
+; GPIO[24]                                                                                                   ; No valid clock domain found ;
+; GPIO[25]                                                                                                   ; No valid clock domain found ;
+; GPIO[26]                                                                                                   ; No valid clock domain found ;
+; GPIO[27]                                                                                                   ; No valid clock domain found ;
+; GPIO[28]                                                                                                   ; No valid clock domain found ;
+; GPIO[29]                                                                                                   ; No valid clock domain found ;
+; GPIO[30]                                                                                                   ; No valid clock domain found ;
+; GPIO[31]                                                                                                   ; No valid clock domain found ;
+; GPIO[32]                                                                                                   ; No valid clock domain found ;
+; GPIO[33]                                                                                                   ; No valid clock domain found ;
+; GPIO[34]                                                                                                   ; No valid clock domain found ;
+; GPIO[35]                                                                                                   ; No valid clock domain found ;
+; HPS_CONV_USB_N                                                                                             ; No valid clock domain found ;
+; HPS_ENET_INT_N                                                                                             ; No valid clock domain found ;
+; HPS_ENET_MDIO                                                                                              ; No valid clock domain found ;
+; HPS_FLASH_DATA[0]                                                                                          ; No valid clock domain found ;
+; HPS_FLASH_DATA[1]                                                                                          ; No valid clock domain found ;
+; HPS_FLASH_DATA[2]                                                                                          ; No valid clock domain found ;
+; HPS_FLASH_DATA[3]                                                                                          ; No valid clock domain found ;
+; HPS_GSENSOR_INT                                                                                            ; No valid clock domain found ;
+; HPS_I2C1_SCLK                                                                                              ; No valid clock domain found ;
+; HPS_I2C1_SDAT                                                                                              ; No valid clock domain found ;
+; HPS_I2C2_SCLK                                                                                              ; No valid clock domain found ;
+; HPS_I2C2_SDAT                                                                                              ; No valid clock domain found ;
+; HPS_I2C_CONTROL                                                                                            ; No valid clock domain found ;
+; HPS_KEY                                                                                                    ; No valid clock domain found ;
+; HPS_LCM_BK                                                                                                 ; No valid clock domain found ;
+; HPS_LCM_D_C                                                                                                ; No valid clock domain found ;
+; HPS_LCM_RST_N                                                                                              ; No valid clock domain found ;
+; HPS_LED                                                                                                    ; No valid clock domain found ;
+; HPS_LTC_GPIO                                                                                               ; No valid clock domain found ;
+; HPS_SD_CMD                                                                                                 ; No valid clock domain found ;
+; HPS_SD_DATA[0]                                                                                             ; No valid clock domain found ;
+; HPS_SD_DATA[1]                                                                                             ; No valid clock domain found ;
+; HPS_SD_DATA[2]                                                                                             ; No valid clock domain found ;
+; HPS_SD_DATA[3]                                                                                             ; No valid clock domain found ;
+; HPS_SPIM_SS                                                                                                ; No valid clock domain found ;
+; HPS_USB_DATA[0]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[1]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[2]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[3]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[4]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[5]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[6]                                                                                            ; No valid clock domain found ;
+; HPS_USB_DATA[7]                                                                                            ; No valid clock domain found ;
+; HPS_ENET_RX_DATA[0]                                                                                        ; No valid clock domain found ;
+; HPS_ENET_RX_DATA[1]                                                                                        ; No valid clock domain found ;
+; HPS_ENET_RX_DATA[2]                                                                                        ; No valid clock domain found ;
+; HPS_ENET_RX_DATA[3]                                                                                        ; No valid clock domain found ;
+; HPS_ENET_RX_CLK                                                                                            ; No valid clock domain found ;
+; HPS_ENET_RX_DV                                                                                             ; No valid clock domain found ;
+; HPS_LCM_SPIM_MISO                                                                                          ; No valid clock domain found ;
+; HPS_SPIM_MISO                                                                                              ; No valid clock domain found ;
+; HPS_UART_RX                                                                                                ; No valid clock domain found ;
+; HPS_USB_CLKOUT                                                                                             ; No valid clock domain found ;
+; HPS_USB_DIR                                                                                                ; No valid clock domain found ;
+; HPS_USB_NXT                                                                                                ; No valid clock domain found ;
+; HPS_DDR3_RZQ                                                                                               ; No valid clock domain found ;
+; soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_fpga_interfaces:fpga_interfaces|h2f_rst_n[0]~CLKENA0 ; No valid clock domain found ;
++------------------------------------------------------------------------------------------------------------+-----------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Early Power Estimator File Generator Generated Files                                              ;
++----------------------------------------------------------------+----------------------------------+
+; Description                                                    ; Filename                         ;
++----------------------------------------------------------------+----------------------------------+
+; Design summary for PowerPlay Early Power Estimator spreadsheet ; DE10_Standard_GHRD_early_pwr.csv ;
++----------------------------------------------------------------+----------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Confidence Metric Details                                                                                                                               ;
++----------------------------------------------------------------------------------------+----------------+-------------+----------------+----------------+
+; Data Source                                                                            ; Total          ; Pin         ; Registered     ; Combinational  ;
++----------------------------------------------------------------------------------------+----------------+-------------+----------------+----------------+
+; Simulation (from file)                                                                 ;                ;             ;                ;                ;
+;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)       ; 0 (0.0%)    ; 0 (0.0%)       ; 0 (0.0%)       ;
+;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)       ; 0 (0.0%)    ; 0 (0.0%)       ; 0 (0.0%)       ;
+;                                                                                        ;                ;             ;                ;                ;
+; Node, entity or clock assignment                                                       ;                ;             ;                ;                ;
+;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 23 (0.0%)      ; 16 (3.4%)   ; 0 (0.0%)       ; 7 (0.0%)       ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 24 (0.0%)      ; 16 (3.4%)   ; 0 (0.0%)       ; 8 (0.0%)       ;
+;                                                                                        ;                ;             ;                ;                ;
+; Vectorless estimation                                                                  ;                ;             ;                ;                ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 110103 (99.8%) ; 292 (61.5%) ; 27010 (100.0%) ; 82801 (100.0%) ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 3927 (3.6%)    ; 280 (58.9%) ; 55 (0.2%)      ; 3592 (4.3%)    ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 110102 (99.8%) ; 292 (61.5%) ; 27010 (100.0%) ; 82800 (100.0%) ;
+;                                                                                        ;                ;             ;                ;                ;
+; Default assignment                                                                     ;                ;             ;                ;                ;
+;     -- Number of signals with Toggle Rate from Default assignment                      ; 34 (0.0%)      ; 34 (7.2%)   ; 0 (0.0%)       ; 0 (0.0%)       ;
+;     -- Number of signals with Static Probability from Default assignment               ; 167 (0.2%)     ; 167 (35.2%) ; 0 (0.0%)       ; 0 (0.0%)       ;
+;                                                                                        ;                ;             ;                ;                ;
+; Assumed 0                                                                              ;                ;             ;                ;                ;
+;     -- Number of signals with Toggle Rate assumed 0                                    ; 133 (0.1%)     ; 133 (28.0%) ; 0 (0.0%)       ; 0 (0.0%)       ;
++----------------------------------------------------------------------------------------+----------------+-------------+----------------+----------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Activities                                                                                                                           ;
++--------+------+---------------------------------------------+-------------------------+--------------------+--------------------------------+
+; Signal ; Type ; Toggle Rate (millions of transitions / sec) ; Toggle Rate Data Source ; Static Probability ; Static Probability Data Source ;
++--------+------+---------------------------------------------+-------------------------+--------------------+--------------------------------+
+(1) The "Signal Activity" Table has been hidden. To show this table, please select the "Write signal activities to report file" option under "PowerPlay Power Analyzer Settings".
+
+
++-----------------------------------------------+
+; Early Power Estimator File Generator Messages ;
++-----------------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Early Power Estimator File Generator
+    Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+    Info: Processing started: Fri May 30 10:55:01 2025
+Info: Command: quartus_pow --read_settings_files=on --write_settings_files=off DE10_Standard_GHRD -c DE10_Standard_GHRD --estimate_power=off --output_epe=DE10_Standard_GHRD_early_pwr.csv
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332164): Evaluating HDL-embedded SDC commands
+    Info (332165): Entity sld_hub
+        Info (332166): create_clock -name altera_reserved_tck [get_ports {altera_reserved_tck}] -period 30MHz   
+        Info (332166): if { [string equal quartus_fit $::TimeQuestInfo(nameofexecutable)] } { set_max_delay -to [get_ports { altera_reserved_tdo } ] 0 }
+        Info (332166): set_clock_groups -asynchronous -group {altera_reserved_tck}
+Info (332104): Reading SDC File: 'DE10_Standard_GHRD.sdc'
+Warning (332043): Overwriting existing clock: altera_reserved_tck
+Warning (332174): Ignored filter at DE10_Standard_GHRD.sdc(37): u0|pll_0|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk could not be matched with a pin File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 37
+Warning (332049): Ignored create_generated_clock at DE10_Standard_GHRD.sdc(37): Argument -source is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 37
+    Info (332050): create_generated_clock -source [get_pins { u0|pll_0|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk }] \
+                      -name clk_dram_ext [get_ports {DRAM_CLK}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 37
+Warning (332174): Ignored filter at DE10_Standard_GHRD.sdc(41): u0|pll_0|altera_pll_i|general[3].gpll~PLL_OUTPUT_COUNTER|divclk could not be matched with a pin File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 41
+Warning (332049): Ignored create_generated_clock at DE10_Standard_GHRD.sdc(41): Argument -source is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 41
+    Info (332050): create_generated_clock -source [get_pins { u0|pll_0|altera_pll_i|general[3].gpll~PLL_OUTPUT_COUNTER|divclk }] \
+                      -name clk_vga_ext [get_ports {VGA_CLK}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 41
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at DE10_Standard_GHRD.sdc(65): clk_dram_ext could not be matched with a clock File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 65
+Warning (332049): Ignored set_input_delay at DE10_Standard_GHRD.sdc(65): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 65
+    Info (332050): set_input_delay -max -clock clk_dram_ext 5.96 [get_ports DRAM_DQ*] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 65
+Warning (332049): Ignored set_input_delay at DE10_Standard_GHRD.sdc(66): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 66
+    Info (332050): set_input_delay -min -clock clk_dram_ext 2.97 [get_ports DRAM_DQ*] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 66
+Warning (332174): Ignored filter at DE10_Standard_GHRD.sdc(72): u0|pll_0|altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER|divclk could not be matched with a clock File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 72
+Warning (332049): Ignored set_multicycle_path at DE10_Standard_GHRD.sdc(71): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 71
+    Info (332050): set_multicycle_path -from [get_clocks {clk_dram_ext}] \
+                    -to [get_clocks    { u0|pll_0|altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER|divclk }] \
+                                                  -setup 2 File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 71
+Warning (332049): Ignored set_multicycle_path at DE10_Standard_GHRD.sdc(71): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 71
+Warning (332049): Ignored set_output_delay at DE10_Standard_GHRD.sdc(94): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 94
+    Info (332050): set_output_delay -max -clock clk_dram_ext 1.63  [get_ports {DRAM_DQ* DRAM_*DQM}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 94
+Warning (332049): Ignored set_output_delay at DE10_Standard_GHRD.sdc(95): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 95
+    Info (332050): set_output_delay -min -clock clk_dram_ext -0.95 [get_ports {DRAM_DQ* DRAM_*DQM}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 95
+Warning (332049): Ignored set_output_delay at DE10_Standard_GHRD.sdc(96): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 96
+    Info (332050): set_output_delay -max -clock clk_dram_ext 1.65  [get_ports {DRAM_ADDR* DRAM_BA* DRAM_RAS_N DRAM_CAS_N DRAM_WE_N DRAM_CKE DRAM_CS_N}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 96
+Warning (332049): Ignored set_output_delay at DE10_Standard_GHRD.sdc(97): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 97
+    Info (332050): set_output_delay -min -clock clk_dram_ext -0.9 [get_ports {DRAM_ADDR* DRAM_BA* DRAM_RAS_N DRAM_CAS_N DRAM_WE_N DRAM_CKE DRAM_CS_N}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 97
+Warning (332174): Ignored filter at DE10_Standard_GHRD.sdc(101): VGA_BLANK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 101
+Warning (332174): Ignored filter at DE10_Standard_GHRD.sdc(101): clk_vga_ext could not be matched with a clock File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 101
+Warning (332049): Ignored set_output_delay at DE10_Standard_GHRD.sdc(101): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 101
+    Info (332050): set_output_delay -max -clock clk_vga_ext 0.33 [get_ports {VGA_R* VGA_G* VGA_B* VGA_BLANK}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 101
+Warning (332049): Ignored set_output_delay at DE10_Standard_GHRD.sdc(102): Argument -clock is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 102
+    Info (332050): set_output_delay -min -clock clk_vga_ext -1.64 [get_ports {VGA_R* VGA_G* VGA_B* VGA_BLANK}] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/DE10_Standard_GHRD.sdc Line: 102
+Info (332104): Reading SDC File: 'soc_system/synthesis/submodules/altera_reset_controller.sdc'
+Info (332104): Reading SDC File: 'soc_system/synthesis/submodules/hps_sdram_p0.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Info: Initializing DDR database for CORE hps_sdram_p0
+Info: Finding port-to-pin mapping for CORE: hps_sdram_p0 INSTANCE: u0|hps_0|hps_io|border|hps_sdram_inst
+Warning (332174): Ignored filter at hps_sdram_p0.sdc(551): *:u0|*:hps_0|*:hps_io|*:border|*:hps_sdram_inst|*s0|* could not be matched with a clock or keeper or register or port or pin or cell or partition File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/hps_sdram_p0.sdc Line: 551
+Warning (332049): Ignored set_false_path at hps_sdram_p0.sdc(551): Argument <from> is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/hps_sdram_p0.sdc Line: 551
+    Info (332050): set_false_path -from ${prefix}|*s0|* -to [get_clocks $local_pll_write_clk] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/hps_sdram_p0.sdc Line: 551
+Warning (332174): Ignored filter at hps_sdram_p0.sdc(552): *:u0|*:hps_0|*:hps_io|*:border|*:hps_sdram_inst|*s0|*hphy_bridge_s0_translator|av_readdata_pre[*] could not be matched with a clock or keeper or register or port or pin or cell or partition File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/hps_sdram_p0.sdc Line: 552
+Warning (332049): Ignored set_false_path at hps_sdram_p0.sdc(552): Argument <to> is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/hps_sdram_p0.sdc Line: 552
+    Info (332050): set_false_path -from [get_clocks $local_pll_write_clk] -to ${prefix}|*s0|*hphy_bridge_s0_translator|av_readdata_pre[*] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/hps_sdram_p0.sdc Line: 552
+Info: Setting DQS clocks as inactive; use Report DDR to timing analyze DQS clocks
+Info (332104): Reading SDC File: 'soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc'
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(1): hps_io_hps_io_emac1_inst_TX_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 1
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(1): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 1
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TX_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 1
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(2): hps_io_hps_io_emac1_inst_TXD0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 2
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(2): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 2
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 2
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(3): hps_io_hps_io_emac1_inst_TXD1 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 3
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(3): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 3
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 3
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(4): hps_io_hps_io_emac1_inst_TXD2 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 4
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(4): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 4
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 4
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(5): hps_io_hps_io_emac1_inst_TXD3 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 5
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(5): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 5
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 5
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(6): hps_io_hps_io_emac1_inst_RXD0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 6
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(6): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 6
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 6
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(7): hps_io_hps_io_emac1_inst_MDIO could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 7
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(7): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 7
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_MDIO] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 7
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(8): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 8
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_MDIO] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 8
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(9): hps_io_hps_io_emac1_inst_MDC could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 9
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(9): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 9
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_MDC] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 9
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(10): hps_io_hps_io_emac1_inst_RX_CTL could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 10
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(10): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 10
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RX_CTL] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 10
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(11): hps_io_hps_io_emac1_inst_TX_CTL could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 11
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(11): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 11
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TX_CTL] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 11
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(12): hps_io_hps_io_emac1_inst_RX_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 12
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(12): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 12
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RX_CLK] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 12
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(13): hps_io_hps_io_emac1_inst_RXD1 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 13
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(13): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 13
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 13
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(14): hps_io_hps_io_emac1_inst_RXD2 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 14
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(14): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 14
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 14
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(15): hps_io_hps_io_emac1_inst_RXD3 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 15
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(15): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 15
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 15
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(16): hps_io_hps_io_qspi_inst_IO0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 16
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(16): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 16
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 16
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(17): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 17
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 17
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(18): hps_io_hps_io_qspi_inst_IO1 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 18
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(18): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 18
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 18
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(19): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 19
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 19
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(20): hps_io_hps_io_qspi_inst_IO2 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 20
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(20): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 20
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 20
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(21): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 21
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 21
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(22): hps_io_hps_io_qspi_inst_IO3 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 22
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(22): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 22
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 22
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(23): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 23
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 23
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(24): hps_io_hps_io_qspi_inst_SS0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 24
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(24): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 24
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_SS0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 24
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(25): hps_io_hps_io_qspi_inst_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 25
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(25): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 25
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 25
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(26): hps_io_hps_io_sdio_inst_CMD could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 26
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(26): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 26
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_CMD] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 26
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(27): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 27
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_CMD] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 27
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(28): hps_io_hps_io_sdio_inst_D0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 28
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(28): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 28
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 28
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(29): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 29
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 29
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(30): hps_io_hps_io_sdio_inst_D1 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 30
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(30): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 30
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 30
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(31): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 31
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 31
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(32): hps_io_hps_io_sdio_inst_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 32
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(32): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 32
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 32
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(33): hps_io_hps_io_sdio_inst_D2 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 33
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(33): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 33
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 33
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(34): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 34
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 34
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(35): hps_io_hps_io_sdio_inst_D3 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 35
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(35): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 35
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 35
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(36): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 36
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 36
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(37): hps_io_hps_io_usb1_inst_D0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 37
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(37): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 37
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 37
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(38): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 38
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 38
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(39): hps_io_hps_io_usb1_inst_D1 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 39
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(39): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 39
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 39
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(40): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 40
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 40
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(41): hps_io_hps_io_usb1_inst_D2 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 41
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(41): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 41
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 41
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(42): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 42
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 42
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(43): hps_io_hps_io_usb1_inst_D3 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 43
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(43): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 43
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 43
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(44): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 44
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 44
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(45): hps_io_hps_io_usb1_inst_D4 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 45
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(45): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 45
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D4] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 45
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(46): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 46
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D4] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 46
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(47): hps_io_hps_io_usb1_inst_D5 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 47
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(47): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 47
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D5] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 47
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(48): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 48
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D5] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 48
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(49): hps_io_hps_io_usb1_inst_D6 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 49
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(49): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 49
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D6] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 49
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(50): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 50
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D6] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 50
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(51): hps_io_hps_io_usb1_inst_D7 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 51
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(51): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 51
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D7] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 51
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(52): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 52
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D7] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 52
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(53): hps_io_hps_io_usb1_inst_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 53
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(53): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 53
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_CLK] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 53
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(54): hps_io_hps_io_usb1_inst_STP could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 54
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(54): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 54
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_STP] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 54
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(55): hps_io_hps_io_usb1_inst_DIR could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 55
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(55): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 55
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_DIR] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 55
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(56): hps_io_hps_io_usb1_inst_NXT could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 56
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(56): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 56
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_NXT] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 56
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(57): hps_io_hps_io_spim0_inst_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 57
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(57): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 57
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim0_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 57
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(58): hps_io_hps_io_spim0_inst_MOSI could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 58
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(58): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 58
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim0_inst_MOSI] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 58
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(59): hps_io_hps_io_spim0_inst_MISO could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 59
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(59): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 59
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_spim0_inst_MISO] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 59
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(60): hps_io_hps_io_spim0_inst_SS0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 60
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(60): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 60
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim0_inst_SS0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 60
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(61): hps_io_hps_io_spim1_inst_CLK could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 61
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(61): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 61
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim1_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 61
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(62): hps_io_hps_io_spim1_inst_MOSI could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 62
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(62): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 62
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim1_inst_MOSI] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 62
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(63): hps_io_hps_io_spim1_inst_MISO could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 63
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(63): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 63
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_spim1_inst_MISO] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 63
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(64): hps_io_hps_io_spim1_inst_SS0 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 64
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(64): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 64
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim1_inst_SS0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 64
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(65): hps_io_hps_io_uart0_inst_RX could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 65
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(65): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 65
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_uart0_inst_RX] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 65
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(66): hps_io_hps_io_uart0_inst_TX could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 66
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(66): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 66
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_uart0_inst_TX] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 66
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(67): hps_io_hps_io_i2c0_inst_SDA could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 67
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(67): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 67
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c0_inst_SDA] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 67
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(68): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 68
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c0_inst_SDA] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 68
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(69): hps_io_hps_io_i2c0_inst_SCL could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 69
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(69): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 69
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c0_inst_SCL] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 69
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(70): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 70
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c0_inst_SCL] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 70
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(71): hps_io_hps_io_i2c1_inst_SDA could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 71
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(71): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 71
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c1_inst_SDA] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 71
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(72): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 72
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c1_inst_SDA] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 72
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(73): hps_io_hps_io_i2c1_inst_SCL could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 73
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(73): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 73
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c1_inst_SCL] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 73
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(74): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 74
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c1_inst_SCL] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 74
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(75): hps_io_hps_io_gpio_inst_GPIO09 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 75
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(75): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 75
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO09] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 75
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(76): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 76
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO09] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 76
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(77): hps_io_hps_io_gpio_inst_GPIO35 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 77
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(77): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 77
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO35] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 77
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(78): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 78
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO35] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 78
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(79): hps_io_hps_io_gpio_inst_GPIO37 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 79
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(79): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 79
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO37] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 79
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(80): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 80
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO37] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 80
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(81): hps_io_hps_io_gpio_inst_GPIO40 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 81
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(81): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 81
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO40] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 81
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(82): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 82
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO40] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 82
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(83): hps_io_hps_io_gpio_inst_GPIO41 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 83
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(83): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 83
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO41] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 83
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(84): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 84
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO41] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 84
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(85): hps_io_hps_io_gpio_inst_GPIO44 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 85
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(85): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 85
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO44] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 85
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(86): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 86
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO44] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 86
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(87): hps_io_hps_io_gpio_inst_GPIO48 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 87
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(87): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 87
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO48] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 87
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(88): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 88
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO48] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 88
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(89): hps_io_hps_io_gpio_inst_GPIO53 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 89
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(89): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 89
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO53] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 89
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(90): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 90
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO53] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 90
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(91): hps_io_hps_io_gpio_inst_GPIO54 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 91
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(91): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 91
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO54] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 91
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(92): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 92
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO54] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 92
+Warning (332174): Ignored filter at soc_system_hps_0_hps_io_border.sdc(93): hps_io_hps_io_gpio_inst_GPIO61 could not be matched with a port File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 93
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(93): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 93
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO61] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 93
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(94): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 94
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO61] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/soc_system/synthesis/submodules/soc_system_hps_0_hps_io_border.sdc Line: 94
+Info (332104): Reading SDC File: 'd:/final_project_fpga/systembuilder/de10_standard_ghrd/db/ip/soc_system/submodules/altera_reset_controller.sdc'
+Info (332104): Reading SDC File: 'd:/final_project_fpga/systembuilder/de10_standard_ghrd/db/ip/soc_system/submodules/hps_sdram_p0.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332043): Overwriting existing clock: soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk
+Warning (332043): Overwriting existing clock: soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk
+Warning (332043): Overwriting existing clock: u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock
+Warning (332043): Overwriting existing clock: HPS_DDR3_CK_P
+Warning (332043): Overwriting existing clock: HPS_DDR3_CK_N
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[0]_IN
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[1]_IN
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[2]_IN
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[3]_IN
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[0]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[1]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[2]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_P[3]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_N[0]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_N[1]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_N[2]_OUT
+Warning (332043): Overwriting existing clock: HPS_DDR3_DQS_N[3]_OUT
+Warning (332174): Ignored filter at hps_sdram_p0.sdc(551): *:u0|*:hps_0|*:hps_io|*:border|*:hps_sdram_inst|*s0|* could not be matched with a clock or keeper or register or port or pin or cell or partition File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/hps_sdram_p0.sdc Line: 551
+Warning (332049): Ignored set_false_path at hps_sdram_p0.sdc(551): Argument <from> is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/hps_sdram_p0.sdc Line: 551
+    Info (332050): set_false_path -from ${prefix}|*s0|* -to [get_clocks $local_pll_write_clk] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/hps_sdram_p0.sdc Line: 551
+Warning (332174): Ignored filter at hps_sdram_p0.sdc(552): *:u0|*:hps_0|*:hps_io|*:border|*:hps_sdram_inst|*s0|*hphy_bridge_s0_translator|av_readdata_pre[*] could not be matched with a clock or keeper or register or port or pin or cell or partition File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/hps_sdram_p0.sdc Line: 552
+Warning (332049): Ignored set_false_path at hps_sdram_p0.sdc(552): Argument <to> is not an object ID File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/hps_sdram_p0.sdc Line: 552
+    Info (332050): set_false_path -from [get_clocks $local_pll_write_clk] -to ${prefix}|*s0|*hphy_bridge_s0_translator|av_readdata_pre[*] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/hps_sdram_p0.sdc Line: 552
+Info: Setting DQS clocks as inactive; use Report DDR to timing analyze DQS clocks
+Info (332104): Reading SDC File: 'd:/final_project_fpga/systembuilder/de10_standard_ghrd/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc'
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(1): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 1
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TX_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 1
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(2): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 2
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 2
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(3): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 3
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 3
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(4): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 4
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 4
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(5): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 5
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TXD3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 5
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(6): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 6
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 6
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(7): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 7
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_MDIO] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 7
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(8): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 8
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_MDIO] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 8
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(9): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 9
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_MDC] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 9
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(10): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 10
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RX_CTL] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 10
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(11): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 11
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_emac1_inst_TX_CTL] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 11
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(12): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 12
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RX_CLK] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 12
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(13): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 13
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 13
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(14): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 14
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 14
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(15): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 15
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_emac1_inst_RXD3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 15
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(16): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 16
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 16
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(17): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 17
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 17
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(18): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 18
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 18
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(19): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 19
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 19
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(20): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 20
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 20
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(21): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 21
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 21
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(22): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 22
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_qspi_inst_IO3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 22
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(23): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 23
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_IO3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 23
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(24): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 24
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_SS0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 24
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(25): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 25
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_qspi_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 25
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(26): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 26
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_CMD] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 26
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(27): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 27
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_CMD] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 27
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(28): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 28
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 28
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(29): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 29
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 29
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(30): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 30
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 30
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(31): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 31
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 31
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(32): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 32
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 32
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(33): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 33
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 33
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(34): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 34
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 34
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(35): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 35
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_sdio_inst_D3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 35
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(36): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 36
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_sdio_inst_D3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 36
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(37): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 37
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D0] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 37
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(38): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 38
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 38
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(39): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 39
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D1] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 39
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(40): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 40
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D1] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 40
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(41): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 41
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D2] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 41
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(42): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 42
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D2] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 42
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(43): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 43
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D3] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 43
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(44): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 44
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D3] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 44
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(45): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 45
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D4] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 45
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(46): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 46
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D4] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 46
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(47): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 47
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D5] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 47
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(48): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 48
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D5] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 48
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(49): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 49
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D6] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 49
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(50): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 50
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D6] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 50
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(51): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 51
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_D7] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 51
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(52): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 52
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_D7] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 52
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(53): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 53
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_CLK] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 53
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(54): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 54
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_usb1_inst_STP] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 54
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(55): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 55
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_DIR] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 55
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(56): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 56
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_usb1_inst_NXT] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 56
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(57): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 57
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim0_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 57
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(58): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 58
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim0_inst_MOSI] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 58
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(59): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 59
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_spim0_inst_MISO] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 59
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(60): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 60
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim0_inst_SS0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 60
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(61): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 61
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim1_inst_CLK] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 61
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(62): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 62
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim1_inst_MOSI] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 62
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(63): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 63
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_spim1_inst_MISO] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 63
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(64): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 64
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_spim1_inst_SS0] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 64
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(65): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 65
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_uart0_inst_RX] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 65
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(66): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 66
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_uart0_inst_TX] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 66
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(67): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 67
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c0_inst_SDA] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 67
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(68): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 68
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c0_inst_SDA] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 68
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(69): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 69
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c0_inst_SCL] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 69
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(70): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 70
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c0_inst_SCL] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 70
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(71): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 71
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c1_inst_SDA] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 71
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(72): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 72
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c1_inst_SDA] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 72
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(73): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 73
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_i2c1_inst_SCL] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 73
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(74): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 74
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_i2c1_inst_SCL] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 74
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(75): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 75
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO09] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 75
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(76): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 76
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO09] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 76
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(77): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 77
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO35] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 77
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(78): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 78
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO35] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 78
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(79): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 79
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO37] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 79
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(80): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 80
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO37] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 80
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(81): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 81
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO40] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 81
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(82): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 82
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO40] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 82
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(83): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 83
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO41] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 83
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(84): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 84
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO41] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 84
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(85): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 85
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO44] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 85
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(86): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 86
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO44] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 86
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(87): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 87
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO48] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 87
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(88): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 88
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO48] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 88
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(89): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 89
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO53] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 89
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(90): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 90
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO53] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 90
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(91): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 91
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO54] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 91
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(92): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 92
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO54] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 92
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(93): Argument <from> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 93
+    Info (332050): set_false_path -from [get_ports hps_io_hps_io_gpio_inst_GPIO61] -to * File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 93
+Warning (332049): Ignored set_false_path at soc_system_hps_0_hps_io_border.sdc(94): Argument <to> is an empty collection File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 94
+    Info (332050): set_false_path -from * -to [get_ports hps_io_hps_io_gpio_inst_GPIO61] File: D:/FInal_project_FPGA/SystemBuilder/DE10_Standard_GHRD/db/ip/soc_system/submodules/soc_system_hps_0_hps_io_border.sdc Line: 94
+Warning (332060): Node: HPS_USB_CLKOUT was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|usb1_inst~FF_3474 is being clocked by HPS_USB_CLKOUT
+Warning (332060): Node: HPS_I2C1_SCLK was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|i2c0_inst~FF_3393 is being clocked by HPS_I2C1_SCLK
+Warning (332060): Node: HPS_I2C2_SCLK was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|i2c1_inst~FF_3393 is being clocked by HPS_I2C2_SCLK
+Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
+    Info (332098): From: u0|hps_0|fpga_interfaces|hps2fpga_light_weight|clk  to: soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_fpga_interfaces:fpga_interfaces|hps2fpga_light_weight~FF_3425
+    Info (332098): From: u0|hps_0|fpga_interfaces|hps2fpga|clk  to: soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_fpga_interfaces:fpga_interfaces|hps2fpga~FF_2821
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[0].ubidir_dq_dqs|altdq_dqs2_inst|dqs_delay_chain  from: dqsin  to: dqsbusout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[0].ubidir_dq_dqs|altdq_dqs2_inst|dqs_in_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[0].ubidir_dq_dqs|altdq_dqs2_inst|dqs_out_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[0].ubidir_dq_dqs|altdq_dqs2_inst|phase_align_os  from: muxsel  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[1].ubidir_dq_dqs|altdq_dqs2_inst|dqs_delay_chain  from: dqsin  to: dqsbusout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[1].ubidir_dq_dqs|altdq_dqs2_inst|dqs_in_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[1].ubidir_dq_dqs|altdq_dqs2_inst|dqs_out_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[1].ubidir_dq_dqs|altdq_dqs2_inst|phase_align_os  from: muxsel  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[2].ubidir_dq_dqs|altdq_dqs2_inst|dqs_delay_chain  from: dqsin  to: dqsbusout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[2].ubidir_dq_dqs|altdq_dqs2_inst|dqs_in_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[2].ubidir_dq_dqs|altdq_dqs2_inst|dqs_out_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[2].ubidir_dq_dqs|altdq_dqs2_inst|phase_align_os  from: muxsel  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[3].ubidir_dq_dqs|altdq_dqs2_inst|dqs_delay_chain  from: dqsin  to: dqsbusout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[3].ubidir_dq_dqs|altdq_dqs2_inst|dqs_in_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[3].ubidir_dq_dqs|altdq_dqs2_inst|dqs_out_delay_1  from: datain  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|dq_ddio[3].ubidir_dq_dqs|altdq_dqs2_inst|phase_align_os  from: muxsel  to: dataout
+    Info (332098): Cell: u0|hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uio_pads|uaddr_cmd_pads|clock_gen[0].umem_ck_pad|auto_generated|ddio_outa[0]  from: muxsel  to: dataout
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332152): The following assignments are ignored by the derive_clock_uncertainty command
+Info (332171): The following clock uncertainty values are less than the recommended values that would be applied by the derive_clock_uncertainty command
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[0]_IN (Rise) to HPS_DDR3_DQS_P[0]_IN (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[0]_IN (Rise) to HPS_DDR3_DQS_P[0]_IN (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[1]_IN (Rise) to HPS_DDR3_DQS_P[1]_IN (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[1]_IN (Rise) to HPS_DDR3_DQS_P[1]_IN (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[2]_IN (Rise) to HPS_DDR3_DQS_P[2]_IN (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[2]_IN (Rise) to HPS_DDR3_DQS_P[2]_IN (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[3]_IN (Rise) to HPS_DDR3_DQS_P[3]_IN (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from HPS_DDR3_DQS_P[3]_IN (Rise) to HPS_DDR3_DQS_P[3]_IN (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.160
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[0]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[0]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[0]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[0]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[0]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[0]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[1]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[1]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[1]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[1]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[1]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[1]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[2]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[2]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[2]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[2]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.260
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[2]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[2]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.260
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_P[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_P[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[3]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk (Rise) to HPS_DDR3_DQS_P[3]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.230
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[3]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Rise) to HPS_DDR3_DQS_P[3]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Setup clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[3]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Hold clock transfer from u0|hps_0|hps_io|border|hps_sdram_inst|hps_sdram_p0_sampling_clock (Fall) to HPS_DDR3_DQS_P[3]_OUT (Fall) has uncertainty 0.000 that is less than the recommended uncertainty 0.380
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[0]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[1]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[2]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Rise) to HPS_DDR3_DQS_N[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Setup clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+    Info (332172): Hold clock transfer from soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk (Fall) to HPS_DDR3_DQS_N[3]_OUT (Rise) has uncertainty 0.000 that is less than the recommended uncertainty 0.210
+Info (223000): Starting Vectorless Power Activity Estimation
+Warning (222013): Relative toggle rates could not be calculated because no clock domain could be identified for some nodes
+Info (223001): Completed Vectorless Power Activity Estimation
+Critical Warning (215050): HPS power is being analyzed for a device with an HPS without HPS power.
+Info (218000): Using Advanced I/O Power to simulate I/O buffers with the specified board trace model
+Info: Setting DQS clocks as inactive; use Report DDR to timing analyze DQS clocks
+Info: Setting DQS clocks as inactive; use Report DDR to timing analyze DQS clocks
+Info (214002): Created Early Power Estimation file "DE10_Standard_GHRD_early_pwr.csv"
+Info (215029): No power estimate will be produced.
+Info (215049): Average toggle rate for this design is 8.625 millions of transitions / sec
+Info: Quartus Prime Early Power Estimator File Generator was successful. 0 errors, 300 warnings
+    Info: Peak virtual memory: 6562 megabytes
+    Info: Processing ended: Fri May 30 10:55:29 2025
+    Info: Elapsed time: 00:00:28
+    Info: Total CPU time (on all processors): 00:00:29
+
+

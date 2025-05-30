@@ -1,0 +1,232 @@
+package ahim_config_pkg;
+
+
+	// Interface & protocol config
+	parameter int PIO_DATA_WIDTH    = 128;
+	parameter int PIO_STATUS_WIDTH =32;
+	parameter int MAX_OUT_L     = 10;
+	parameter int BURST_SIZE_WIDTH =8;
+	parameter int BURST_SIZE =8;
+	parameter int UINT8_WIDTH =8;
+	parameter int UINT16_WIDTH =16;
+	parameter int RESULT_COUNT_WIDTH   = UINT8_WIDTH;
+	parameter int WD_DEAPH_PAYLOAD = 8;
+	parameter int RX_WD_SHIFT =8;
+	parameter int TX_WD_SHIFT =8;
+	parameter int OCR_WD_SHIFT =12;
+	parameter int CMD_WIDTH =32;
+	parameter int CMD_COMMADE_WIDTH =4;
+	parameter int T_RAM_STORE = 5;
+	
+	parameter int MIN_STRIP_SIZE = 20;
+	parameter int DEF_WD_VALUE =1;
+	parameter int DEF_MAX_DIG_VALUE =10;
+	parameter int DEF_MIN_DIG_VALUE =1;
+	
+	//RAM CONFIG
+	parameter int BREAKPOINT_RAM_DEPTH = 32;
+	parameter int IMAGE_RAM_DEPTH = 1000000/PIO_DATA_WIDTH;
+	parameter int RESULT_RAM_DEPTH = 32;
+	parameter int BREAKPOINT_RAM_DEPTH_OUTPUT = BREAKPOINT_RAM_DEPTH*(PIO_DATA_WIDTH/UINT16_WIDTH);
+	
+	// Parameter definitions for INIT payload split
+	parameter int MAX_DIGITS_MSB     = 27;
+	parameter int MAX_DIGITS_LSB     = 24;
+	parameter int MIN_DIGITS_MSB     = 23;
+	parameter int MIN_DIGITS_LSB     = 20;
+	parameter int WATCHDOG_PIO_MSB   = 19;
+	parameter int WATCHDOG_PIO_LSB   = 12;
+	parameter int WATCHDOG_OCR_MSB   = 11;
+	parameter int WATCHDOG_OCR_LSB   = 4;
+	parameter int OCR_BREAK_BIT      = 3;
+	parameter int IGNORE_INVALID_BIT = 2;
+	parameter int RESERVED_MSB       = 1;
+	parameter int RESERVED_LSB       = 0;
+	
+	//UPLOAD Payload Split Parameters
+	parameter int STRIP_WIDTH_MSB      = 27;
+	parameter int STRIP_WIDTH_LSB      = 12;
+	parameter int BREAKPOINT_CNT_MSB   = 11;
+	parameter int BREAKPOINT_CNT_LSB   = 4;
+	parameter int UPLOAD_RESERVED_MSB  = 3;
+	parameter int UPLOAD_RESERVED_LSB  = 0;
+
+	
+	//STATUS PIO bit locations 
+	parameter int PIO_OUT_READY_BIT       = 0;
+	parameter int PIO_IN_VALID_BIT        = 1;
+	parameter int BUSY_BIT                = 2;
+	parameter int RESULT_READY_BIT          = 3;
+	parameter int ERROR_FLAG_BIT          = 4;
+	parameter int FSM_STATE_MSB           = 9;
+	parameter int FSM_STATE_LSB           = 6;
+	parameter int IMAGES_PROCESSED_MSB    = 17;
+	parameter int IMAGES_PROCESSED_LSB    = 10;
+	parameter int IMAGES_WITH_DIGITS_MSB  = 25;
+	parameter int IMAGES_WITH_DIGITS_LSB  = 18;
+
+// Reserved: 31:26
+
+
+localparam int PAYLOAD_OFFSET = CMD_COMMADE_WIDTH;  // = 4
+
+localparam int MAX_DIGITS_P_MSB     = MAX_DIGITS_MSB     - PAYLOAD_OFFSET;
+localparam int MAX_DIGITS_P_LSB     = MAX_DIGITS_LSB     - PAYLOAD_OFFSET;
+localparam int MIN_DIGITS_P_MSB     = MIN_DIGITS_MSB     - PAYLOAD_OFFSET;
+localparam int MIN_DIGITS_P_LSB     = MIN_DIGITS_LSB     - PAYLOAD_OFFSET;
+localparam int WATCHDOG_PIO_P_MSB   = WATCHDOG_PIO_MSB   - PAYLOAD_OFFSET;
+localparam int WATCHDOG_PIO_P_LSB   = WATCHDOG_PIO_LSB   - PAYLOAD_OFFSET;
+localparam int WATCHDOG_OCR_P_MSB   = WATCHDOG_OCR_MSB   - PAYLOAD_OFFSET;
+localparam int WATCHDOG_OCR_P_LSB   = WATCHDOG_OCR_LSB   - PAYLOAD_OFFSET;
+localparam int OCR_BREAK_P_BIT      = OCR_BREAK_BIT      - PAYLOAD_OFFSET;
+localparam int IGNORE_INVALID_P_BIT = IGNORE_INVALID_BIT - PAYLOAD_OFFSET;
+localparam int STRIP_WIDTH_P_MSB    = STRIP_WIDTH_MSB    - PAYLOAD_OFFSET;
+localparam int STRIP_WIDTH_P_LSB    = STRIP_WIDTH_LSB    - PAYLOAD_OFFSET;
+localparam int BREAKPOINT_CNT_P_MSB = BREAKPOINT_CNT_MSB - PAYLOAD_OFFSET;
+localparam int BREAKPOINT_CNT_P_LSB = BREAKPOINT_CNT_LSB - PAYLOAD_OFFSET;
+localparam int UPLOAD_RESERVED_P_MSB = UPLOAD_RESERVED_MSB - PAYLOAD_OFFSET;
+localparam int UPLOAD_RESERVED_P_LSB = UPLOAD_RESERVED_LSB - PAYLOAD_OFFSET;
+
+
+
+	
+	//DEFINE 
+	parameter int CMD_PAYLOAD_WIDTH = CMD_WIDTH-CMD_COMMADE_WIDTH;
+	parameter int BREAKPOINT_RAM_OUTPUT_WIDTH = $clog2(BREAKPOINT_RAM_DEPTH_OUTPUT);
+	parameter int BREAKPOINT_RAM_WIDTH = $clog2(BREAKPOINT_RAM_DEPTH);
+	parameter int IMAGE_RAM_WIDTH = $clog2(IMAGE_RAM_DEPTH);
+	parameter int RESULT_RAM_WIDTH = $clog2(RESULT_RAM_DEPTH);
+	parameter int CHAR_WIDTH        = 8;
+	parameter int RX_WD_DEPTH =WD_DEAPH_PAYLOAD+RX_WD_SHIFT;
+	parameter int TX_WD_DEPTH =WD_DEAPH_PAYLOAD+TX_WD_SHIFT;
+	parameter int OCR_WD_DEPTH = WD_DEAPH_PAYLOAD + OCR_WD_SHIFT;
+	parameter logic unsigned [UINT8_WIDTH-1:0] NULL_CHAR = 8'h00;
+
+	// Derived types
+	typedef logic [CHAR_WIDTH-1:0]       char_t;
+	typedef logic [PIO_DATA_WIDTH-1:0]   pio_word;
+	typedef logic [RESULT_COUNT_WIDTH-1:0]  result_id_t;
+
+	// CU FSM State Definitions (fixed values for easy debug)
+	typedef enum logic [3:0] {
+		OFFLINE         = 4'd0,
+		IDLE            = 4'd1,
+		ACK_BP          = 4'd2,
+		ACK_STRIP       = 4'd3,
+		PROCESS_IMAGE   = 4'd4,
+		NEXT_IMAGE      = 4'd5,
+		NEXT_IMAGE_VALID= 4'd6,
+		WAIT_POST_RX    = 4'd7,
+		WAIT_RAM_STORED = 4'd8,
+		WAIT_TX         = 4'd9,
+		WAIT_ACK        = 4'd10,
+		// Error states start here (for clear separation)
+		ERROR_RX        = 4'd11,
+		ERROR_TX        = 4'd12,
+		ERROR_COM       = 4'd13,
+		ERROR_OCR       = 4'd14,
+		ERROR_OVERFLOW	 = 4'd15
+	} cu_fsm_state_e;
+
+	
+	typedef enum logic [3:0] {
+		CMD_NO_CMD = 4'b0000, // No command / idle
+		CMD_INIT   = 4'b0001, // Initialize configuration
+		CMD_UPLOAD = 4'b0010, // Begin image/strip upload
+		CMD_ACK    = 4'b0100, // CPU confirms result read
+		CMD_RESET  = 4'b1000  // Full reset, return to offline
+	} cu_cmd_e;
+
+
+
+
+	// --- Extraction functions using parameters
+	function automatic logic get_ignore_invalid(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[IGNORE_INVALID_BIT];
+	endfunction
+	
+	function automatic [MAX_DIGITS_MSB-MAX_DIGITS_LSB:0] get_max_digits(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[MAX_DIGITS_MSB:MAX_DIGITS_LSB];
+	endfunction
+
+	function automatic [MIN_DIGITS_MSB-MIN_DIGITS_LSB:0] get_min_digits(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[MIN_DIGITS_MSB:MIN_DIGITS_LSB];
+	endfunction
+
+	function automatic [WATCHDOG_PIO_MSB-WATCHDOG_PIO_LSB:0] get_watchdog_pio(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[WATCHDOG_PIO_MSB:WATCHDOG_PIO_LSB];
+	endfunction
+
+	function automatic [WATCHDOG_OCR_MSB-WATCHDOG_OCR_LSB:0] get_watchdog_ocr(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[WATCHDOG_OCR_MSB:WATCHDOG_OCR_LSB];
+	endfunction
+
+	function automatic logic get_ocr_break(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[OCR_BREAK_BIT];
+	endfunction
+	
+	function automatic [STRIP_WIDTH_MSB-STRIP_WIDTH_LSB:0] get_strip_width(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[STRIP_WIDTH_MSB:STRIP_WIDTH_LSB];
+	endfunction
+
+	function automatic [BREAKPOINT_CNT_MSB-BREAKPOINT_CNT_LSB:0] get_breakpoint_count(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[BREAKPOINT_CNT_MSB:BREAKPOINT_CNT_LSB];
+	endfunction
+
+	function automatic [UPLOAD_RESERVED_MSB-UPLOAD_RESERVED_LSB:0] get_upload_reserved(input logic [CMD_WIDTH-1:0] payload);
+		 return payload[UPLOAD_RESERVED_MSB:UPLOAD_RESERVED_LSB];
+	endfunction
+
+
+
+	
+	function automatic [5:0] decode_cmd(input logic[CMD_COMMADE_WIDTH-1:0] cmd, input cu_cmd_e valid_cmd);
+		logic [CMD_COMMADE_WIDTH-1:0] not_cmd = ~cmd;
+		logic split_check_L = not_cmd[3]&&not_cmd[2];
+		logic split_check_R = not_cmd[1]&&not_cmd[0];
+		logic [5:0] result;
+//		logic valid = cmd==valid_cmd;
+		result[0] = split_check_L && (not_cmd[1]&&cmd[0])&&valid_cmd[0]; //init cmd
+		result[1] = split_check_L && (not_cmd[0]&&cmd[1])&&valid_cmd[1]; //upload cmd
+		result[2] = split_check_R && (not_cmd[3]&&cmd[2])&&valid_cmd[2]; //ack cmd 
+		result[3] = split_check_R && (not_cmd[2]&&cmd[3]); //reset cmd 
+		result[4] = split_check_L&&split_check_R;
+		result[5] = !(result[0]|result[1]|result[2]|result[3]|result[4]);
+		
+//		result[0] = (cmd==CMD_INIT)&&valid;
+//		result[1] = (cmd==CMD_UPLOAD)&&valid;
+//		result[2] = (cmd==CMD_ACK)&&valid;
+//		result[3] = (cmd==CMD_RESET);
+//		result[4] = (cmd==CMD_NO_CMD);
+//		result[5] = !(valid||result[4]||result[3]);
+		return result;
+	
+	endfunction 
+
+	function automatic logic [31:0] build_status (
+		input logic waitrequest_out,
+		input logic waitrequest_in,
+		input logic busy,
+		input logic result_ready,
+		input logic error_flag,
+		input logic [3:0] fsm_state,
+		input logic [7:0] image_processed,
+		input logic [7:0] images_with_digits
+	);
+		logic [31:0] status;
+		status[PIO_OUT_READY_BIT]       = waitrequest_out;      // Out ready = not waiting
+		status[PIO_IN_VALID_BIT]         = waitrequest_in;       // In valid  = not waiting
+		status[BUSY_BIT]                         = busy;
+		status[RESULT_READY_BIT]             = result_ready;
+		status[ERROR_FLAG_BIT]             = error_flag;
+		status[FSM_STATE_MSB:FSM_STATE_LSB]               = fsm_state;
+		status[IMAGES_PROCESSED_MSB:IMAGES_PROCESSED_LSB] = image_processed;
+		status[IMAGES_WITH_DIGITS_MSB:IMAGES_WITH_DIGITS_LSB] = images_with_digits;
+
+		// status[31:26] reserved, left at 0
+		return status;
+	endfunction
+
+
+	
+endpackage
