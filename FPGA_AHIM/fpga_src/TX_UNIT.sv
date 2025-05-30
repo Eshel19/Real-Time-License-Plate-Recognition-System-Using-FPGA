@@ -41,7 +41,7 @@ module TX_UNIT (
 	assign PIO_IN[PIO_DATA_WIDTH-1:UINT8_WIDTH]=filo_q[PIO_DATA_WIDTH-1:UINT8_WIDTH];
 	assign PIO_IN[UINT8_WIDTH-1:0]= (en_rise_reg&!read_fall) ? headcount : filo_q[UINT8_WIDTH-1:0];
 	assign send_line_count_plus_1 = send_line_count+1;
-	assign at_head_count=(headcount==send_line_count_plus_1);
+	assign at_head_count=(headcount==send_line_count);
 	assign tx_done=at_head_count&read_fall;
 	
 	
@@ -65,7 +65,7 @@ module TX_UNIT (
 			if(at_read_count&&read) begin
 				read_count<='0;
 			end else begin 
-				if(count_as_read) read_count<= 1'b1;
+				if(count_as_read) read_count<= read_count+1'b1;
 			end
 			if(Clear_buff) begin
 				read_count<='0;
@@ -126,7 +126,7 @@ module TX_UNIT (
 				
 				
 				//tx_done begin
-				if(valid_data_3&header_sent_reg&!at_head_count) send_line_count<=send_line_count_plus_1;
+				if(valid_read&&valid_data_3&&header_sent_reg&&!at_head_count) send_line_count<=send_line_count_plus_1;
 				//tx_done end
 				
 			end

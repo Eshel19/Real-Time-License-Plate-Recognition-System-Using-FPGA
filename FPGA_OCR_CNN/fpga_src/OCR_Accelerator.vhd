@@ -24,7 +24,7 @@ entity OCR_Accelerator is
 		output_char : out std_logic_vector(MAX_out_L*INT8_WIDTH-1 downto 0);
 		done : out std_logic;
 		pixel_in : in std_logic_vector(pic_height*INT8_WIDTH-1 downto 0);
-		ADDR_PIXEL :out std_logic_vector(log2of(MAX_IMAGE_W)-1 downto 0)
+		ADDR_PIXEL :out std_logic_vector(15 downto 0)
 
 	);
 end OCR_Accelerator;

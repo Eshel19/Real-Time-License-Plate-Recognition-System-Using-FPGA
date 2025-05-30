@@ -18,7 +18,7 @@ entity Memory_CU is
 		ADDR_PIXEL_START : in unsigned(15 downto 0);
 		ADDR_PIXEL_END : in unsigned(15 downto 0);
 		ADDR_WFC : out std_logic_vector(WFC_info.ADDR_WIDTH-1 downto 0);
-		ADDR_PIXEL : out std_logic_vector(log2of(MAX_IMAGE_W)-1 downto 0);
+		ADDR_PIXEL : out std_logic_vector(15 downto 0);
 		ADDR_BFC : out std_logic_vector(BFC_info.ADDR_WIDTH-1 downto 0);
 		ADDR_Conv : out std_logic_vector(CONV_W_info.ADDR_WIDTH-1 downto 0);
 		At_final_line : out std_logic;
@@ -43,7 +43,7 @@ ARCHITECTURE arch_Memory_CU of Memory_CU is
 	signal at_last_line_t :std_logic;
 	signal winner_count,winner_count_t : integer range 0 to T_winner+4;
 	signal ADDR_WFC_num,ADDR_WFC_num_t : integer range 0 to WFC_info.DATA_DEPTH+2;
-	signal ADDR_PIXEL_num,ADDR_PIXEL_num_t,ADDR_PIXEL_num_2 : integer range 0 to MAX_IMAGE_W+2;
+	signal ADDR_PIXEL_num,ADDR_PIXEL_num_t,ADDR_PIXEL_num_2 : integer range 0 to 65535;
 	signal ADDR_BFC_num,ADDR_BFC_num_t :integer range 0 to BFC_info.DATA_DEPTH+2;
 	signal ADDR_Conv_num,ADDR_Conv_num_t : integer range 0 to CONV_W_info.DATA_DEPTH+2;
 	signal ADDR_Conv_add,ADDR_PIXEL_add,ADDR_WFC_add,ADDR_BFC_add,ADDR_PIXEL_sub,K_count_set,class_count_set,
