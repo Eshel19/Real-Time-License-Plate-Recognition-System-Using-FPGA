@@ -76,7 +76,6 @@ The code in this repository is provided for educational and demonstration purpos
 
 > **Note:**  
 > Reproducing the complete system requires the Terasic DE10 Standard FPGA board and a compatible embedded Linux setup.  
-> For hardware/software requirements, customizations, and known issues, see `/docs/CUSTOM_BUILD_NOTES.md`.
 
 ---
 

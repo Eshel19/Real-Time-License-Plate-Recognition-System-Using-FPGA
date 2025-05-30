@@ -32,6 +32,7 @@ Key features:
 ---
 
 ## 🏗️ Folder Structure
+```
 CNN_FPGA_OCR/ ├── architecture/ # High-level architecture and workflow images │ ├── CNN model.png │ ├── ocr_architecture_overview.png │ └── System WorkFlow.png
 
 ├── blocks/ # Draw.io schematics for each hardware block │ ├── data_managment_unit.drawio.png │ ├── MultiMultiplierEngine.drawio.png │ ├── Parallel_Compute_Engine_16.drawio.png │ ├── Relu_out_mem.drawio.png │ └── Results_comparator.drawio.png
@@ -49,7 +50,7 @@ CNN_FPGA_OCR/ ├── architecture/ # High-level architecture and workflow ima
 ├── weights/ # Exported model weights in .mif format │ ├── CON_W.mif # Convolution weights │ ├── CON_B.mif # Convolution biases │ ├── FCM_W.mif # Fully connected weights │ ├── FCM_B.mif # Fully connected biases │ └── REL_O.mif # ReLU defaults
 
 └── README.md # This file!
-
+```
 ---
 
 ## ⚙️ Target Platform
