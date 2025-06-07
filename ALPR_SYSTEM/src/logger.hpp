@@ -28,7 +28,7 @@ public:
     void forceFlushPlate();
     void forceFlushLog();
     void addPlateLog(const std::string& log_line);
-
+    bool isInitialized() const;
 private:
 
     void openNewPlateFile();
@@ -74,6 +74,6 @@ private:
     int log_max_entries_ = 200;
 
     bool interactive_mode_ = false;
-    
+    bool is_initialized_=false;
     std::vector<std::string> plate_buffer_;
 };

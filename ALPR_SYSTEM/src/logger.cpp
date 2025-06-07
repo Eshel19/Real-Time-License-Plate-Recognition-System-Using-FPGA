@@ -33,9 +33,14 @@ bool Logger::initialize(
 
     openNewPlateFile();
     openNewLogFile();
-
-    return plate_outfile_.is_open() && log_outfile_.is_open();
+    is_initialized_ = plate_outfile_.is_open() && log_outfile_.is_open();
+    return is_initialized_;
 }
+
+bool Logger::isInitialized() const {
+    return is_initialized_;
+}
+
 Logger::~Logger() {
     // Make sure any buffered data is flushed
     forceFlushPlate();
@@ -50,7 +55,8 @@ Logger::~Logger() {
     }
 }
 void Logger::addPlateLog(const std::string& log_line) {
-    plate_buffer_.push_back(log_line);
+    std::string line = timestamp() +", " +log_line;
+    plate_buffer_.push_back(line);
     maybeFlushPlate();
 }
 

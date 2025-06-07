@@ -20,16 +20,24 @@ This repository contains the complete code and documentation for my final-year p
 
 ## Project Structure
 ```
-├── CPU_preprocessing/ # C++ and Python code for image preprocessing, detection, segmentation
-├── CPU_FPGA_access_API/ # C++ library and code for CPU-FPGA bridge (data/control)
-├── FPGA_AHIM/ # HDL source for Accelerator Host Interface Manager (FPGA bridge / CU)
-├── FPGA_OCR_CNN/ # HDL + scripts for CNN OCR engine (see https://github.com/Eshel19/CNN_FPGA_OCR)
-├── LINUX_config_files/ # Kernel, U-Boot, device tree, and boot scripts for DE10 Standard
-└── docs/ # Documentation, diagrams, reports, and custom build notes
+├── ALPR_SYSTEM/           # Full system integration: CPU preproc, FPGA bridge, watchdog, FSM, logging
+├── alprcrtl/              # CLI controller & interface for managing the OCR system
+├── CPU_preprocessing/     # Detection, segmentation, and preprocessing
+├── CPU_FPGA_access_API/   # Communication bridge code
+├── FPGA_AHIM/             # Accelerator interface (CU / RX / TX)
+├── FPGA_OCR_CNN/          # CNN OCR IP core
+├── LINUX_config_files/    # Kernel, device tree, and scripts
+└── docs/                  # Diagrams, documentation, notes
 ```
 
 
 ### Folder Descriptions
+
+- **ALPR_SYSTEM/**  
+  C++ COde for full integrated runtime for the ALPR pipeline. Handles FSM coordination, preprocessing, watchdog, FPGA communication, OCR triggering, and logging. Designed to run continuously and autonomously under embedded Linux.
+
+  - **alprcrtl/**  
+  Command-line controller for managing and interacting with the ALPR_SYSTEM. Sends control commands, initiates single-frame capture or live runs, monitors state/status, and supports system testing/debug.
 
 - **CPU_preprocessing/**  
   C++ and Python code for real-time license plate detection and segmentation. Includes object detection (NanoDet), segmentation routines, benchmark/test scripts, and Jupyter notebooks for experiments.
@@ -71,7 +79,16 @@ The code in this repository is provided for educational and demonstration purpos
 4. **Linux Platform Setup:**  
    - `/LINUX_config_files/` contains all necessary files and build scripts for a custom Linux/U-Boot/device tree environment, fully compatible with the DE10 Standard FPGA board.
 
-5. **Documentation:**  
+5. **Integrated ALPR Runtime System:**  
+   - To run the full autonomous ALPR system, see `/ALPR_SYSTEM/`.  
+   - This contains the real-time FSM, FPGA bridge logic, watchdog, result parsing, logging, and full operational flow.  
+   - The system is designed for continuous deployment and has been tested with 100+ hour runtime stability.
+
+6. **System Control Interface:**  
+   - `/alprcrtl/` provides a simple command-line control program to manage, debug, or trigger OCR operations from the CPU.  
+   - Supports status monitoring, controlled runs, and system resets.
+
+7. **Documentation:**  
    - `/docs/` contains detailed explanations, block diagrams, architecture charts, and reports that provide a deep dive into the system’s development and integration.
 
 > **Note:**  
