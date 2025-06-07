@@ -36,7 +36,7 @@ This repository contains the complete code and documentation for my final-year p
 - **ALPR_SYSTEM/**  
   C++ COde for full integrated runtime for the ALPR pipeline. Handles FSM coordination, preprocessing, watchdog, FPGA communication, OCR triggering, and logging. Designed to run continuously and autonomously under embedded Linux.
 
-  - **alprcrtl/**  
+- **alprcrtl/**  
   Command-line controller for managing and interacting with the ALPR_SYSTEM. Sends control commands, initiates single-frame capture or live runs, monitors state/status, and supports system testing/debug.
 
 - **CPU_preprocessing/**  
@@ -125,6 +125,20 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 ![License Plate preprocessing workflow](docs/images/preprocessing_workflow.jpg)  
 *Figure 3: Overview of the preprocessing workflow.*
 
+### AI OCR Accelerator – Top-Level Architecture
+
+![AI OCR Accelerator Top View](FPGA_OCR_CNN/architecture/ocr_architecture_overview.png)  
+*Figure 4: High-level architecture of the FPGA-based CNN OCR Accelerator. Designed for INT8 inference, programmable thresholding, and modular convolutional + fully connected structure.*
+
+### Accelerator Host Interface Manager (AHIM)
+
+![AHIM Top View](FPGA_AHIM/architecture/Bridg_high_level.drawio.png)  
+*Figure 5: AHIM block diagram showing the internal structure of the CPU-FPGA bridge. Manages synchronization, watchdogs, command handling, and data routing between HPS and OCR core.*
+
+### Live System Runtime (103+ Hours)
+
+![System Runtime](ALPR_SYSTEM/docs/images/100H_runtime.jpg)  
+*Figure65: Live LCD display showing system uptime of over 103 hours with stable FPS and no errors. This confirms long-term robustness and real-time operation of the ALPR pipeline on FPGA.*
 ---
 
 ## Project Status
