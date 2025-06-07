@@ -144,26 +144,17 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 
 ## Project Status
 
-- **Completed:**
-  - Developed a custom Linux distribution for the DE10 Standard FPGA board.
-  - Image preprocessing and detection pipeline implemented and tested (CPU-side):
-    - **Step 1: License plate detection** using the NanoDet object detection model (NCNN, C++).
-    - **Step 2: Plate segmentation and straightening**—extracts and geometrically corrects the detected license plate to a straight line for optimal OCR.
-  - Achieved 86% accuracy with 34ms average runtime per image on ARM Cortex-A9 MPCore CPU (**for detection and segmentation only; hardware OCR not included in this metric**).
-  - **Accelerator Host Interface Manager (AHIM):**
-    - Designed as a fully modular, robust CPU–FPGA communication bridge.
-    - Extensive simulation and error-handling tests completed for protocol, watchdog, and protection against edge cases.
-    - **RX unit** (FPGA to CPU): fully implemented and tested in both hardware and software.
-    - **TX unit** (CPU to FPGA): design complete, initial simulations done; final hardware/software integration **work in progress**.
-  - **AI OCR Accelerator IP Core:**
-    - Parameterizable and modular CNN IP for OCR, with loadable weights, changeable filter sizes, and adjustable thresholds.
-    - Designed for easy upgrades, dataset changes, and application tuning.
-  - **FPGA AI OCR accelerator processes a full license plate in just 870μs** (end-to-end hardware inference).
+- ✅ **System Completed and Operational:**
+  - The full real-time ALPR system is now integrated, running autonomously on embedded Linux + FPGA.
+  - End-to-end pipeline includes image preprocessing, CNN-based OCR accelerator, and a fully pipelined CPU–FPGA communication protocol.
+  - System tested for **100+ hours of continuous operation** with **0 crashes** and stable performance at ~16 FPS.
+  - OCR inference runs on FPGA in ~870 µs per full plate.
+  - Watchdog, logging, control interface (`alprcrtl`), and LCD display are all active and validated.
 
-- **Ongoing:**
-  - Final integration and system-level testing.
-  - Additional optimization and documentation.
-  - Extended evaluation and robustness testing.
+- 🧪 **Current Focus:**
+  - Ongoing **optimization** for performance tuning and resource usage.
+  - Continued improvement of **digit segmentation and accuracy** via dataset expansion.
+  - Finalizing **documentation**, **GitHub cleanup**, and full source release instructions.
 
 ---
 
