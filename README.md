@@ -138,7 +138,8 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 ### Live System Runtime (103+ Hours)
 
 ![System Runtime](ALPR_SYSTEM/docs/images/100H_runtime.jpg)  
-*Figure65: Live LCD display showing system uptime of over 103 hours with stable FPS and no errors. This confirms long-term robustness and real-time operation of the ALPR pipeline on FPGA.*
+*Figure 6: Live LCD display showing system uptime of over 103 hours with stable FPS and no errors. This confirms long-term robustness and real-time operation of the ALPR pipeline on FPGA.*
+
 ---
 
 ## Project Status
