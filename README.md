@@ -8,13 +8,18 @@ This repository contains the complete code and documentation for my final-year p
 
 ## Features
 
-- **Real-Time Processing:** Achieves an average preprocessing time of **34ms** per image.
-- **High Accuracy:** License plate recognition accuracy of **86%** in real-world test conditions.
+- **Real-Time Proccessing:** Achieves an average preprocessing time of **34ms** per image **(detection + segmentation)**, and end-to-end system throughput of **15–17 FPS** for the full pipeline.
+- **Detection Accuracy:** The plate detection and segmentation stage achieves 86% accuracy in real-world test conditions.
 - **FPGA Acceleration:** Utilizes VHDL/SystemVerilog on a DE10 Standard FPGA board for CNN-based OCR.
 - **Advanced Image Preprocessing:** Implemented in C++ with the NanoDet object detection model and custom segmentation techniques.
 - **Flexible CPU-FPGA Bridge/API:** C++ communication library for high-speed, robust CPU-to-FPGA data/control transfer.
 - **Custom Linux Platform:** Kernel, U-Boot, and device tree tailored for the FPGA system, with full build scripts and documentation.
-- **End-to-End Documentation:** Clear, step-by-step build guides, system diagrams, workflow charts, and performance results.
+- **End-to-End Documentation:** Clear system diagrams, workflow charts, and performance results.
+
+---
+
+*Curious about the engineering journey behind this project?  
+See [The Full Project Story](docs/full_story.md) in the docs folder.*
 
 ---
 
@@ -137,7 +142,7 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 
 ### Accelerator Host Interface Manager (AHIM)
 
-![AHIM Top View](FFPGA_HPS_Bridge_AHIM\hardware\architecture\Bridg_high_level.drawio.png)  
+![AHIM Top View](FPGA_HPS_Bridge_AHIM\hardware\architecture\Bridge_high_level.drawio.png)  
 *Figure 5: AHIM block diagram showing the internal structure of the CPU-FPGA bridge. Manages synchronization, watchdogs, command handling, and data routing between HPS and OCR core.*
 
 ### Live System Runtime (103+ Hours)
