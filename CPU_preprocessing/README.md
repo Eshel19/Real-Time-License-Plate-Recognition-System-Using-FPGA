@@ -62,7 +62,6 @@ Performance measured on **ARM Cortex-A9 MPCore CPU** (DE10 Standard, 970 image t
 #### Example Output (Standard Pipeline)
 
 ![Non-INT8 Benchmark](doc/images/benchmark_without_int8.png)
-
 **Note:**  
 - On this CPU, using INT8 output does **not** significantly affect the pipeline runtime compared to standard output.
 - The OCR (hardware) stage is independent and not affected by the output type here.
