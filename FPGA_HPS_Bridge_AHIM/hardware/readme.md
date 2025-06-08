@@ -132,7 +132,7 @@ The AHIM bridge integrates several critical components:
 
 ---
 
-## 5. RX_OCR (Result Capture Unit)
+## 5. OCR_RX_UNIT (Result Capture Unit)
 
 - **Purpose:**  
     - Captures result from the AI OCR Core, buffers, and formats for storage.
@@ -154,7 +154,7 @@ The AHIM bridge integrates several critical components:
 ### Block Diagrams
 =
 - ![CU FSM](FSMs/CU_FSM.drawio.png)
-- ![RX_UNIT](hblocks/RX_UNIT.drawio.png)
+- ![RX_UNIT](blocks/RX_UNIT.drawio.png)
 - ![TX_UNIT](blocks/TX_UNIT.drawio.png)
 - ![OCR_RX_UNIT](blocks/OCR_RX_UNIT.drawio.png)
 - ![System Topology](architecture/Bridge_high_level.drawio.png)
