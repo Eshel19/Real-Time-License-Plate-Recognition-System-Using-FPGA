@@ -1,0 +1,51 @@
+# TB: Start Test first startup and reset time=70000
+# 
+# TB: Sysem Successfully enter IDLE state (at cycle 1, time=130000)
+# TB: Successfully reset itself (at cycle 1, time=190000)
+# 
+# 
+# TB: Start Test com error time=190000
+# 
+# TB: System Successfully enter ERROR_COM due to invalid strip size (at cycle 2, time=310000)
+# TB: System Successfully enter ERROR_COM due to invalid breakpoint size (at cycle 2, time=470000)
+# TB: System Successfully enter ERROR_COM due to unmatch commade (at cycle 1, time=570000)
+# TB: ignore_invalid_cmd successfully ignore invalid commade (after 5 cycles, time=770000)
+# 
+# 
+# TB: Start Test overflow protection errors time=770000
+# 
+# TB: System Successfully enter ERROR_OVERFLOW due to stip size to long (at cycle 2, time=990000)
+# TB: System Successfully enter ERROR_OVERFLOW due to OCR read address overflow (at cycle 0, time=1270000)
+# TB: System Successfully enter ERROR_OVERFLOW due to Breakpoint ram error (at cycle 0, time=1550000)
+# 
+# 
+# TB: Start Test watchdogs triggers errors time=1550000
+# 
+# TB: System Successfully enter ERROR_RX due to watchdog_rx_trigger (at cycle 0, time=1830000)
+# TB: System Successfully enter ERROR_TX due to watchdog_tx_trigger (at cycle 0, time=2010000)
+# 
+# 
+# TB: Start OCR Watchdog test time=2010000
+# 
+# TB: System entered IDLE state (ready for upload) at time=2170000
+# TB: Sent UPLOAD command (strip_width=30, breakpoint_count=3)
+# TB: Breakpoint RX handshake completed (select_mode=0) at time=2830000
+# TB: Strip RX handshake completed (select_mode=1) at time=2930000
+# TB: IMAGE LOADED (testing OCR watchdog trigger)
+# TB: System Successfully entered ERROR_OCR due to watchdog_OCR_trigger (at cycle 4097, time=84910000)
+# 
+# 
+# TB: Start Test full cycle operation time=84910000
+# 
+# TB: System entered IDLE state (ready for upload) at time=85090000
+# TB: Sent UPLOAD command (strip_width=30, breakpoint_count=3)
+# TB: Breakpoint RX handshake completed (select_mode=0) at time=85750000
+# TB: Strip RX handshake completed (select_mode=1) at time=85850000
+# TB: IMAGE LOADED (index=0, breakpoints=0-31, digit_count=8, time=85850000)
+# TB: IMAGE LOADED (index=1, breakpoints=31-74, digit_count=5, time=86190000)
+# TB: IMAGE LOADED (index=2, breakpoints=74-125, digit_count=6, time=86650000)
+# TB: All images processed, waiting for OCR RX done at time=87190000
+# TB: TX enabled (results ready to send to CPU) at time=87330000
+# TB: FSM entered WAIT_ACK, sending ACK command at time=87390000
+# TB: Scenario completed successfully, returned to IDLE at time=87430000
+# TB: Task completed!

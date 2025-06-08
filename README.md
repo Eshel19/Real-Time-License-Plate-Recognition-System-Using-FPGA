@@ -19,16 +19,19 @@ This repository contains the complete code and documentation for my final-year p
 ---
 
 ## Project Structure
-```
-├── ALPR_SYSTEM/           # Full system integration: CPU preproc, FPGA bridge, watchdog, FSM, logging
-├── alprcrtl/              # CLI controller & interface for managing the OCR system
-├── CPU_preprocessing/     # Detection, segmentation, and preprocessing
-├── CPU_FPGA_access_API/   # Communication bridge code
-├── FPGA_AHIM/             # Accelerator interface (CU / RX / TX)
-├── FPGA_OCR_CNN/          # CNN OCR IP core
-├── LINUX_config_files/    # Kernel, device tree, and scripts
-└── docs/                  # Diagrams, documentation, notes
-```
+
+- **ALPR_SYSTEM/** – Full pipeline runtime: coordinates preprocessing, FPGA bridge, watchdogs, FSM, logging.
+- **alprcrtl/** – CLI tool to control and monitor the ALPR system.
+- **CPU_preprocessing/** – Plate detection/segmentation code (C++/Python), notebooks, benchmarks.
+- **FPGA_HPS_Bridge_AHIM/** – Bridge submodule for CPU–FPGA comms.  
+  Contains `hardware/` (HDL), `software/` (API), and `docs/` (protocol/diagrams).  
+  *See its README for details.*
+- **FPGA_OCR_CNN/** – Quantized CNN OCR IP core (HDL, quantization, memory files).
+- **LINUX_config_files/** – Kernel, device tree, and boot scripts for the platform.
+- **docs/** – High-level project docs, diagrams, final reports.
+
+*Each main submodule or major folder contains its own `README.md` with specific usage, build, and integration instructions.*
+
 
 
 ### Folder Descriptions
@@ -42,11 +45,12 @@ This repository contains the complete code and documentation for my final-year p
 - **CPU_preprocessing/**  
   C++ and Python code for real-time license plate detection and segmentation. Includes object detection (NanoDet), segmentation routines, benchmark/test scripts, and Jupyter notebooks for experiments.
 
-- **CPU_FPGA_access_API/**  
-  C++ API/library for sending image data and control commands from the CPU (HPS) to the FPGA and receiving recognition results. Implements the full CPU-to-FPGA protocol, error handling, and demo scripts.
-
-- **FPGA_AHIM/**  
-  HDL (SystemVerilog/VHDL) for the Accelerator Host Interface Manager (“CU”/bridge). Handles all CPU-FPGA communication and command parsing at the hardware level.
+- **FPGA_HPS_Bridge_AHIM/**  
+  Standalone bridge module (submodule):  
+    - `/hardware`: HDL (SystemVerilog/VHDL) for AHIM, RX/TX, FSM, and memory.
+    - `/software`: C++/Python API for CPU–FPGA comms.
+    - `/docs`: Full protocol, diagrams, block charts.
+    - `readme.md`: Mini-overview, build/test instructions.
 
 - **FPGA_OCR_CNN/**  
   FPGA implementation of a quantized CNN for optical character recognition, including memory initialization files, quantization scripts, and HDL for CNN logic.  
@@ -68,13 +72,13 @@ The code in this repository is provided for educational and demonstration purpos
    - See `/CPU_preprocessing/` for C++/Python code and notebooks.  
    - Run detection and segmentation to extract plates and prepare images for FPGA OCR.
 
-2. **CPU-FPGA Communication API:**  
-   - `/CPU_FPGA_access_API/` contains the C++ interface and command-line tools to send images to the FPGA and receive OCR results back.  
-   - Example usage and integration steps are documented in the subfolder README.
+2. **CPU–FPGA Communication:**  
+   - `/FPGA_HPS_Bridge_AHIM/software/` provides API/library to send images and commands to the FPGA, and receive results.
+   - Follow subfolder README for example usage.
 
-3. **FPGA Hardware Design:**  
-   - HDL for the communication/control logic (`/FPGA_AHIM/`) and the CNN OCR accelerator (`/FPGA_OCR_CNN/`).  
-   - Each subfolder includes instructions for synthesis (Quartus), simulation (ModelSim), and deployment.
+3. **FPGA Hardware Build:**  
+   - Synthesize and deploy `/FPGA_HPS_Bridge_AHIM/hardware/` (bridge) and `/FPGA_OCR_CNN/` (CNN core) HDL on the DE10 board.
+   - Each submodule has build and simulation instructions.
 
 4. **Linux Platform Setup:**  
    - `/LINUX_config_files/` contains all necessary files and build scripts for a custom Linux/U-Boot/device tree environment, fully compatible with the DE10 Standard FPGA board.
@@ -105,6 +109,7 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 - Compiling the Linux kernel with required configuration
 - Creating the root filesystem
 - Integrating necessary libraries (OpenCV, etc.)
+- Compling NCNN 
 
 ---
 
@@ -132,7 +137,7 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 
 ### Accelerator Host Interface Manager (AHIM)
 
-![AHIM Top View](FPGA_AHIM/architecture/Bridg_high_level.drawio.png)  
+![AHIM Top View](FFPGA_HPS_Bridge_AHIM\hardware\architecture\Bridg_high_level.drawio.png)  
 *Figure 5: AHIM block diagram showing the internal structure of the CPU-FPGA bridge. Manages synchronization, watchdogs, command handling, and data routing between HPS and OCR core.*
 
 ### Live System Runtime (103+ Hours)

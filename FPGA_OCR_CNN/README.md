@@ -35,20 +35,37 @@ Key features:
 ```
 CNN_FPGA_OCR/ ├── architecture/ # High-level architecture and workflow images │ ├── CNN model.png │ ├── ocr_architecture_overview.png │ └── System WorkFlow.png
 
-├── blocks/ # Draw.io schematics for each hardware block │ ├── data_managment_unit.drawio.png │ ├── MultiMultiplierEngine.drawio.png │ ├── Parallel_Compute_Engine_16.drawio.png │ ├── Relu_out_mem.drawio.png │ └── Results_comparator.drawio.png
-
-├── docs/ # Documentation and RTL views │ └── RTL_view.pdf
-
-├── fpga_src/ # VHDL source code and packages │ ├── *.vhd # All VHDL modules │ └── *_pack.vhd # Shared type/constant packages
-
-├── FSMs/ # State machine diagrams for control units │ ├── MCU.drawio.png │ └── SM.drawio.png
-
-├── notebooks/ # Jupyter training & export workflow │ ├── cnn_training_and_export.ipynb │ ├── fc_debug+dataset.7z │ ├── validation.png │ ├── TEST per colum.png │ └── Thresholds.txt
-
-├── testbench/ # Simulation results and testbench code │ ├── OCR_Accelerator_tb.vhd │ ├── fpga_decoder_output_5115555.png │ ├── rtl_vs_python_fc_scores_step8.png │ └── tb_fc_vector_shift_match.png
-
-├── weights/ # Exported model weights in .mif format │ ├── CON_W.mif # Convolution weights │ ├── CON_B.mif # Convolution biases │ ├── FCM_W.mif # Fully connected weights │ ├── FCM_B.mif # Fully connected biases │ └── REL_O.mif # ReLU defaults
-
+├── blocks/ # Draw.io schematics for each hardware block 
+│ ├── data_managment_unit.drawio.png 
+│ ├── MultiMultiplierEngine.drawio.png 
+│ ├── Parallel_Compute_Engine_16.drawio.png 
+│ ├── Relu_out_mem.drawio.png 
+│ └── Results_comparator.drawio.png
+├── docs/ # Documentation and RTL views 
+│ └── RTL_view.pdf
+├── fpga_src/ # VHDL source code and packages 
+│ ├── *.vhd # All VHDL modules 
+│ └── *_pack.vhd # Shared type/constant packages
+├── FSMs/ # State machine diagrams for control units 
+│ ├── MCU.drawio.png 
+│ └── SM.drawio.png
+├── notebooks/ # Jupyter training & export workflow 
+│ ├── cnn_training_and_export.ipynb 
+│ ├── fc_debug+dataset.7z 
+│ ├── validation.png 
+│ ├── TEST per colum.png 
+│ └── Thresholds.txt
+├── testbench/ # Simulation results and testbench code 
+│ ├── OCR_Accelerator_tb.vhd 
+│ ├── fpga_decoder_output_5115555.png 
+│ ├── rtl_vs_python_fc_scores_step8.png 
+│ └── tb_fc_vector_shift_match.png
+├── weights/ # Exported model weights in .mif format 
+│ ├── CON_W.mif # Convolution weights 
+│ ├── CON_B.mif # Convolution biases 
+│ ├── FCM_W.mif # Fully connected weights 
+│ ├── FCM_B.mif # Fully connected biases 
+│ └── REL_O.mif # ReLU defaults
 └── README.md # This file!
 ```
 ---
