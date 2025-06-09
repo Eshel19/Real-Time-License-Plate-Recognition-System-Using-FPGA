@@ -205,7 +205,9 @@ std::string AlprStateMachine::getStatus_() {
 
         result += oss.str();
     }
-    result += "\nAverage FPS: " + std::to_string(fps_) + " Error counts: " + std::to_string(error_count_) + " Total detected LP: " + std::to_string(total_lp_count_) + " Last LP detected: " + last_lp_;
+    result += "\nAverage FPS: " + std::to_string(fps_) + ", Error counts: " + std::to_string(error_count_) + ", Total detected LP: " + std::to_string(total_lp_count_) + ", Last LP detected: " + last_lp_;
+    result += ", Operation mode: " + run_mode_;
+    
     return result;
 }
 
@@ -217,9 +219,10 @@ std::string AlprStateMachine::getStatusSnapshot() {
     return result;
 }
 
-void AlprStateMachine::requestFlashLogs() {
+std::string AlprStateMachine::requestFlashLogs() {
     std::lock_guard<std::mutex> lock(mutex_);
-        request_flash_log_ = true;
+    request_flash_log_ = true;
+    return "logs folder: " + log_dir_ + " and Plates folder: " + plate_dir_;
 }
 
 void AlprStateMachine::resetStateMachine() {
@@ -1294,7 +1297,8 @@ void AlprStateMachine::updateSystemStatus() {
         {
             bool time_exceeded = std::chrono::duration_cast<std::chrono::minutes>(now - last_log_status_time_).count() >= log_status_interval_min_;
             if (time_exceeded)
-                logger_->logMsg("[INFO] Status report: " + getStatus_());
+                logger_->logMsg("[INFO] Auto status report | " + getStatus_());
+            last_log_status_time_ = now;
         }
     }
     // Snapshot the current FSM state

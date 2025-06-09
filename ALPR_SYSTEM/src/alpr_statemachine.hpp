@@ -55,7 +55,7 @@ public:
     void requestStop();    
     void requestRestart();
     bool isRunning();
-    void requestFlashLogs();
+    std::string requestFlashLogs();
 
 private:
     //FSM handlers:

@@ -70,8 +70,8 @@ CommandHandlerMap make_command_map(
             return "The ALPR SERVICE has been restart and re-init";
         }},
         {"flushlogs", [fsm, logger]() {
-            fsm->requestFlashLogs();
-            return "Log been flushed";
+            std::string locations = fsm->requestFlashLogs();
+            return "Log been flushed to "+ locations;
         }},
         {"help", [fsm, logger]() {
             
@@ -102,7 +102,7 @@ int main() {
             return it->second();
         }
         else {
-            return std::string("[ERROR] Unknown command");
+            return std::string("[ERROR] Unknown command user help for commades lists");
         }
         })) {
         std::cerr << "[ERROR] Failed to start socket server.\n";
