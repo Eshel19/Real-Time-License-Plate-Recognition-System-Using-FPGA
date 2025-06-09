@@ -6,64 +6,122 @@
 #include <bits/this_thread_sleep.h>
 
 // Generate a default config file
+//bool AlprStateMachine::generateDefaultConfig(const std::string& path) {
+//    std::filesystem::create_directories(CONFIG_FOLDER_PATH);
+//    std::ofstream out(path);
+//    if (!out) return false;
+//    out << R"(
+//# General
+//mode=camera
+//input_path=/home/DE10/projects/demo
+//lcd=true
+//demo_mode=true
+//max_persists_empty_frames=10
+//max_fpga_persists_states=5
+//
+//# Nanodet model cofig
+//model.param_path=/etc/alpr_system/nanodet.param
+//model.bin_path=/etc/alpr_system/nanodet.bin
+//model.num_threads=2
+//model.targer_size=125
+//model.prob_threshold = 0.6
+//model.nms_threshold = 0.65
+//
+//# FPGA bridge config
+//fpga.unsafe_mode=false
+//fpga.timeout_cycles=1000
+//fpga.min_digits=7
+//fpga.max_digits=8
+//fpga.ocr_break=false
+//fpga.ignore_invalid_cmd=false
+//# FPGA timeouts (raw uint8_t values) 
+//fpga.watchdog_pio=20
+//fpga.watchdog_ocr=200
+//
+//# Debugging
+//#WARRING DEEP  DEUBING WILL NOT JUST SAVE LOG IT WILL PRINT LOGS FROM ALL THE SUB APIS
+//debug.deep=false
+//debug.state_machine=false
+//debug.preprocess=false
+//debug.detection=false
+//debug.fpga=false
+//debug.transfer=false
+//
+//# Logging
+//log_dir=/var/log/alpr_system/logs
+//log_rotation_hours=2
+//log_max_size_mb=2
+//log_save_interval_sec=30
+//log_max_entries=200
+//log_status=true
+//log_status_interval_min=60 
+//
+//# Plate result logging
+//plate_dir=/var/log/alpr_system/plates
+//plate_rotation_hours=1
+//plate_max_size_mb=15
+//plate_save_interval_sec=60
+//plate_max_entries=3000
+//)";
+//
+//    return config_.loadFromFile(path);
+//}
+
+inline const char* boolToString(bool b) { return b ? "true" : "false"; }
+
 bool AlprStateMachine::generateDefaultConfig(const std::string& path) {
     std::filesystem::create_directories(CONFIG_FOLDER_PATH);
     std::ofstream out(path);
     if (!out) return false;
-    out << R"(
-# General
-mode=camera
-input_path=./test_images
-lcd=true
-demo_mode=false
-max_persists_empty_frames=10
-max_fpga_persists_states=5
+    out
+        << "# General\n"
+        << "mode=" << DEF_MODE << "\n"
+        << "input_path=" << DEF_INPUT_PATH << "\n"
+        << "lcd=" << boolToString(DEF_LCD) << "\n"
+        << "demo_mode=" << boolToString(DEF_DEMO_MODE) << "\n"
+        << "max_persists_empty_frames=" << DEF_MAX_PERSISTS_EMPTY_FRAMES << "\n"
+        << "max_fpga_persists_states=" << DEF_MAX_FPGA_PERSISTS_STATES << "\n"
 
-# Nanodet model cofig
-model.param_path=./models/nanodet_128x128_V2_simplified.ncnn.param
-model.bin_path=./models/nanodet_128x128_V2_simplified.ncnn.bin
-model.num_threads=2
-model.targer_size=125
-model.prob_threshold = 0.6
-model.nms_threshold = 0.65
+        << "\n# Nanodet model config\n"
+        << "model.param_path=" << DEF_MODEL_PARAM_PATH << "\n"
+        << "model.bin_path=" << DEF_MODEL_BIN_PATH << "\n"
+        << "model.num_threads=" << DEF_MODEL_NUM_THREADS << "\n"
+        << "model.targer_size=" << DEF_MODEL_TARGET_SIZE << "\n"
+        << "model.prob_threshold=" << DEF_MODEL_PROB_THRESHOLD << "\n"
+        << "model.nms_threshold=" << DEF_MODEL_NMS_THRESHOLD << "\n"
 
-# FPGA bridge config
-fpga.unsafe_mode=false
-fpga.timeout_cycles=1000
-fpga.min_digits=7
-fpga.max_digits=8
-fpga.ocr_break=false
-fpga.ignore_invalid_cmd=false
-# FPGA timeouts (raw uint8_t values) 
-fpga.watchdog_pio=20
-fpga.watchdog_ocr=200
+        << "\n# FPGA bridge config\n"
+        << "fpga.unsafe_mode=" << boolToString(DEF_FPGA_UNSAFE_MODE) << "\n"
+        << "fpga.timeout_cycles=" << DEF_FPGA_TIMEOUT_CYCLES << "\n"
+        << "fpga.min_digits=" << DEF_FPGA_MIN_DIGITS << "\n"
+        << "fpga.max_digits=" << DEF_FPGA_MAX_DIGITS << "\n"
+        << "fpga.ocr_break=" << boolToString(DEF_FPGA_OCR_BREAK) << "\n"
+        << "fpga.ignore_invalid_cmd=" << boolToString(DEF_FPGA_IGNORE_INVALID_CMD) << "\n"
+        << "# FPGA timeouts (raw uint8_t values)\n"
+        << "fpga.watchdog_pio=" << DEF_FPGA_WATCHDOG_PIO << "\n"
+        << "fpga.watchdog_ocr=" << DEF_FPGA_WATCHDOG_OCR << "\n"
 
-# Debugging
-#WARRING DEEP  DEUBING WILL NOT JUST SAVE LOG IT WILL PRINT LOGS FROM ALL THE SUB APIS
-debug.deep=false
-debug.state_machine=false
-debug.preprocess=false
-debug.detection=false
-debug.fpga=false
-debug.transfer=false
+        << "\n# Debugging\n"
+        << "debug.deep=" << boolToString(DEF_DEBUG_DEEP) << "\n"
+        << "debug.state_machine=" << boolToString(DEF_DEBUG_STATE_MACHINE) << "\n"
+        << "debug.preprocess=" << boolToString(DEF_DEBUG_PREPROCESS) << "\n"
+        << "debug.fpga=" << boolToString(DEF_DEBUG_FPGA) << "\n"
 
-# Logging
-log_dir=./logs
-log_rotation_hours=2
-log_max_size_mb=2
-log_save_interval_sec=30
-log_max_entries=200
+        << "\n# Logging\n"
+        << "log_dir=" << DEF_LOG_DIR << "\n"
+        << "log_rotation_hours=" << DEF_LOG_ROTATION_HOURS << "\n"
+        << "log_max_size_mb=" << DEF_LOG_MAX_SIZE_MB << "\n"
+        << "log_save_interval_sec=" << DEF_LOG_SAVE_INTERVAL_SEC << "\n"
+        << "log_max_entries=" << DEF_LOG_MAX_ENTRIES << "\n"
+        << "log_status=" << boolToString(DEF_LOG_STATUS) << "\n"
+        << "log_status_interval_min=" << DEF_LOG_STATUS_INTERVAL_MIN << "\n"
 
-# Plate result logging
-plate_dir=./plates
-plate_rotation_hours=1
-plate_max_size_mb=15
-plate_save_interval_sec=60
-plate_max_entries=3000
-
-# Time sync
-set_time_on_startup=true
-)";
+        << "\n# Plate result logging\n"
+        << "plate_dir=" << DEF_PLATE_DIR << "\n"
+        << "plate_rotation_hours=" << DEF_PLATE_ROTATION_HOURS << "\n"
+        << "plate_max_size_mb=" << DEF_PLATE_MAX_SIZE_MB << "\n"
+        << "plate_save_interval_sec=" << DEF_PLATE_SAVE_INTERVAL_SEC << "\n"
+        << "plate_max_entries=" << DEF_PLATE_MAX_ENTRIES << "\n";
 
     return config_.loadFromFile(path);
 }
@@ -121,10 +179,9 @@ void AlprStateMachine::requestRestart() {
     logger_->logMsg("[CMD] Restart request");
 }
 
-std::string AlprStateMachine::getStatusSnapshot() {
-    std::lock_guard<std::mutex> lock(mutex_);
+std::string AlprStateMachine::getStatus_() {
     std::string result;
-    result += "FSM state= " + stateToString(fsm_status_snapshot_);
+    result += "FSM state: " + stateToString(fsm_status_snapshot_);
     std::string status_str = "";
     switch (running_lcd_status_) {
     case LcdStatus::Running:  status_str = "Running"; break;
@@ -133,7 +190,7 @@ std::string AlprStateMachine::getStatusSnapshot() {
     case LcdStatus::Offline:  status_str = "Offline"; break;
     }
     if (running_lcd_status_ == LcdStatus::Offline) {
-        result += " the system is Offline";
+        result += ", The system is Offline";
     }
     else {
         int hh = static_cast<int>(status_duration_seconds_ / 3600);
@@ -141,16 +198,28 @@ std::string AlprStateMachine::getStatusSnapshot() {
         int ss = static_cast<int>(status_duration_seconds_ % 60);
 
         std::ostringstream oss;
-        oss << " The system is " << status_str << " for "
+        oss << ", The system is " << status_str << " for "
             << std::setfill('0') << std::setw(2) << hh << ":"
             << std::setfill('0') << std::setw(2) << mm << ":"
             << std::setfill('0') << std::setw(2) << ss;
 
         result += oss.str();
     }
-    result+="\nAverage FPS: "+ std::to_string(fps_) + " Error counts: " + std::to_string(error_count_)+" Total detected LP: " + std::to_string(total_lp_count_) +" Last LP detected: " + last_lp_;
+    result += "\nAverage FPS: " + std::to_string(fps_) + " Error counts: " + std::to_string(error_count_) + " Total detected LP: " + std::to_string(total_lp_count_) + " Last LP detected: " + last_lp_;
+    return result;
+}
+
+std::string AlprStateMachine::getStatusSnapshot() {
+    std::lock_guard<std::mutex> lock(mutex_);
+    std::string result;
+    result = getStatus_();
     logger_->logMsg("[CMD] status: "+ result);
     return result;
+}
+
+void AlprStateMachine::requestFlashLogs() {
+    std::lock_guard<std::mutex> lock(mutex_);
+        request_flash_log_ = true;
 }
 
 void AlprStateMachine::resetStateMachine() {
@@ -191,7 +260,12 @@ bool AlprStateMachine::run() {
         std::lock_guard<std::mutex> lock(mutex_);
         if (!running_) break;
         if (fsm_restart_requested_) resetStateMachine(); 
-
+        if (request_flash_log_) {
+            logger_->forceFlushLog();
+            logger_->forceFlushPlate();
+            request_flash_log_ = false;
+        }
+        
         updateSystemStatus();
         if (request_stop_) current_state_ = State::HALT;
         switch (current_state_) {
@@ -316,17 +390,20 @@ bool AlprStateMachine::handleInit() {
     }
 
     // PHASE 2: Config loaded — initialize logger
-    plate_dir_ = config_.getString("plate_dir", "./plates");
-    plate_rotation_hours_ = config_.getInt("plate_rotation_hours", 1);
-    plate_max_size_mb_ = config_.getInt("plate_max_size_mb", 15);
-    plate_save_interval_sec_ = config_.getInt("plate_save_interval_sec", 60);
-    plate_max_entries_ = config_.getInt("plate_max_entries", 3000);
+    plate_dir_ = config_.getString("plate_dir", DEF_PLATE_DIR);
+    plate_rotation_hours_ = config_.getInt("plate_rotation_hours", DEF_PLATE_ROTATION_HOURS);
+    plate_max_size_mb_ = config_.getInt("plate_max_size_mb", DEF_PLATE_MAX_SIZE_MB);
+    plate_save_interval_sec_ = config_.getInt("plate_save_interval_sec", DEF_PLATE_SAVE_INTERVAL_SEC);
+    plate_max_entries_ = config_.getInt("plate_max_entries", DEF_PLATE_MAX_ENTRIES);
 
-    log_dir_ = config_.getString("log_dir", "./logs");
-    log_rotation_hours_ = config_.getInt("log_rotation_hours", 2);
-    log_max_size_mb_ = config_.getInt("log_max_size_mb", 2);
-    log_save_interval_sec_ = config_.getInt("log_save_interval_sec", 30);
-    log_max_entries_ = config_.getInt("log_max_entries", 200);
+    log_dir_ = config_.getString("log_dir", DEF_LOG_DIR);
+    log_rotation_hours_ = config_.getInt("log_rotation_hours", DEF_LOG_ROTATION_HOURS);
+    log_max_size_mb_ = config_.getInt("log_max_size_mb", DEF_LOG_MAX_SIZE_MB);
+    log_save_interval_sec_ = config_.getInt("log_save_interval_sec", DEF_LOG_SAVE_INTERVAL_SEC);
+    log_max_entries_ = config_.getInt("log_max_entries", DEF_LOG_MAX_ENTRIES);
+    log_status_ = config_.getBool("log_status", DEF_LOG_STATUS);
+    log_status_interval_min_ = config_.getInt("log_status_interval_min", DEF_LOG_STATUS_INTERVAL_MIN);
+    last_log_status_time_ = std::chrono::steady_clock::now();
 
     if(!logger_->isInitialized())
     {
@@ -348,26 +425,25 @@ bool AlprStateMachine::handleInit() {
 
     logger_->logMsg("Config loaded successfully.");
 
-    lcd_en_= config_.getBool("lcd", false);
-    debug_deep_ = config_.getBool("debug.deep", false);
-    debug_detection_ = config_.getBool("debug.detection", false);
-    debug_preprocess_ = config_.getBool("debug.preprocess", false);
-    debug_fpga_ = config_.getBool("debug.fpga", false);
-    debug_transfer_ = config_.getBool("debug.transfer", false);
-    max_fpga_persists_states_ = config_.getInt("max_fpga_persists_states", 5);
-    debug_state_machine_ = config_.getBool("debug.state_machine", false);
-    max_persists_empty_frames_= config_.getInt("max_persists_empty_frames", 10);
-    demo_mode_= config_.getBool("demo_mode", false);
+    lcd_en_= config_.getBool("lcd", DEF_LCD);
+    debug_deep_ = config_.getBool("debug.deep", DEF_DEBUG_DEEP);
+    debug_preprocess_ = config_.getBool("debug.preprocess", DEF_DEBUG_PREPROCESS);
+    debug_fpga_ = config_.getBool("debug.fpga", DEF_DEBUG_FPGA);
+    max_fpga_persists_states_ = config_.getInt("max_fpga_persists_states", DEF_MAX_FPGA_PERSISTS_STATES);
+    debug_state_machine_ = config_.getBool("debug.state_machine", DEF_DEBUG_STATE_MACHINE);
+    max_persists_empty_frames_= config_.getInt("max_persists_empty_frames", DEF_MAX_PERSISTS_EMPTY_FRAMES);
+    demo_mode_= config_.getBool("demo_mode", DEF_DEMO_MODE);
 
-    unsafe_mode_ = config_.getBool("fpga.unsafe_mode", false);
-    timeout_cycles_ = config_.getInt("fpga.timeout_cycles", 1000);
-    min_digits_ = static_cast<uint8_t>(config_.getInt("fpga.min_digits", 7));
-    max_digits_ = static_cast<uint8_t>(config_.getInt("fpga.max_digits", 8));
-    ocr_break_ = config_.getBool("fpga.ocr_break", false);
-    ignore_invalid_cmd_ = config_.getBool("fpga.ignore_invalid_cmd", false);
-    watchdog_pio_ = config_.getInt("fpga.watchdot_pio", 20);
-    watchdog_ocr_ = config_.getInt("fpga.watchdot_ocr", 200);
+    unsafe_mode_ = config_.getBool("fpga.unsafe_mode", DEF_FPGA_UNSAFE_MODE);
+    timeout_cycles_ = config_.getInt("fpga.timeout_cycles", DEF_FPGA_TIMEOUT_CYCLES);
+    min_digits_ = static_cast<uint8_t>(config_.getInt("fpga.min_digits", DEF_FPGA_MIN_DIGITS));
+    max_digits_ = static_cast<uint8_t>(config_.getInt("fpga.max_digits", DEF_FPGA_MAX_DIGITS));
+    ocr_break_ = config_.getBool("fpga.ocr_break", DEF_FPGA_OCR_BREAK);
+    ignore_invalid_cmd_ = config_.getBool("fpga.ignore_invalid_cmd", DEF_FPGA_IGNORE_INVALID_CMD);
+    watchdog_pio_ = config_.getInt("fpga.watchdot_pio", DEF_FPGA_WATCHDOG_PIO);
+    watchdog_ocr_ = config_.getInt("fpga.watchdot_ocr", DEF_FPGA_WATCHDOG_OCR);
     logger_->logDebug("state", "Logger initialized.");
+
 
     if (debug_fpga_)
         logger_->logDebug("fpga", "FPGA Config: unsafe_mode=" + std::to_string(unsafe_mode_) +
@@ -393,26 +469,26 @@ bool AlprStateMachine::handleInit() {
         ", save_interval_sec=" + std::to_string(log_save_interval_sec_) +
         ", max_entries=" + std::to_string(log_max_entries_));
 
-    model_param_path_ = config_.getString("model.param_path", "nanodet_128x128.param");
+    model_param_path_ = config_.getString("model.param_path", DEF_MODEL_PARAM_PATH);
     if (!fileExists(model_param_path_)) {
         logger_->logError("Initialization failed. Model param file missing: " + model_param_path_);
         current_state_ = State::ERROR;
         return false;
     }
 
-    model_bin_path_ = config_.getString("model.bin_path", "nanodet_128x128.bin");
+    model_bin_path_ = config_.getString("model.bin_path", DEF_MODEL_BIN_PATH);
     if (!fileExists(model_bin_path_)) {
         logger_->logError("Initialization failed. Model bin file missing: " + model_bin_path_);
         current_state_ = State::ERROR;
         return false;
     }
 
-    model_num_threads_ = config_.getInt("model.num_threads", 2);
-    model_target_size_ = config_.getInt("model.target_size", 128);
-    model_prob_threshold_ = std::stof(config_.getString("model.prob_threshold", "0.6"));
-    model_nms_threshold_ = std::stof(config_.getString("model.nms_threshold", "0.65"));
-    input_path_ = config_.getString("input_path", "./test_images");
-    run_mode_ = config_.getString("mode", "camera");
+    model_num_threads_ = config_.getInt("model.num_threads", DEF_MODEL_NUM_THREADS);
+    model_target_size_ = config_.getInt("model.target_size", DEF_MODEL_TARGET_SIZE);
+    model_prob_threshold_ = std::stof(config_.getString("model.prob_threshold", DEF_MODEL_PROB_THRESHOLD));
+    model_nms_threshold_ = std::stof(config_.getString("model.nms_threshold", DEF_MODEL_NMS_THRESHOLD));
+    input_path_ = config_.getString("input_path", DEF_INPUT_PATH);
+    run_mode_ = config_.getString("mode", DEF_MODE);
     if (debug_state_machine_)
         logger_->logDebug("state", "operation mode set to " + run_mode_);
 
@@ -484,36 +560,47 @@ bool AlprStateMachine::handleInit() {
         if (!cap_.isOpened()) {
 
             logger_->logError("Error: Unable to open the camera.");
-            current_state_ = State::ERROR;
-            return false;
-        }
-        if (debug_state_machine_)
-            logger_->logDebug("state","Camera open start warmup");
-        int warmup_frames = 5;
-        int empty_frames_count = 0;
-        for (int i = 0; i < warmup_frames; ++i) {
-            cv::Mat temp_frame;
-            cap_ >> temp_frame;
-            if (temp_frame.empty()) {
-                if (debug_state_machine_)
-                    logger_->logDebug("state", "Warning: Blank frame grabbed during warm-up.");
-                empty_frames_count++;
-            }
-        }
-        if (empty_frames_count == 5)
-        {
             if (demo_mode_)
             {
+                error_count_++;
                 logger_->logMsg("Demo mode is on ignoring fail camera init");
                 run_mode_ = "folder";
             }
-            else
-            {
-                logger_->logError("Error: Unable to open the camera.");
+            else {
                 current_state_ = State::ERROR;
                 return false;
             }
-            
+           
+        }
+        else {
+            if (debug_state_machine_)
+                logger_->logDebug("state", "Camera open start warmup");
+            int warmup_frames = 5;
+            int empty_frames_count = 0;
+            for (int i = 0; i < warmup_frames; ++i) {
+                cv::Mat temp_frame;
+                cap_ >> temp_frame;
+                if (temp_frame.empty()) {
+                    if (debug_state_machine_)
+                        logger_->logDebug("state", "[Warning] Blank frame grabbed during warm-up.");
+                    empty_frames_count++;
+                }
+            }
+            if (empty_frames_count == 5)
+            {
+                logger_->logError("Error: Unable to open the camera.");
+                error_count_++;
+                if (demo_mode_)
+                {
+                    logger_->logMsg("Demo mode is on ignoring fail camera init");
+                    run_mode_ = "folder";
+                }
+                else
+                {
+                    current_state_ = State::ERROR;
+                    return false;
+                }
+            }   
         }
     }
     
@@ -608,30 +695,27 @@ void AlprStateMachine::handleFrameCapture() {
 
             // Try to recover camera immediately
             cap_.release();
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            bool reopened = cap_.open(0, cv::CAP_V4L2); // Use your actual camera index/path
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            cap_.open(0, cv::CAP_V4L2); // Use your actual camera index/path
+            empty_frame_++; // Only increment if recovery also failed
 
-            if (!reopened || !cap_.isOpened()) {
-                empty_frame_++; // Only increment if recovery also failed
-
+            if (empty_frame_ >= max_persists_empty_frames_) {
                 logger_->logError("Camera recovery failed (attempt " + std::to_string(empty_frame_) + ")");
-                
-                if (empty_frame_ >= max_persists_empty_frames_) { // e.g. 10
-                    if (demo_mode_)
-                    {
-                        logger_->logMsg("Demo mode is on ignoring fail camera init");
-                        run_mode_ = "folder";
-                    }
-                    else
-                    {
-                        logger_->logError("Critical error: camera failing to recover after multiple attempts!");
-                        current_state_ = State::ERROR;
-                        return;
-                    }
+                if (demo_mode_)
+                {
+                    logger_->logMsg("Demo mode is on ignoring fail camera");
+                    run_mode_ = "folder";
                 }
-                current_state_ = State::FRAME_CUPTURE;
-                return;
+                else
+                {
+                    logger_->logError("Critical error: camera failing to recover after multiple attempts!");
+                    current_state_ = State::ERROR;
+                    return;
+                }
             }
+            current_state_ = State::FRAME_CUPTURE;
+            return;
+            
         }
         else {
             if (empty_frame_ > 0) {
@@ -668,7 +752,7 @@ void AlprStateMachine::handleDetection() {
 
     if (debug_preprocess_)
         logger_->logDebug("preprocess", "Detected " + std::to_string(objects.size()) + " LP(s) in the frame");
-
+    object_clips_.clear();
     detector_->extract_object_clips_clone(current_frame_, objects, object_clips_);
     if (object_clips_.empty())
     {
@@ -715,12 +799,20 @@ void AlprStateMachine::handleSegmenation() {
             int newHeight = 16;
             double aspectRatio = static_cast<double>(segmented.cols) / static_cast<double>(segmented.rows);
             int newWidth = static_cast<int>(newHeight * aspectRatio);
-            cv::Mat resizedImage;
-            cv::resize(segmented, resizedImage, cv::Size(newWidth, newHeight));
+            if (newWidth > 20) {
+                cv::Mat resizedImage;
+                cv::resize(segmented, resizedImage, cv::Size(newWidth, newHeight));
 
-            presend_images_.push_back(std::move(resizedImage));
-            if (debug_preprocess_)
-                logger_->logDebug("preprocess", "push sub image to presend images bank");
+                presend_images_.push_back(std::move(resizedImage));
+                if (debug_preprocess_)
+                    logger_->logDebug("preprocess", "push sub image to presend images bank");
+            }
+            else
+            {
+                if (debug_preprocess_)
+                    logger_->logDebug("preprocess", "Skip invalid image, the Width: " + std::to_string(newWidth) + " to small for valid LP detection");
+            }
+            
         }
         
 
@@ -772,40 +864,80 @@ void AlprStateMachine::handleCheckFpga() {
             current_state_ = State::RECEIVE_RESULT;
             break;
         case(FpgaFsmStatus::ERROR_OVERFLOW):
-            if (same_state_count_ == max_fpga_persists_states_) {
+            if (same_state_count_ == 2) {
                 current_state_ = State::ERROR;
                 logger_->logError("Critical Error: the system fail to reset from ERROR_OVERFLOW");
                 break;
             }
-
             if (same_State){
+                logger_->logError("The FPGA enter again ERROR_OVERFLOW Spliting Bank fail attempting recovery by reset the FPGA");
+                error_count_++;
+                presend_images_.clear();
                 current_state_ = State::RESET_FPGA;
             }else{
+                logger_->logError("The FPGA enter ERROR_OVERFLOW recovery by reset the Spliting the image bank");
+                error_count_++;
                 current_state_ = State::SPLIT_BANKS;
             }
             break;
         case(FpgaFsmStatus::ERROR_OCR):
-            current_state_ = State::RESET_FPGA;
+            if (same_State) {
+                logger_->logError("Fail to recover from ERROR_OCR Critical Error");
+                current_state_ = State::ERROR;
+            }
+            else {
+                logger_->logError("The FPGA enter ERROR_OCR attempting recovery by reset the FPGA");
+                error_count_++;
+                current_state_ = State::RESET_FPGA;
+            }
             break;
         case(FpgaFsmStatus::ERROR_TX):
-            if (same_State){
+
+            if (same_state_count_ == 2) {
                 current_state_ = State::ERROR;
+                logger_->logError("Critical Error: the system fail to recover from ERROR_TX");
+                break;
+            }
+            if (same_State) {
+                logger_->logError("The FPGA enter again ERROR_TX after reset attempting recovery by clearing the buffer");
+                presend_images_.clear();
+                current_state_ = State::RESET_FPGA;
             }else{
-                current_state_ = State::MARGE_BANKS;
+                logger_->logError("The FPGA enter ERROR_TX attempting recovery by reset the FPGA");
+                error_count_++;
+                current_state_ = State::RESET_FPGA;
             }
             break;
         case(FpgaFsmStatus::ERROR_RX):
-            if (same_State){
+            if (same_state_count_ == 2) {
                 current_state_ = State::ERROR;
+                logger_->logError("Critical Error: the system fail to recover from ERROR_RX");
+                break;
+            }
+            if (same_State){
+                logger_->logError("The FPGA enter again ERROR_RX after reset attempting recovery by clearing the buffer");
+                presend_images_.clear();
+                current_state_ = State::RESET_FPGA;
             }else{
-                current_state_ = State::MARGE_BANKS;
+                error_count_++;
+                logger_->logError("The FPGA enter ERROR_RX attempting recovery by reset the FPGA");
+                current_state_ = State::RESET_FPGA;
             }
             break;
         case(FpgaFsmStatus::ERROR_COM):
-            if (same_State){
+            if (same_state_count_ == 2) {
                 current_state_ = State::ERROR;
+                logger_->logError("Critical Error: the system fail to recover from ERROR_COM");
+                break;
+            }
+            if (same_State){
+                logger_->logError("The FPGA enter again ERROR_COM after reset attempting recovery by clearing the buffer");
+                presend_images_.clear();
+                current_state_ = State::RESET_FPGA;
             }else{
-                current_state_ = State::MARGE_BANKS;
+                error_count_++;
+                logger_->logError("The FPGA enter ERROR_COM attempting recovery by reset the FPGA");
+                current_state_ = State::RESET_FPGA;
             }
             break;
         case(FpgaFsmStatus::OFFLINE):
@@ -998,7 +1130,10 @@ void AlprStateMachine::handleResetFpga() {
     if (debug_fpga_)
         logger_->logDebug("fpga", "FPGA as been init afte a reset.");
     fpga_job_pending_ = false;
-    current_state_ = State::RESEND_IMAGE;
+    if (!presend_images_.empty())
+        current_state_ = State::SEND_IMAGE;
+    else
+        current_state_ = State::FRAME_CUPTURE;
 }
 
 // SPLIT_BANKS: on overflow, split batch
@@ -1151,12 +1286,21 @@ void AlprStateMachine::handleError() {
 }
 
 void AlprStateMachine::updateSystemStatus() {
-    if(logger_)
+    auto now = std::chrono::steady_clock::now();
+    if (logger_) {
         logger_->maybeFlushLog();
+        logger_->maybeFlushPlate();
+        if (log_status_)
+        {
+            bool time_exceeded = std::chrono::duration_cast<std::chrono::minutes>(now - last_log_status_time_).count() >= log_status_interval_min_;
+            if (time_exceeded)
+                logger_->logMsg("[INFO] Status report: " + getStatus_());
+        }
+    }
     // Snapshot the current FSM state
     fsm_status_snapshot_ = current_state_;
 
-    auto now = std::chrono::steady_clock::now();
+    
 
     // Detect LCD status change and reset duration timer if needed
     if (last_status_lcd_ != running_lcd_status_) {

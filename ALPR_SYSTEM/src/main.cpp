@@ -57,25 +57,26 @@ CommandHandlerMap make_command_map(
 ) {
     CommandHandlerMap command_map{
         {"stop", [fsm, logger]() {
-            
-            
             fsm->requestStop();
             while(fsm->isRunning())
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            
             return "Stop ALPR SERVICE";
         }},
         {"status", [fsm, logger]() {
-            
-            
             return "SERVICE STATUS: " + fsm->getStatusSnapshot();
         }},
         {"restart", [fsm, logger]() {
             fsm->requestRestart();
             return "The ALPR SERVICE has been restart and re-init";
         }},
-
-        // ...add more commands...
+        {"flushlogs", [fsm, logger]() {
+            fsm->requestFlashLogs();
+            return "Log been flushed";
+        }},
+        {"help", [fsm, logger]() {
+            
+            return "start - start the ALPR service\nstop - stop the ALPR service\nstatus - provide and save the status of the Service\nflushlogs - force flush the logs";
+        }},
     };
     return command_map;
 }
@@ -116,7 +117,6 @@ int main() {
         removePidFile();
         return 1;
     }
-    logger->~Logger();
     removePidFile();
     return 0;
 }

@@ -21,6 +21,7 @@
 #include <chrono>
 #include "HPS_LCD/lcd_live_display.h"
 #include "ipc_shared.hpp"
+#include "default_config.hpp"
 
 using LcdStatus = LcdLiveDisplay::LcdStatus;
 using FpgaFsmStatus = FpgaOcrBridge::FsmState;
@@ -54,6 +55,7 @@ public:
     void requestStop();    
     void requestRestart();
     bool isRunning();
+    void requestFlashLogs();
 
 private:
     //FSM handlers:
@@ -76,7 +78,7 @@ private:
     std::string stateToString(State state);
     bool generateDefaultConfig(const std::string& path);
     void resetStateMachine();
-
+    std::string getStatus_();
 
 
     //Parameters
@@ -92,7 +94,7 @@ private:
     bool demo_mode_ = false;
     bool fsm_restart_requested_ = false;
     bool request_stop_ = false;
-
+    bool request_flash_log_ = false;
     //status_copy
     State fsm_status_snapshot_;
 
@@ -167,6 +169,9 @@ private:
     int plate_max_size_mb_ = 15;
     int plate_save_interval_sec_ = 60;
     int plate_max_entries_ = 3000;
+    bool log_status_ = true;
+    int log_status_interval_min_ = 60;
+    std::chrono::steady_clock::time_point last_log_status_time_;
 
     // System log settings
     std::string log_dir_;
