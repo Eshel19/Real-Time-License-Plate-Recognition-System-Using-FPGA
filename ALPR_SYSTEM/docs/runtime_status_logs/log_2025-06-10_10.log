@@ -1,0 +1,4 @@
+2025-06-10 11:38:25 [INFO] [INFO] Auto status report | FSM state: SEGMENATION, The system is Running for 04:59:58
+Average FPS: 16.405575, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder
+2025-06-10 12:38:25 [INFO] [INFO] Auto status report | FSM state: DETECTION, The system is Running for 05:59:58
+Average FPS: 16.305422, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder

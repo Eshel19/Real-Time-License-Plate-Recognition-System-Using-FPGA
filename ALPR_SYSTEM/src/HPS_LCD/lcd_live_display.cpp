@@ -30,7 +30,6 @@ LcdLiveDisplay::~LcdLiveDisplay() {
 LcdLiveDisplay::operator bool() const {
     return (virtual_base && canvas.pFrame);
 }
-
 bool LcdLiveDisplay::init() {
     int fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (fd == -1) {
@@ -56,12 +55,8 @@ bool LcdLiveDisplay::init() {
     canvas.BitPerPixel = 1;
     canvas.FrameSize = canvas.Width * canvas.Height / 8;
     canvas.pFrame = (uint8_t*)malloc(canvas.FrameSize);
-    if (canvas.pFrame != nullptr) {
-        fprintf(stderr, "LCD already initialized\n");
-        return true;
-    }
+
     if (!canvas.pFrame) {
-        // Prevent leaks if malloc fails
         munmap(virtual_base, HW_REGS_SPAN);
         virtual_base = nullptr;
         fprintf(stderr, "LCD init failed: malloc failed\n");
@@ -69,9 +64,9 @@ bool LcdLiveDisplay::init() {
     }
 
     snprintf(line0, sizeof(line0), "LP: --------");
-    snprintf(line1, sizeof(line1), "FPS: 0.0 PT: 0.0");
-    snprintf(line2, sizeof(line2), "FrameLP: 0 TL: 0");
-    snprintf(line3, sizeof(line3), "Err: 0 Paused");
+    snprintf(line1, sizeof(line1), "FPS: 0.0 E:000");
+    snprintf(line2, sizeof(line2), "Offline");
+    snprintf(line3, sizeof(line3), "Detected: 0");
 
     initialized = true;
     refresh();
@@ -122,11 +117,11 @@ void LcdLiveDisplay::format_count(uint32_t count, char* out, int out_size) {
 void LcdLiveDisplay::update(
     const std::string& lp_text,
     float fps,
-    float avg_lp_time_ms,
-    uint32_t frame_lp_count,
     uint32_t total_lp_count,
     uint32_t error_count,
+    uint32_t status_duration_seconds,
     LcdStatus status
+    
 ) {
     if (!virtual_base || !canvas.pFrame) return;
 
@@ -134,16 +129,28 @@ void LcdLiveDisplay::update(
     format_count(total_lp_count, tl_str, sizeof(tl_str));
 
     snprintf(line0, sizeof(line0), "LP: %-8s", lp_text.c_str());
-    snprintf(line1, sizeof(line1), "FPS:%4.1f PT:%4.1f", fps, avg_lp_time_ms);
-    snprintf(line2, sizeof(line2), "FrameLP:%2u TL:%s", frame_lp_count, tl_str);
+    snprintf(line1, sizeof(line1), "FPS:%4.1f E:%03u", fps, error_count);
+
     const char* status_str = "";
     switch (status) {
-    case LcdStatus::Running: status_str = "Running"; break;
-    case LcdStatus::Paused:  status_str = "Paused";  break;
-    case LcdStatus::Error:   status_str = "Error";   break;
+    case LcdStatus::Running:  status_str = "Running"; break;
+    case LcdStatus::Paused:   status_str = "Paused";  break;
+    case LcdStatus::Error:    status_str = "Error";   break;
     case LcdStatus::Offline:  status_str = "Offline"; break;
     }
-    snprintf(line3, sizeof(line3), "Err:%-4u %s", error_count, status_str);
+
+    if (status == LcdStatus::Offline) {
+        snprintf(line2, sizeof(line2), "Offline");
+    }
+    else {
+        int hh = static_cast<int>(status_duration_seconds / 3600);
+        int mm = static_cast<int>((status_duration_seconds % 3600) / 60);
+        int ss = static_cast<int>(status_duration_seconds % 60);
+        snprintf(line2, sizeof(line2), "%-8s%02d:%02d:%02d", status_str, hh, mm, ss);
+    }
+
+    snprintf(line3, sizeof(line3), "Detected: %s", tl_str);
 
     refresh();
 }
+

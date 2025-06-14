@@ -1,0 +1,4 @@
+2025-06-11 09:38:25 [INFO] [INFO] Auto status report | FSM state: SEND_IMAGE, The system is Running for 26:59:58
+Average FPS: 17.605227, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder
+2025-06-11 10:38:25 [INFO] [INFO] Auto status report | FSM state: FRAME_CUPTURE, The system is Running for 27:59:58
+Average FPS: 16.178627, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder

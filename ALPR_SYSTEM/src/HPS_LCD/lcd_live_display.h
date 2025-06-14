@@ -25,11 +25,11 @@ public:
     void update(
         const std::string& lp_text,
         float fps,
-        float avg_lp_time_ms,
-        uint32_t frame_lp_count,
         uint32_t total_lp_count,
         uint32_t error_count,
+        uint32_t status_duration_seconds,
         LcdStatus status
+        
     );
     explicit operator bool() const;
 private:

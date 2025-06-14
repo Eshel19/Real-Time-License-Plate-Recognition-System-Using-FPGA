@@ -1,0 +1,33 @@
+2025-06-10 06:41:48 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:42:10 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:42:12 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:42:39 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:42:41 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:43:01 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:43:02 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:43:30 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:43:31 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:43:43 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:43:44 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:44:04 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:44:06 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:44:23 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:44:24 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:44:43 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:44:44 [INFO] Camera recovered automatically after 1 failure(s).
+2025-06-10 06:45:02 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:45:13 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:45:23 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:45:34 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:45:45 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:45:56 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:46:06 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:46:17 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:46:28 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:46:38 [ERROR] Frame capture failed (camera may be disconnected)
+2025-06-10 06:46:39 [ERROR] Camera recovery failed (attempt 10)
+2025-06-10 06:46:39 [INFO] Demo mode is on ignoring fail camera
+2025-06-10 07:38:25 [INFO] [INFO] Auto status report | FSM state: DETECTION, The system is Running for 00:59:58
+Average FPS: 15.716623, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder
+2025-06-10 08:38:25 [INFO] [INFO] Auto status report | FSM state: DETECTION, The system is Running for 01:59:58
+Average FPS: 15.734713, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder

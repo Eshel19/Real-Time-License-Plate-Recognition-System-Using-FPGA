@@ -1,0 +1,4 @@
+2025-06-13 01:38:25 [INFO] [INFO] Auto status report | FSM state: FRAME_CUPTURE, The system is Running for 66:59:59
+Average FPS: 16.628843, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder
+2025-06-13 02:38:26 [INFO] [INFO] Auto status report | FSM state: CHECK_FPGA, The system is Running for 67:59:59
+Average FPS: 16.343975, Error counts: 24, Total detected LP: 4, Last LP detected: 5142616, Operation mode: folder

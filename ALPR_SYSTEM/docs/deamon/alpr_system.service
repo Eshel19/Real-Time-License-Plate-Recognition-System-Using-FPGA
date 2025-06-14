@@ -1,0 +1,12 @@
+[Unit]
+Description=ALPR Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/ALPR_SYSTEM
+Restart=on-failure
+User=root
+PIDFile=/run/alpr_system.pid
+
+[Install]
+WantedBy=multi-user.target

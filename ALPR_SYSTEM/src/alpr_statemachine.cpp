@@ -5,67 +5,6 @@
 #include <filesystem>
 #include <bits/this_thread_sleep.h>
 
-// Generate a default config file
-//bool AlprStateMachine::generateDefaultConfig(const std::string& path) {
-//    std::filesystem::create_directories(CONFIG_FOLDER_PATH);
-//    std::ofstream out(path);
-//    if (!out) return false;
-//    out << R"(
-//# General
-//mode=camera
-//input_path=/home/DE10/projects/demo
-//lcd=true
-//demo_mode=true
-//max_persists_empty_frames=10
-//max_fpga_persists_states=5
-//
-//# Nanodet model cofig
-//model.param_path=/etc/alpr_system/nanodet.param
-//model.bin_path=/etc/alpr_system/nanodet.bin
-//model.num_threads=2
-//model.targer_size=125
-//model.prob_threshold = 0.6
-//model.nms_threshold = 0.65
-//
-//# FPGA bridge config
-//fpga.unsafe_mode=false
-//fpga.timeout_cycles=1000
-//fpga.min_digits=7
-//fpga.max_digits=8
-//fpga.ocr_break=false
-//fpga.ignore_invalid_cmd=false
-//# FPGA timeouts (raw uint8_t values) 
-//fpga.watchdog_pio=20
-//fpga.watchdog_ocr=200
-//
-//# Debugging
-//#WARRING DEEP  DEUBING WILL NOT JUST SAVE LOG IT WILL PRINT LOGS FROM ALL THE SUB APIS
-//debug.deep=false
-//debug.state_machine=false
-//debug.preprocess=false
-//debug.detection=false
-//debug.fpga=false
-//debug.transfer=false
-//
-//# Logging
-//log_dir=/var/log/alpr_system/logs
-//log_rotation_hours=2
-//log_max_size_mb=2
-//log_save_interval_sec=30
-//log_max_entries=200
-//log_status=true
-//log_status_interval_min=60 
-//
-//# Plate result logging
-//plate_dir=/var/log/alpr_system/plates
-//plate_rotation_hours=1
-//plate_max_size_mb=15
-//plate_save_interval_sec=60
-//plate_max_entries=3000
-//)";
-//
-//    return config_.loadFromFile(path);
-//}
 
 inline const char* boolToString(bool b) { return b ? "true" : "false"; }
 
@@ -1297,8 +1236,12 @@ void AlprStateMachine::updateSystemStatus() {
         {
             bool time_exceeded = std::chrono::duration_cast<std::chrono::minutes>(now - last_log_status_time_).count() >= log_status_interval_min_;
             if (time_exceeded)
+            {
                 logger_->logMsg("[INFO] Auto status report | " + getStatus_());
-            last_log_status_time_ = now;
+                last_log_status_time_ = now;
+            }
+                
+            
         }
     }
     // Snapshot the current FSM state
