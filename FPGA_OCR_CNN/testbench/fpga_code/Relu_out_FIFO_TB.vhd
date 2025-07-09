@@ -7,13 +7,16 @@ use WORK.data_pack.ALL;
 use WORK.mem_pack.ALL;
 
 entity Relu_out_FIFO_TB is
+	GENERIC (
+	mif_fn:string:=relu_out_info.mif_fn;
+	DATA_WIDTH : integer := relu_out_info.DATA_WIDTH;
+	ADDR_WIDTH : integer := relu_out_info.ADDR_WIDTH;
+	DATA_DEPTH : integer := relu_out_info.DATA_DEPTH
+	);
 end entity;
 
 architecture Behavioral of Relu_out_FIFO_TB is
 
-	signal	DATA_WIDTH : integer := relu_out_into.DATA_WIDTH;
-	signal	ADDR_WIDTH : integer := relu_out_into.ADDR_WIDTH;
-	signal	DATA_DEPTH : integer := relu_out_into.DATA_DEPTH;
     -- Signals to connect to the FIFO under test
     signal rst                 : std_logic := '0';
     signal clk_in              : std_logic := '0';
@@ -34,20 +37,18 @@ begin
     -- Instantiate the FIFO under test
     uut: entity WORK.Relu_out_FIFO
         generic map (
-            mif_fn     => relu_out_into.mif_fn,
-            DATA_WIDTH => relu_out_into.DATA_WIDTH,
-            ADDR_WIDTH => relu_out_into.ADDR_WIDTH,
-            DATA_DEPTH => relu_out_into.DATA_DEPTH
+            mif_fn     => relu_out_info.mif_fn,
+            DATA_WIDTH => relu_out_info.DATA_WIDTH,
+            ADDR_WIDTH => relu_out_info.ADDR_WIDTH,
+            DATA_DEPTH => relu_out_info.DATA_DEPTH
         )
         port map (
-            rst                 => rst,
+            rst_n                 => rst,
             clk_in              => clk_in,
             Relu_data_in        => Relu_data_in,
-            Relu_out_Write_en   => Relu_out_Write_en,
-            Relu_out_Read_en    => Relu_out_Read_en,
+            Relu_WR_EN   => Relu_out_Write_en,
+            Relu_RD_EN    => Relu_out_Read_en,
             Relu_data_Q         => Relu_data_Q,
-            full                => full,
-            empty               => empty,
             S_rst               => S_rst
         );
 
@@ -69,10 +70,10 @@ begin
         variable data_value  : std_logic_vector(DATA_WIDTH-1 downto 0);
     begin
         -- Apply reset to initialize the FIFO
-        rst <= '1';
+        rst <= '0';
         S_rst <= '1';
         wait for 2 * clk_period;
-        rst <= '0';
+        rst <= '1';
         S_rst <= '0';
         wait for clk_period;
 
@@ -88,7 +89,7 @@ begin
 		  Relu_out_Read_en <= '0';
 		  wait for clk_period*2;
 
-        while empty = '0' loop
+        while read_count /= 200 loop
 				data_value := std_logic_vector(to_unsigned(9999, DATA_WIDTH));
 				Relu_data_in      <= data_value;
 				Relu_out_Read_en <= '1';
@@ -108,12 +109,8 @@ begin
 				Relu_out_Read_en <= '0';
 				wait for clk_period*2;
 
-				if(read_count>70) then
-					rst<='1';
-					wait for clk_period;
-					rst<='0';
-					read_count:=0;
-					wait for clk_period;
+				if(read_count=ADDR_Relu_write_start) then
+					report "read start reading the write values reads: " & integer'image(read_count);
 				end if;
             read_count := read_count + 3;
         end loop;
