@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time LPR on FPGA | System Architecture Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .architecture-grid {
+            background-image: radial-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        .diagram-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i data-lucide="cpu" class="h-8 w-8 text-cyan-400"></i>
+                    <span class="ml-2 text-xl font-bold tracking-tight text-white">Eshel.Eng</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#overview" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Overview</a>
+                        <a href="#architecture" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">System Architecture</a>
+                        <a href="#fpga-core" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">FPGA Core</a>
+                        <a href="#results" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Performance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="overview" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 architecture-grid opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:w-2/3">
+                <div class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs font-mono mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
+                    Cyclone V SoC FPGA Implementation
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6">
+                    Real-Time License Plate <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Hardware Acceleration</span>
+                </h1>
+                <p class="mt-4 text-xl text-slate-400 max-w-2xl leading-relaxed">
+                    A fully autonomous, fanless embedded system utilizing Hardware-Software Co-design. 
+                    Featuring a custom-built <strong>Sliding Window CNN accelerator</strong> capable of sub-millisecond inference and a robust 
+                    <strong>AHIM protocol</strong> for fault-tolerant HPS-FPGA communication.
+                </p>
+                
+                <div class="mt-10 flex gap-4">
+                    <a href="#architecture" class="px-8 py-3 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition-all shadow-lg shadow-cyan-500/20">
+                        Explore Architecture
+                    </a>
+                    <a href="https://github.com/Eshel19/Real-Time-License-Plate-Recognition-System-Using-FPGA" target="_blank" class="px-8 py-3 rounded-lg glass-panel hover:bg-slate-800 text-white font-semibold transition-all flex items-center gap-2">
+                        <i data-lucide="github" class="w-5 h-5"></i> Source Code
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated visual element representing data flow -->
+        <div class="absolute top-1/2 right-0 -translate-y-1/2 w-1/3 h-full hidden lg:block opacity-20 pointer-events-none">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#06b6d4" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.3C93.5,8.6,82.2,21.5,70.6,32.2C59,42.9,47.1,51.4,34.7,58.6C22.3,65.8,9.4,71.7,-2.8,76.6C-15,81.5,-26.5,85.4,-37.2,80.7C-47.9,76,-57.8,62.7,-66.2,49.2C-74.6,35.7,-81.5,22,-80.7,8.7C-79.9,-4.6,-71.4,-17.5,-61.7,-28.9C-52,-40.3,-41.1,-50.2,-29.4,-58.5C-17.7,-66.8,-5.2,-73.5,9.4,-89.8L44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- High Level Architecture -->
+    <section id="architecture" class="py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">High-Level System Architecture</h2>
+                <div class="h-1 w-20 bg-cyan-500 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400">Hybrid processing partitioning between ARM Cortex-A9 (HPS) and Cyclone V FPGA Fabric.</p>
+            </div>
+
+            <!-- Main System Diagram -->
+            <div class="mb-16">
+                <div class="glass-panel p-2 rounded-xl border border-slate-700 max-w-5xl mx-auto">
+                    <div class="diagram-container bg-white rounded-lg overflow-hidden">
+                        <img src="project Diagram.drawio.png" alt="Full System Architecture Diagram" class="w-full h-auto object-contain">
+                    </div>
+                    <div class="p-4 bg-slate-900/80 rounded-b-lg">
+                        <p class="text-sm text-slate-400 text-center"><strong>Figure 1:</strong> End-to-end data flow. The HPS handles image acquisition, detection, and segmentation, while the FPGA executes the intensive OCR inference in parallel.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- HPS Column -->
+                <div class="glass-panel rounded-xl p-6 relative group hover:border-cyan-500/50 transition-colors">
+                    <div class="absolute -top-3 left-6 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">HPS (ARM Cortex-A9)</div>
+                    <h3 class="text-xl font-semibold text-white mt-4 mb-4">Software Preprocessing</h3>
+                    <ul class="space-y-3 text-slate-300 text-sm">
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mr-2 shrink-0"></i>
+                            <span><strong>Custom OS:</strong> Arch Linux ARM compiled from source for modern OpenCV/NCNN support.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mr-2 shrink-0"></i>
+                            <span><strong>Object Detection:</strong> NanoDet-m (FP32) running on NCNN framework.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mr-2 shrink-0"></i>
+                            <span><strong>Segmentation:</strong> Custom skew correction & adaptive thresholding pipeline.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400 mr-2 shrink-0"></i>
+                            <span><strong>Service Daemon:</strong> C++ FSM controlling the entire pipeline & recovery.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bridge Column -->
+                <div class="flex flex-col items-center justify-center space-y-4">
+                    <div class="w-1 bg-gradient-to-b from-blue-600 to-cyan-500 h-full rounded-full opacity-50 relative">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 p-2 rounded-full border border-cyan-500">
+                            <i data-lucide="arrow-right-left" class="w-6 h-6 text-cyan-400"></i>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-lg text-center w-full">
+                        <h4 class="text-cyan-400 font-bold">Avalon Bridge</h4>
+                        <p class="text-xs text-slate-400 mt-1">128-bit Burst Transfers</p>
+                        <p class="text-xs text-slate-500 mt-1">Custom API abstraction</p>
+                    </div>
+                </div>
+
+                <!-- FPGA Column -->
+                <div class="glass-panel rounded-xl p-6 relative group hover:border-cyan-500/50 transition-colors">
+                    <div class="absolute -top-3 left-6 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full">FPGA Fabric</div>
+                    <h3 class="text-xl font-semibold text-white mt-4 mb-4">Hardware Acceleration</h3>
+                    <ul class="space-y-3 text-slate-300 text-sm">
+                        <li class="flex items-start">
+                            <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mr-2 shrink-0"></i>
+                            <span><strong>AHIM Core:</strong> "The Brain". Autonomous protocol handling & error recovery.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mr-2 shrink-0"></i>
+                            <span><strong>OCR Engine:</strong> Sliding Window CNN. < 1ms inference per plate.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mr-2 shrink-0"></i>
+                            <span><strong>Pipeline:</strong> Fully pipelined Parallel Compute Engines (16 units).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mr-2 shrink-0"></i>
+                            <span><strong>Resource Usage:</strong> 100% DSP Utilization, 57% Logic (ALMs).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: FPGA Core -->
+    <section id="fpga-core" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- AHIM Section -->
+            <div class="mb-24">
+                <div class="flex flex-col lg:flex-row gap-12 items-start">
+                    <div class="lg:w-5/12">
+                        <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-cyan-400 uppercase bg-cyan-900/30 rounded-full">
+                            Control Plane
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-6">AHIM: Accelerator Host Interface Manager</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                            The AHIM transforms the FPGA from a passive peripheral into a self-managed co-processor. It handles the quirks of the Avalon bridge (splitting 128-bit writes into four 32-bit chunks) and manages the OCR engine autonomously.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-3 bg-slate-800/50 rounded-lg border-l-2 border-cyan-500">
+                                <h4 class="text-white font-bold text-sm mb-1">RX Unit</h4>
+                                <p class="text-xs text-slate-400">Handles image strip uploads & breakpoints with hardware watchdogs.</p>
+                            </div>
+                            <div class="p-3 bg-slate-800/50 rounded-lg border-l-2 border-cyan-500">
+                                <h4 class="text-white font-bold text-sm mb-1">Core Controller</h4>
+                                <p class="text-xs text-slate-400">FSM orchestrating multi-plate processing without CPU intervention.</p>
+                            </div>
+                            <div class="p-3 bg-slate-800/50 rounded-lg border-l-2 border-cyan-500">
+                                <h4 class="text-white font-bold text-sm mb-1">Result FILO</h4>
+                                <p class="text-xs text-slate-400">Buffers results to ensure correct ordering during burst reads.</p>
+                            </div>
+                            <div class="p-3 bg-slate-800/50 rounded-lg border-l-2 border-cyan-500">
+                                <h4 class="text-white font-bold text-sm mb-1">Configurable</h4>
+                                <p class="text-xs text-slate-400">Runtime updates via MIF files without HDL recompilation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AHIM Diagram -->
+                    <div class="lg:w-7/12 w-full">
+                        <div class="glass-panel p-2 rounded-xl border border-slate-700">
+                            <div class="diagram-container bg-white rounded-lg overflow-hidden">
+                                <img src="Bridge high level poster.drawio.png" alt="AHIM Hardware Block Diagram" class="w-full h-auto">
+                            </div>
+                            <div class="p-3 bg-slate-900/80 rounded-b-lg">
+                                <p class="text-xs text-slate-400 text-center"><strong>Figure 2:</strong> AHIM Architecture showcasing the Central Controller (CC), RX/TX arbitration, and RAM buffers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OCR Accelerator Section -->
+            <div class="flex flex-col lg:flex-row-reverse gap-12 items-start">
+                <div class="lg:w-5/12">
+                    <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-yellow-400 uppercase bg-yellow-900/30 rounded-full">
+                        Compute Plane
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-6">Sliding Window CNN Accelerator</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                        A pipelined implementation of a convolutional neural network designed specifically for streaming text recognition. Instead of batch processing, it scans the image strip column-by-column.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <div class="bg-slate-800 p-2 rounded mr-4">
+                                <i data-lucide="layers" class="w-5 h-5 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Parallel Compute Engine</h4>
+                                <p class="text-xs text-slate-400">16 MultiMultiplier Engines operating in parallel. Dynamically switches between Convolution and Fully Connected modes to maximize DSP usage.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-slate-800 p-2 rounded mr-4">
+                                <i data-lucide="database" class="w-5 h-5 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Data Management Unit (DMU)</h4>
+                                <p class="text-xs text-slate-400">Manages sliding window buffers and feature maps. No external memory access required during inference.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Resource Utilization Mini-Panel -->
+                    <div class="glass-panel p-4 rounded-xl border border-slate-700 bg-slate-800/50">
+                        <h4 class="text-xs font-bold text-slate-300 mb-3 border-b border-slate-700 pb-2">Cyclone V Resource Utilization</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-[10px] mb-1">
+                                    <span class="text-cyan-400">DSP Blocks</span>
+                                    <span class="text-white">112 / 112 (100%)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                    <div class="bg-cyan-500 h-1.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] mb-1">
+                                    <span class="text-blue-400">Logic Utilization (ALMs)</span>
+                                    <span class="text-white">24,012 / 41,910 (57%)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                    <div class="bg-blue-500 h-1.5 rounded-full" style="width: 57%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- OCR Diagram -->
+                <div class="lg:w-7/12 w-full">
+                    <div class="glass-panel p-2 rounded-xl border border-slate-700">
+                        <div class="diagram-container bg-white rounded-lg overflow-hidden">
+                            <img src="OCR_ARCH.drawio.png" alt="AI OCR Accelerator Block Diagram" class="w-full h-auto">
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-b-lg">
+                            <p class="text-xs text-slate-400 text-center"><strong>Figure 3:</strong> AI OCR Block Diagram illustrating the Data Management Unit (DMU), Parallel Compute Engines, and Result Comparator.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmark Results -->
+    <section id="results" class="py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Architecture vs. General Purpose Computing</h2>
+                <p class="text-slate-400 max-w-3xl mx-auto">
+                    Comparing the custom FPGA pipeline against a high-end Desktop GPU implementation of the exact same algorithm.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- FPGA Card -->
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-cyan-500">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-white">Cyclone V FPGA</h3>
+                        <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">50 MHz Clock</span>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-sm text-slate-400 mb-1">Inference Time per Plate</div>
+                            <div class="text-4xl font-mono text-cyan-400 font-bold">&lt; 1 ms</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-slate-400 mb-1">Power Consumption</div>
+                            <div class="text-xl font-mono text-white">1.6 W</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-slate-400 mb-1">Stability</div>
+                            <div class="text-xl font-mono text-white">100+ Hours (Fanless)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop GPU Card -->
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-slate-600 opacity-70">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-slate-300">RTX 3090 Desktop</h3>
+                        <span class="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded">Ryzen 5950X CPU</span>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-sm text-slate-500 mb-1">Inference Time per Plate</div>
+                            <div class="text-4xl font-mono text-slate-300 font-bold">~95 ms</div>
+                            <div class="text-xs text-red-400 mt-1">~100x Slower</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-slate-500 mb-1">Power Consumption</div>
+                            <div class="text-xl font-mono text-slate-300">300W+</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-slate-500 mb-1">Efficiency</div>
+                            <div class="text-xl font-mono text-slate-300">Low (Overkill)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-8 border border-slate-700">
+                <h4 class="text-lg font-bold text-white mb-4">Key Engineering Challenges Solved</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex gap-4">
+                        <div class="mt-1"><i data-lucide="alert-triangle" class="text-orange-400 w-5 h-5"></i></div>
+                        <div>
+                            <h5 class="text-white font-semibold">Avalon Bridge 4-Part Writes</h5>
+                            <p class="text-sm text-slate-400 mt-1">The bridge split 128-bit transfers into four 32-bit chunks. Resolved by implementing internal counters in the RX/TX units to validate data only on every 4th cycle.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="mt-1"><i data-lucide="alert-triangle" class="text-orange-400 w-5 h-5"></i></div>
+                        <div>
+                            <h5 class="text-white font-semibold">Legacy OS Limitations</h5>
+                            <p class="text-sm text-slate-400 mt-1">Vendor Linux was outdated. Built a custom Arch Linux ARM distro with updated Kernel and Device Tree to support modern OpenCV and NCNN libraries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold tracking-tight text-white">Eshel.Eng</span>
+                <p class="text-sm text-slate-500 mt-2">Final Year Project | Afeka College of Engineering</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://github.com/Eshel19/Real-Time-License-Plate-Recognition-System-Using-FPGA" class="text-slate-400 hover:text-cyan-400 transition-colors">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
