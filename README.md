@@ -142,7 +142,7 @@ To create the custom Linux distribution for the DE10 Standard FPGA board, I foll
 
 ### Accelerator Host Interface Manager (AHIM)
 
-![AHIM Top View](FPGA_HPS_Bridge_AHIM\hardware\architecture\Bridge_high_level.drawio.png)  
+![AHIM Top View](FPGA_HPS_Bridge_AHIM/hardware/architecture/Bridge_high_level.drawio.png)  
 *Figure 5: AHIM block diagram showing the internal structure of the CPU-FPGA bridge. Manages synchronization, watchdogs, command handling, and data routing between HPS and OCR core.*
 
 ### Live System Runtime (103+ Hours)
